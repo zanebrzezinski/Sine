@@ -1,46 +1,65 @@
 # Schema Information
 
-## notes
+## loops
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 title       | string    | not null
-body        | text      | not null
+loop_url    | string    | not null, unique
 author_id   | integer   | not null, foreign key (references users), indexed
-notebook_id | integer   | not null, foreign key (references notebooks), indexed
-archived    | boolean   | not null, default: false
 
-## notebooks
+## likes
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    | 
+loop_id     | integer   | not null, foreign key (references loops)
+liker_id    | integer   | not null, foreign key (references users)
 
-## reminders
+## reposts
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-note_id     | string    | not null, foreign key (references notes), indexed
-date        | datetime  | not null
-type        | string    | not null
-prev_id     | integer   | foreign key (references reminders), indexed
+loop_id     | integer   | not null, foreign key (references loops)
+reposter_id | integer   | not null, foreign key (references users), indexed
+
+## followings
+
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+follower_id | integer   | not null, foreign key (references users)
+followee_id | integer   | not null, foreign key (references users)
 
 ## tags
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-name        | string    | not null
+tag         | string    | not null
+
 
 ## taggings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
-note_id     | integer   | not null, foreign key (references notes), indexed, unique [tag_id]
+loop_id     | integer   | not null, foreign key (references loops), indexed
 tag_id      | integer   | not null, foreign key (references tags), indexed
+
+
+## comments
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+comment     | text      | not null
+Author_id   | integer   | not null, foreign key (references users)
+
+## commentings
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+Comment_id  | integer   | not null, foreign key (references comments)
+Loop_id     | integer   | not null, foreign key (references loop)
+
 
 ## users
 column name     | data type | details
