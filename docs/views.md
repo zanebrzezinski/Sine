@@ -27,11 +27,11 @@
 ## Component Heirarchy
 ![components]
 
-[root]: ./wireframes/root.jpg
-[sign-up-sign-in]: ./wireframes/sign_up_sign_in.jpg
-[feed]: ./wireframes/feed.jpg
-[loop]: ./wireframes/loop.jpg
-[loop-form]: ./wireframes/loop-form.jpg
-[notifications]: ./wireframes/notifications.jpg
-[user]: ./wireframes/user.jpg
-[components]: ./wireframes/components.jpg
+[root]: ./wireframes/root.JPG
+[sign-up-sign-in]: ./wireframes/sign_up_sign_in.JPG
+[feed]: ./wireframes/feed.JPG
+[loop]: ./wireframes/loop.JPG
+[loop-form]: ./wireframes/loop-form.JPG
+[user]: ./wireframes/user.JPG
+[notifications]: ./wireframes/notifications.JPG
+[components]: ./wireframes/components.JPG
