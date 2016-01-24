@@ -31,6 +31,7 @@
 ### Actions
 
 * LoopActions.fetchFeedLoops
+* LoopActions.fetchLikedLoops
 * ApiActions.receiveComment
 * ApiActions.deleteComment
 * CommentActions.fetchSingleComment

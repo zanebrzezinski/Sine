@@ -61,7 +61,8 @@ have a feed, consisting of an index of the loops that he has posted and the loop
 the users who he follows.  Each loop will be able to be commented on and liked,
 as well as re-posted to all users feeds who follow the current-user. Reposted loops will
 indicate which user reposted them.  Likes will indicate how many people liked a post
-and who liked it. Comments will be displayed below the loop.  
+and who liked it. Comments will be displayed below the loop. A user page will now
+also have a view to watch all of a users liked loops. 
 
 [Details][phase-three]
 
@@ -95,7 +96,8 @@ and continue tweaking stylings on the page.
 - [ ] If music?, allow user to add a key attribute denoting the musical key of the loop
 - [ ] If music?, give estimate of BPM by using math on loop length, allow user to add BPM attribute - autofilled with BPM estimation
 - [ ] Search view where multiple loops will play simultaneously, all in same key or same bpm.
--
+- [ ] Playlists
+
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
 [phase-three]: ./docs/phases/phase3.md
