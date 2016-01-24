@@ -1,44 +1,47 @@
-# Phase 3: Notebooks and Tags (2 days)
+# Phase 3: Social Functionality and Feed (2.5 days)
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
+* Likes
+* Comments
+* Commentings
+* Reposts
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* API::CommentsController(create, update, destroy, show, index (nested under commments)
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
-* tags/show.json.jbuilder
+* loops/tags/index.json.jbuilder
+* loops/comments/index.json.jbuilder
+* loops/likes/index.json.jbuilder
+* loops/reposts/index.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NotebooksIndex
-  - NotebookIndexItem
-* NotebookForm
-* SearchIndex
+* Comment Form
+* Update Loop with Like Button
+* Update Loop with Like display
+* Update Loop with Repost Button
+* Update Loop with Repost display
+* Comment view (child of loop view)
 
 ### Stores
-* Notebook
+* Comments Store
 
 ### Actions
-* ApiActions.receiveAllNotebooks -> triggered by ApiUtil
-* ApiActions.receiveSingleNotebook
-* ApiActions.deleteNotebook
-* NotebookActions.fetchAllNotebooks -> triggers ApiUtil
-* NotebookActions.fetchSingleNotebook
-* NotebookActions.createNotebook
-* NotebookActions.editNotebook
-* NotebookActions.destroyNotebook
+
+* LoopActions.fetchFeedLoops
+* ApiActions.receiveComment
+* ApiActions.deleteComment
+* CommentActions.fetchSingleComment
+* CommentActions.fetchLoopComments
+* Update LoopActions.fetchUserLoops to include reposts
 
 ### ApiUtil
-* ApiUtil.fetchAllNotebooks
-* ApiUtil.fetchSingleNotebook
-* ApiUtil.createNotebook
-* ApiUtil.editNotebook
-* ApiUtil.destroyNotebook
+* ApiUtil.fetchComment
+* ApiUtil.createComment
+* ApiUtil.editComment
+* ApiUtil.destroyComment
+
 
 ## Gems/Libraries

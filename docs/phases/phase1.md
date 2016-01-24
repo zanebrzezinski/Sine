@@ -1,4 +1,4 @@
-# Phase 1: User Authentication, Note Model and JSON API
+# Phase 1: Sign Up/ Log in, JSON Api (1.5 days)
 
 ## Rails
 ### Models

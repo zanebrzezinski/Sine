@@ -60,6 +60,14 @@ id          | integer   | not null, primary key
 Comment_id  | integer   | not null, foreign key (references comments)
 Loop_id     | integer   | not null, foreign key (references loop)
 
+## notifications
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+Event_id    | integer   | not null, foreign key (references comment/like/reposting as determined by event_type)
+Event_type  | string    | not null
+User_id     | integer   | not null, foreign key (references users)
+
 
 ## users
 column name     | data type | details
