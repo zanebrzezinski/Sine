@@ -3,18 +3,18 @@
 ## Rails
 ### Models
 * User
-* Note
+* Loop
 
 ### Controllers
 * UsersController (create, new)
 * SessionsController (create, new, destroy)
-* Api::NotesController (create, destroy, index, show, update)
+* Api::LoopController (create, destroy, index, show, update)
 
 ### Views
 * users/new.html.erb
 * session/new.html.erb
-* notes/index.json.jbuilder
-* notes/show.json.jbuilder
+* loops/index.json.jbuilder
+* loops/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)

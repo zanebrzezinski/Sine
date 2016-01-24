@@ -6,19 +6,20 @@
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote built using Ruby on Rails
-and React.js. FresherNote allows users to:
+Sine is a web application inspired by Vine built using Ruby on rails and React.js.  Sine allows the user to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
 - [ ] Create an account
 - [ ] Log in / Log out
-- [ ] Create, read, edit, and delete notes
-- [ ] Organize notes within Notebooks
-- [ ] Tag notes with multiple tags and search notes by tag
-- [ ] Search through notes for blocks of text
-- [ ] Apply complex styling to notes while editing
-- [ ] Set reminders on notes
+- [ ] Create, watch, and delete loops. Edit loop meta-data.
+- [ ] Like and repost other users loops
+- [ ] Tag loops with tags
+- [ ] Search through loops by title and tags
+- [ ] Scroll through a feed of loops by other users
+- [ ] Follow other users
+- [ ] Comment on posts
+- [ ] Set an avatar image
 
 ## Design Docs
 * [View Wireframes][view]
@@ -29,69 +30,72 @@ and React.js. FresherNote allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Note Model and JSON API (1.5 days)
+### Phase 1: Sign Up / Log in, JSON Api (1.5 day)
 
-In Phase 1, I will begin by implementing user signup and authentication (using
-BCrypt). There will be a basic landing page after signup that will contain the
-container for the application's root React component. Before building out the
-front end, I will begin by setting up a full JSON API for Notes.
+In Phase 1, I will set up the standard user signup/sign in authentication using
+BCrypt.  I will create a json API to create a list of loops posted by the user(index).
+I will also create a json API to send the data for individual loops which will
+populate the index view (show). Finally, I will implement a feed model which will
+create an index view to display all loops relevant to a user as determined by
+the users he is following and the posts he has made.
+
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture and Note CRUD (2.5 days)
+### Phase 2: Flux Architecture and Loop CRUD (2.5 days)
 
-Phase 2 is focused on setting up Flux, the React Router, and the React view
-structure for the main application. After the basic Flux architecture has been
-set up, a Note store will be implemented and a set of actions corresponding to
-the needed CRUD functionality created. Once this is done, I will create React
-views for the Notes `Index`, `IndexItem` and `Form`. At the end of Phase 2,
-Notes can be created, read, edited and destroyed in the browser. Notes should
-save to the database when the form loses focus or is left idle after editing.
-Lastly, while constructing the views I will start using basic bootstrap for
-styling.
+Phase 2 will implement the basic Flux and React architecture for the app as a
+whole.  Each loop will be rendered as a
+react component, and the index as a whole will be rendered as a list of the loop
+components.  There will also be an upload page for loops, which will allow a
+user to upload a loop and set the data on it such as tags.  At the end of Phase
+2, a user will be able to create, view edit and destroy his own loops, 
+and view an index of his own posted loops.
 
 [Details][phase-two]
 
-### Phase 3: Notebooks and Tags (2 days)
+### Phase 3: Social Functionality and Feed (2 days)
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook, which has
-its own `Index` view. Create JSON API for Notebooks. Notes can also now be
-tagged with multiple tags. Users can bring up notes in a separate `SearchIndex`
-view by searching for their tags. Once the tag search is implemented, I will
-extend this to a fuzzy search through every Note's content.
+Phase 3 will be where the loops social functionality is implemented.  The user will
+have a feed, consisting of an index of the loops that he has posted and the loops from
+the users who he follows.  Each loop will be able to be commented on and liked,
+as well as re-posted to all users feeds who follow the current-user. Reposted loops will
+indicate which user reposted them.  Likes will indicate how many people liked a post
+and who liked it. Comments will be displayed below the loop.  
 
 [Details][phase-three]
 
-### Phase 4: Allow Complex Styling in Notes (1 day)
+### Phase 4: Notifications (1 day)
 
-Using the react-quill library (based on Quill.js), allow for complex styling of
-notes.
+When a user has a loop liked or reposted, he will get a notification blip that
+informs him of which vine was interacted with, by whom, and it what manner (like or repost).
+The blip will consist of a bubble informing the user of how many notifications he has.
+When the user clicks the bubble, a drop down will inform the user of the full
+information.
+
 
 [Details][phase-four]
 
-### Phase 5: Reminders and Garbage Collection (1 day)
+### Phase 5: Search (1 days)
 
-Phase 5 introduces two new features. First, users can set reminders on notes
-which will at the time they are set for prompt the user to review and edit the
-given note. In addition, I will implement a feature that asks users to review
-notes once they reach a certain age and ask whether they should be kept,
-archived, or deleted.
+In phase 5 I will add the ability to create a new feed view with loops determined by
+a search of titles or of taggings.  The relevant videos will populate a new feed
+which the user will be able to like, repost, and interact with as normal.
 
 [Details][phase-five]
 
-### Phase 6: Styling Cleanup and Seeding (1 day)
+### Phase 6: Styling Seeding (1 day)
 
-Bootstrap will have been used to keep things organized up until now, but in
-Phase 6 I will add styling flourishes and make modals out of some elements (like
-the NotebookForm).
+Because of the nature of videos, it will probably take a while to get sufficient videos
+to seed the database.  I will use this last day to continue adding seeds to the database
+and continue tweaking stylings on the page.
 
 ### Bonus Features (TBD)
-- [ ] Prettify transitions
-- [ ] Use javascript library for cleaner tag selection
-- [ ] Changelogs for Notes
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Multiple sessions
-
+- [ ] Add music? boolean as separate attribute to loop
+- [ ] If music, allow user to add a key attribute denoting the musical key of the loop
+- [ ] If music, give estimate of BPM by using math on loop length
+- [ ] Search view where multiple loops will play simultaneously, all in same key.
+- 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
 [phase-three]: ./docs/phases/phase3.md
