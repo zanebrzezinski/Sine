@@ -3,10 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>test</title>
+<style>
+  .container{
+    width: 500px;
+    overflow:hidden;
+    display:block;
+  }
+  .video {
+    display: block;
+    margin: auto;
+  }
+</style>
   </head>
   <body>
-    <video controls loop>
-      <source src="http://mirrors.creativecommons.org/movingimages/webm/ASharedCulture_240p.webm" autoplay poster="posterimage.jpg">
-    </video>
+    <div class="container">
+      <video class="video" loop>
+        <source src="http://mirrors.creativecommons.org/movingimages/webm/ASharedCulture_240p.webm" autoplay poster="posterimage.jpg">
+      </video>
+    </div>
   </body>
 </html>
