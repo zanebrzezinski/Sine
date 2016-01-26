@@ -7,13 +7,14 @@ class SessionsController < ApplicationController
 
     if user
       sign_in(user)
-      render api_user_url(user)
+      redirect_to root_url
     else
-      render root
+      render :new
+    end
   end
 
   def destroy
     sign_out
-    render root
+    redirect_to root_url
   end
 end

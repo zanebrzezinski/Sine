@@ -6,9 +6,19 @@
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
   <% if signed_in? %>
-    Signed In
+    Signed in as <%= current_user.username %>
+    <form action="<%= session_url %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <%= button_to "Sign Out" %>
+    </form>
   <% else %>
-    Not Signed In
+    <form class="" action="<%= new_session_url %>" method="get">
+      <%= button_to "Sign In", method: "get" %>
+    </form>
+
+    or
+
+    <a href="<%= new_user_url %>">Sign Up</a>
   <% end %>
 </head>
 <body>
