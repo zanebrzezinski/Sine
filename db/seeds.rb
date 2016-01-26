@@ -8,3 +8,7 @@
 
 
 User.delete_all
+bartolo = User.create(username: "Bartolo", password: "bartolo")
+
+Loop.delete_all
+Loop.create(title: "test", url: "http://mirrors.creativecommons.org/movingimages/webm/ASharedCulture_240p.webm", author_id: bartolo.id)

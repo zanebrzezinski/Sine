@@ -8,17 +8,14 @@
   <% if signed_in? %>
     Signed in as <%= current_user.username %>
     <form action="<%= session_url %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <%= button_to "Sign Out" %>
+      <input type="hidden" name="_method" value="DELETE">
+      <%= auth_token %>
+      <button>Log Out</button>
     </form>
   <% else %>
-    <form class="" action="<%= new_session_url %>" method="get">
-      <%= button_to "Sign In", method: "get" %>
-    </form>
-
+      <a href="<%= new_session_url %>">Sign in</a>
     or
-
-    <a href="<%= new_user_url %>">Sign Up</a>
+      <a href="<%= new_user_url %>">Sign Up</a>
   <% end %>
 </head>
 <body>
