@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     :class_name => "Loop",
     :foreign_key => :author_id,
     :primary_key => :id
-    )
+  )
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

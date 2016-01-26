@@ -62,6 +62,29 @@ img {
 
 /* --- USER FORM --- */
 
+.header {
+  float: right;
+  margin: 10px
+}
+
+.signed-out > a {
+  background-color: #00BF8F;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 100000px;
+}
+
+.button{
+  background-color: #00BF8F;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 100000px;
+}
+
+
+
+/* --- USER FORM --- */
+
 .userform-partial {
   width: 420px;
   margin: auto;

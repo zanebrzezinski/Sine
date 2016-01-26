@@ -9,6 +9,7 @@
 
 User.delete_all
 bartolo = User.create(username: "Bartolo", password: "bartolo")
+degrom = User.create(username: "Degrom", password: "degrom")
 
 Loop.delete_all
 Loop.create(title: "test", url: "http://mirrors.creativecommons.org/movingimages/webm/ASharedCulture_240p.webm", author_id: bartolo.id)
