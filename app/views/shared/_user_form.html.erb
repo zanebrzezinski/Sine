@@ -1,0 +1,12 @@
+<div class="userform-partial" >
+
+<h1>Sine</h1>
+<h2><%= headline %></h2>
+
+  <form classname="userform group" action="<%= action %>" method="post">
+      <input class="textbox" type="text" name="user[username]" placeholder="username" value="">
+      <input class="textbox" type="password" name="user[password]" placeholder="password" value="">
+    <%= button_to "#{button_text}", {}, {class: 'form-button'}%>
+  </form>
+
+</div>

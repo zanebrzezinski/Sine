@@ -5,17 +5,9 @@
     <title>Sine</title>
   </head>
   <body>
-    <h1>Sign In</h1>
-    <form action="<%= session_url %>" method="post">
-
-      <label>Username
-        <input type="text" name="user[username]" value="">
-      </label>
-      <label>Password
-        <input type="password" name="user[password]" value="">
-      </label>
-
-      <%= button_to "create"%>
-    </form>
+    <%= render "shared/user_form",
+      headline: "Please sign into your Sine accout",
+      action: session_url, 
+      button_text: "Sign In"  %>
   </body>
 </html>

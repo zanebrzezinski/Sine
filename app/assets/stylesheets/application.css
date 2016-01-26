@@ -13,3 +13,90 @@
  *= require_tree .
  *= require_self
  */
+
+ html, body, header, nav, h1, a, ul, li,
+strong, main, section, img, div, h2, p,
+form, fieldset, label, input, textarea,
+button, article, footer, small {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  box-sizing: inherit;
+  vertical-align: inherit;
+  background: transparent;
+}
+
+/* --- ELEMENTS --- */
+
+body {
+  background: #eee;
+  box-sizing: content-box;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.1666666666;
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --- CLEARFIX --- */
+
+.group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+/* --- USER FORM --- */
+
+.userform-partial {
+  width: 420px;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.userform-partial > h1 {
+  text-align: center;
+  color: #00BF8F;
+  font-size: 60px;
+  font-family: cursive;
+}
+
+.userform-partial > h2 {
+  text-align: center;
+  color: #9B9B9B;
+  font-size: 16px
+}
+
+.textbox {
+  display: block;
+  background: #E4E4E4;
+  margin: 10px auto;
+  padding: 0 10px;
+  height: 30px;
+  width: 360px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.form-button {
+  background-color: #00BF8F;
+  color: #FFF;
+  padding: 10px 30px;
+  margin: 0 290px 10px;
+  border-radius: 500px;
+}
