@@ -63,15 +63,25 @@ img {
 /* --- USER FORM --- */
 
 header {
-  float: right;
-  margin: 10px
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 10px;
 }
 
 .signed-out > a {
+  display: inline;
   background-color: #00BF8F;
   color: #fff;
   padding: 4px 10px;
   border-radius: 100000px;
+}
+.username {
+  display: inline;
+}
+
+.signed-in > form {
+  display: inline;
 }
 
 .button{
@@ -122,4 +132,31 @@ header {
   padding: 10px 30px;
   margin: 0 290px 10px;
   border-radius: 500px;
+}
+
+/* --- FEED --- */
+
+.feed {
+  width: 535px;
+  margin: 75px auto;
+}
+
+/* --- LOOP --- */
+
+.loop-box {
+  width: 535px;
+  background-color: #fff;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.loop {
+  margin-top: 40px;
+  width: 535px;
+}
+
+.author {
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: bold;
 }

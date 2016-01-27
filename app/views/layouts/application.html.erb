@@ -5,10 +5,13 @@
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
+
+</head>
+<body>
   <header>
     <% if signed_in? %>
       <nav class="signed-in">
-        <%= current_user.username %>
+        <div class="username"><%= current_user.username %></div>
         <form action="<%= session_url %>" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <%= auth_token %>
@@ -23,8 +26,6 @@
       </nav>
     <% end %>
   </header>
-</head>
-<body>
 
 <%= yield %>
 
