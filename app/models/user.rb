@@ -13,6 +13,32 @@ class User < ActiveRecord::Base
     :primary_key => :id
   )
 
+  has_many(
+    :followings_followed,
+    class_name: "Following",
+    foreign_key: :follower_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :followed_by_followings,
+    class_name: "Following",
+    foreign_key: :followee_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :followed_users,
+    through: :followings_followed,
+    source: :followee
+  )
+
+  has_many(
+    :users_following,
+    through: :followed_by_followings,
+    source: :follower,
+  )
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user && user.valid_password?(password)
