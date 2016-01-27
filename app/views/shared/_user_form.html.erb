@@ -4,9 +4,12 @@
 <h2><%= headline %></h2>
 
   <form classname="userform group" action="<%= action %>" method="post">
+    <%= auth_token %>
       <input class="textbox" type="text" name="user[username]" placeholder="username" value="">
       <input class="textbox" type="password" name="user[password]" placeholder="password" value="">
-    <%= button_to "#{button_text}", {}, {class: 'form-button'}%>
+      <!-- <button class='form-button' name="button"><%= button_text %></button> -->
+      <%= button_to "#{button_text}", {}, {class: 'form-button'}%>
+
   </form>
 
 </div>
