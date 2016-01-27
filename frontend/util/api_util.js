@@ -7,8 +7,8 @@ ApiUtil = {
       url: "api/loops",
       dataType: "json",
       success: function(data) {
-        ApiActions.receiveAllLoops(data);
-      }
+        ApiActions.receiveAll(data);
+      },
     });
   }
 };

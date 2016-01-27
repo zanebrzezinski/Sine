@@ -18,3 +18,9 @@ LoopStore.__onDispatch = function(payload) {
       break;
   }
 };
+
+LoopStore.all = function(){
+  return _loops.slice(0);
+};
+
+module.exports = LoopStore;

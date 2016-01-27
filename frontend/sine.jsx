@@ -1,12 +1,13 @@
 var ReactDOM = require('react-dom');
 var React = require('react');
+var Feed = require('./components/feed.jsx');
 
 
 var App = React.createClass({
   render: function() {
     return (
       <div>
-        Hello World!
+        <Feed />
       </div>
     );
   }
