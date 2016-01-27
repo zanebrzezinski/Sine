@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :index]
     resources :loops, only: [:show, :index]
+    resource :feed, only: [:show]
   end
 
 end

@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   )
 
   has_many(
-    :users_following,
+    :followers,
     through: :followed_by_followings,
     source: :follower,
   )
