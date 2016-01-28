@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 html, body, header, nav, h1, a, ul, li,
@@ -147,9 +148,18 @@ header {
 
 .loop-box {
   width: 535px;
+  position: relative;
   background-color: #fff;
   margin-bottom: 30px;
   border-radius: 5px;
+}
+
+.volume {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  color: #fff;
+  opacity: 0.5;
 }
 
 .loop-info {
