@@ -53,25 +53,35 @@ var Loop = React.createClass({
 
     var showLink = "#/loops/" + this.props.loop.id;
     var userLink = "#/users/" + this.props.loop.author_id;
-
     var createdAtDate = new Date(this.props.loop.created_at).toDateString();
 
-    return(
-      <div className="loop-box">
-        <div className="loop-info">
-          <a className="author" href="">{this.props.loop.author}</a>
-          <a className="created_at" href={showLink}>{createdAtDate}</a>
+    if (this.props.videoOnly) {
+      return(
+        <div className="loop">
+          <i onClick={this.muteLogic} className={icon} ></i>
+          <video className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
         </div>
-        <i onClick={this.muteLogic} className={icon} ></i>
-        <video className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
-        <div className="title">{this.props.loop.title}</div>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.commentChange}
-            className="comment-box" type="text"
-            placeholder="Say Something Nice" value={this.state.comment}/>
-        </form>
-      </div>
-    );
+      );
+    } else {
+      return(
+        <div className="loop-box group">
+          <div className="loop-info">
+            <a className="author" href="">{this.props.loop.author}</a>
+            <a className="created_at" href={showLink}>{createdAtDate}</a>
+          </div>
+          <i onClick={this.muteLogic} className={icon} ></i>
+          <video className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+          <div className="title">{this.props.loop.title}</div>
+          <form onSubmit={this.handleSubmit}>
+            <input onChange={this.commentChange}
+              className="comment-box" type="text"
+              placeholder="Say Something Nice" value={this.state.comment}/>
+          </form>
+        </div>
+      );
+    }
+
+
   }
 });
 

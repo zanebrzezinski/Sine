@@ -19,11 +19,12 @@ var Feed = React.createClass({
   },
 
   componentDidMount: function() {
-    this.loopListener = LoopStore.addListener(this._onChange);
+    this.token = LoopStore.addListener(this._onChange);
   },
 
-
-  //remove listener
+  componentWillUnmount: function() {
+    this.token.remove();
+  },
 
   _onChange: function() {
     this.setState({loops: LoopStore.loops()});

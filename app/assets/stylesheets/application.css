@@ -212,9 +212,54 @@ header {
   margin-bottom: 10px;
 }
 
-/* --- LOOP INDEX VIEW --- */
+/* --- LOOP SHOW VIEW --- */
 
 .loop-box-show {
-  width: 535px;
+  width: 864px;
   margin: 75px auto;
+  background-color: #FFF;
+  position: relative;
+}
+
+.loop-box-show .loop {
+  display: block;
+  margin: 0;
+}
+
+.loop-box-show .volume {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 20px;
+  z-index: 100;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  cursor: pointer;
+}
+
+.show-card {
+  float: right;
+  height: auto;
+  width: 324px;
+  background-color: red;
+}
+
+.show-card .title {
+  margin-top: 25%;
+  display: block;
+  border: none;
+}
+
+.show-card > form {
+  margin: auto;
+  margin-top: 33%;
+  border-top: 1px solid #eee;
+  width: 300px;
+}
+
+.show-card > form > input[type=text] {
+  padding: 10px;
+  font-size: 12px;
+  width: 285px;
 }
