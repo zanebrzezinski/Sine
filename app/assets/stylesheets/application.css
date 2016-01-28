@@ -10,9 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
- *= require font-awesome
  */
 
 html, body, header, nav, h1, a, ul, li,
@@ -160,6 +160,10 @@ header {
   left: 20px;
   color: #fff;
   opacity: 0.5;
+  font-size: 20px;
+  z-index: 100;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  cursor: pointer;
 }
 
 .loop-info {
@@ -174,6 +178,7 @@ header {
 .created_at {
   font-size: 12px;
   color: #aaa;
+  cursor: pointer;
 }
 
 .title{

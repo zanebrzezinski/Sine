@@ -6,8 +6,11 @@ var Loop = require('./loop');
 var Feed = React.createClass({
 
   getInitialState: function() {
+    //come back later when you have more feed types
+
     ApiUtil.fetchAllLoops();
     return {loops: LoopStore.all()};
+
   },
 
   componentDidMount: function() {
@@ -19,10 +22,13 @@ var Feed = React.createClass({
   },
 
   render: function() {
-
+    var clickHandler = this._showFeedItem;
     var loops = this.state.loops.map(function(loop){
-      return(<li key={loop.id}>< Loop loop={loop} /></li>);
+      return(
+        <li key={loop.id}>< Loop loop={loop}/></li>
+      );
     });
+
     return(
       <ul className="feed">
         {loops}

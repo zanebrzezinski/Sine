@@ -3,8 +3,17 @@ var React = require('react');
 var Loop = React.createClass({
 
   getInitialState: function(){
+    var loop = this.props.loop;
+    var className;
+    debugger
+    if (loop) {
+      className = "loop-box";
+    }
+
     return (
-      {muted: "muted", paused: false, date_created: new Date(this.props.loop.created_at), comment: null}
+      {muted: "muted", paused: false,
+      date_created: new Date(loop.created_at),
+      comment: null, loop: loop, className: className}
     );
   },
 
@@ -20,6 +29,8 @@ var Loop = React.createClass({
     }
   },
 
+  // pause/unpause seems to cause problems in HTML5 video :( so this only
+  // sorta works. to be implemented where "onClick={this.mutelogic} is."
   pauseLogic: function(e){
     // if (this.state.paused) {
     //   this.setState({paused: false});
@@ -30,6 +41,16 @@ var Loop = React.createClass({
     // }
   },
 
+  handleSubmit: function(e) {
+    console.log(this.state.comment);
+  },
+
+  _handleShowClick: function() {
+    this.props.clickHandler(this.state.loop.id);
+  },
+
+
+
   render: function() {
     var icon;
     if (this.state.muted === "muted") {
@@ -38,16 +59,22 @@ var Loop = React.createClass({
       icon = "fa fa-volume-up volume";
     }
 
+    var showLink = "#/loops/" + this.state.loop.id;
+
     return(
-      <div className="loop-box">
+      <div className={this.state.className}>
         <div className="loop-info">
-          <div className="author">{this.props.loop.author}</div>
-          <div className="created_at">{this.state.date_created.toDateString()}</div>
+          <div className="author">{this.state.loop.author}</div>
+          <a className="created_at" href={showLink}>{this.state.date_created.toDateString()}</a>
         </div>
-        <i className={icon} ></i>
-        <video onClick={this.muteLogic} className="loop" loop controls autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
-        <div className="title">{this.props.loop.title}</div>
-        <input onChange={this.commentChange} className="comment-box" type="text" placeholder="Say Something Nice" value={this.state.comment}/>
+        <i onClick={this.muteLogic} className={icon} ></i>
+        <video className="loop" loop autoPlay muted={this.state.muted} src={this.state.loop.url}></video>
+        <div className="title">{this.state.loop.title}</div>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.commentChange}
+            className="comment-box" type="text"
+            placeholder="Say Something Nice" value={this.state.comment}/>
+        </form>
       </div>
     );
   }
