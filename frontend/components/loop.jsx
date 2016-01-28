@@ -24,13 +24,13 @@ var Loop = React.createClass({
   // pause/unpause seems to cause problems in HTML5 video :( so this only
   // sorta works. to be implemented where "onClick={this.mutelogic} is."
   pauseLogic: function(e){
-    // if (this.state.paused) {
-    //   this.setState({paused: false});
-    //   e.currentTarget.play();
-    // } else {
-    //   this.setState({paused: true});
-    //   e.currentTarget.pause();
-    // }
+    if (this.state.paused) {
+      this.setState({paused: false});
+      e.currentTarget.play();
+    } else {
+      this.setState({paused: true});
+      e.currentTarget.pause();
+    }
   },
 
   handleSubmit: function(e) {
@@ -52,17 +52,18 @@ var Loop = React.createClass({
     }
 
     var showLink = "#/loops/" + this.props.loop.id;
+    var userLink = "#/users/" + this.props.loop.author_id;
 
     var createdAtDate = new Date(this.props.loop.created_at).toDateString();
 
     return(
       <div className="loop-box">
         <div className="loop-info">
-          <div className="author">{this.props.loop.author}</div>
+          <a className="author" href="">{this.props.loop.author}</a>
           <a className="created_at" href={showLink}>{createdAtDate}</a>
         </div>
         <i onClick={this.muteLogic} className={icon} ></i>
-        <video className="loop" loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+        <video className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
         <div className="title">{this.props.loop.title}</div>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.commentChange}

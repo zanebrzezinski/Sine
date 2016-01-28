@@ -6,10 +6,16 @@ var Loop = require('./loop');
 var Feed = React.createClass({
 
   getInitialState: function() {
-    //come back later when you have more feed types
-    ApiUtil.fetchAllLoops();
-    return {loops: LoopStore.loops()};
-
+    if (typeof this.props.feedType === "undefined") {
+      ApiUtil.fetchAllLoops();
+      return {loops: LoopStore.loops()};
+    } else if (this.props.feedType === "Feed") {
+      ApiUtil.fetchFeed();
+      return {loops: LoopStore.loops()};
+    } else if (this.props.feedType === "User") {
+      ApiUtil.fetchUserLoops(this.props.id);
+      return {loops: LoopStore.loops()};
+    }
   },
 
   componentDidMount: function() {
@@ -37,6 +43,7 @@ var Feed = React.createClass({
       </ul>
     );
   }
+
 
 });
 

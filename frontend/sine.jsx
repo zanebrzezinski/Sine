@@ -8,6 +8,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var Feed = require('./components/feed.jsx');
 var Loop = require('./components/loop.jsx');
 var LoopShow = require('./components/loopShow.jsx');
+var User = require('./components/user.jsx');
 
 
 var App = React.createClass({
@@ -25,6 +26,7 @@ var router = (
     <Route path="/" component={App}>
       <IndexRoute component={Feed} />
       <Route path="loops/:loopId" component={LoopShow} />
+      <Route path="users/:userId" component={User} />
     </Route>
   </Router>
 );

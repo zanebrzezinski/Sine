@@ -1,5 +1,5 @@
 var React = require('react');
-var ApiUtil = require('../util/api_util.js');
+ApiUtil = require('../util/api_util.js');
 var Loop = require('./loop');
 var LoopStore = require('../stores/loopStore.js');
 
@@ -12,7 +12,6 @@ var LoopShow = React.createClass({
   },
 
   componentDidMount: function() {
-    console.log("mount");
     LoopStore.addListener(this._onChange);
   },
 

@@ -144,7 +144,7 @@ header {
   margin: 75px auto;
 }
 
-/* --- LOOP --- */
+/* --- LOOP FEED VIEW --- */
 
 .loop-box {
   width: 535px;
@@ -200,13 +200,21 @@ header {
   margin-bottom: 10px;
 }
 
-.loop-box > input[type=text] {
+.loop-box > form > input[type=text] {
   padding: 10px;
   font-size: 12px;
 }
 
 .author {
+  display: block;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+/* --- LOOP INDEX VIEW --- */
+
+.loop-box-show {
+  width: 535px;
+  margin: 75px auto;
 }
