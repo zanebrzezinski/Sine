@@ -8,27 +8,32 @@ var LoopShow = React.createClass({
 
   getInitialState: function() {
     ApiUtil.fetchOneLoop(this.props.params.loopId);
-    debugger
-    return (
-      {loop: LoopStore.loops()}
-    );
+    return {loop: LoopStore.loops()[0]};
   },
 
   componentDidMount: function() {
+    console.log("mount");
     LoopStore.addListener(this._onChange);
   },
 
   _onChange: function() {
-    console.log("STORE CHANGED LOL");
+    this.setState({loop: LoopStore.loops()[0]});
   },
 
 
   render: function(){
-    return(
-      <div className="loop-box-show">
-        < Loop loop={this.state.loop} />
-      </div>
-    );
+    if (this.state.loop) {
+      return(
+        <div className="loop-box-show">
+          < Loop loop={this.state.loop} />
+        </div>
+      );
+    } else {
+      return(
+        <div></div>
+      );
+    }
+
   }
 });
 

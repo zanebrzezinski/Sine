@@ -18,6 +18,7 @@ ApiUtil = {
       url: "api/loops/" + id,
       dataType: "json",
       success: function(data) {
+        console.log("fetched");
         ApiActions.receiveLoops(data);
       },
     });
