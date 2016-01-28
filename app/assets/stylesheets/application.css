@@ -53,6 +53,7 @@ img {
   height: auto;
 }
 
+
 /* --- CLEARFIX --- */
 
 .group:after {
@@ -64,19 +65,45 @@ img {
 /* --- HEADER --- */
 
 header {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  margin: 10px;
+  position: fixed;
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #aaa;
+  z-index: 1000;
+}
+
+.navbar {
+  padding: 20px;
+}
+
+.signed-out {
+  float: right;
+  margin-top: 2px;
+  margin-right: 40px;
 }
 
 .signed-out > a {
-  display: inline;
   background-color: #00BF8F;
   color: #fff;
   padding: 4px 10px;
   border-radius: 100000px;
+  margin: 5px;
 }
+
+.fa-eye {
+  position: absolute;
+  font-size: 20px;
+  color: #aaa;
+  opacity: 75%;
+  left: 0;
+  margin-left: 40px;
+}
+
+.fa-eye:hover {
+  color: #000;
+}
+
 .username {
   display: inline;
 }
@@ -141,10 +168,15 @@ header {
 
 .feed {
   width: 535px;
-  margin: 75px auto;
+  margin: auto;
+  padding-top: 75px;
 }
 
 /* --- LOOP FEED VIEW --- */
+
+.loop-box-show-container {
+  padding-top: 75px;
+}
 
 .loop-box {
   width: 535px;
@@ -216,7 +248,7 @@ header {
 
 .loop-box-show {
   width: 864px;
-  margin: 75px auto;
+  margin: auto;
   background-color: #FFF;
   position: relative;
 }
@@ -240,9 +272,7 @@ header {
 
 .show-card {
   float: right;
-  height: auto;
   width: 324px;
-  background-color: red;
 }
 
 .show-card .title {
@@ -252,14 +282,20 @@ header {
 }
 
 .show-card > form {
-  margin: auto;
-  margin-top: 33%;
+
   border-top: 1px solid #eee;
   width: 300px;
+  position: absolute;
+  bottom: 0;
+  margin-left: 10px
 }
 
 .show-card > form > input[type=text] {
   padding: 10px;
   font-size: 12px;
   width: 285px;
+}
+
+.show-card .comment-box {
+  margin-left: 0;
 }

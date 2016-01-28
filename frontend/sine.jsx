@@ -9,12 +9,14 @@ var Feed = require('./components/feed.jsx');
 var Loop = require('./components/loop.jsx');
 var LoopShow = require('./components/loopShow.jsx');
 var User = require('./components/user.jsx');
+var Header = require('./components/header.jsx');
 
 
 var App = React.createClass({
   render: function() {
     return (
-      <div>
+      <div className="app">
+        < Header />
         {this.props.children}
      </div>
     );

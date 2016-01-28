@@ -27,9 +27,11 @@ var LoopShow = React.createClass({
   render: function(){
     if (this.state.loop) {
       return(
-        <div className="loop-box-show group">
-          < ShowCard loop={this.state.loop}/>
-          < Loop loop={this.state.loop} videoOnly={true}/>
+        <div className="loop-box-show-container">
+          <div className="loop-box-show group">
+            < ShowCard loop={this.state.loop}/>
+            < Loop loop={this.state.loop} videoOnly={true}/>
+          </div>
         </div>
       );
     } else {
