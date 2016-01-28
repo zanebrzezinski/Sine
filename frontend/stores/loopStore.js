@@ -6,20 +6,24 @@ var LoopStore = new Store(AppDispatcher);
 var _loops = [];
 
 var resetLoops = function(loops) {
-  _loops = loops;
+  if (loops instanceof Array) {
+    _loops = loops;
+  } else {
+    _loops = [loops];
+  }
 };
 
 
 LoopStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
-    case Constants.ALL_LOOPS_RECEIVED:
+    case Constants.LOOPS_RECEIVED:
       resetLoops(payload.loops);
       LoopStore.__emitChange();
       break;
   }
 };
 
-LoopStore.all = function(){
+LoopStore.loops = function(){
   return _loops.slice(0);
 };
 

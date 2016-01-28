@@ -1,5 +1,5 @@
 var LoopConstants = {
-  ALL_LOOPS_RECEIVED: "ALL LOOPS RECEIVED",
+  LOOPS_RECEIVED: "LOOPS RECEIVED",
 };
 
 module.exports = LoopConstants;

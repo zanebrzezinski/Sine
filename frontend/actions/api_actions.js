@@ -3,9 +3,9 @@ var Constants = require('../constants/loop_constants.js');
 var LoopStore = require('../stores/loopStore.js');
 
 var ApiActions = {
-  receiveAll: function(loops) {
+  receiveLoops: function(loops) {
     AppDispatcher.dispatch({
-      actionType: Constants.ALL_LOOPS_RECEIVED,
+      actionType: Constants.LOOPS_RECEIVED,
       loops: loops
     });
   }

@@ -3,17 +3,9 @@ var React = require('react');
 var Loop = React.createClass({
 
   getInitialState: function(){
-    var loop = this.props.loop;
-    var className;
-    debugger
-    if (loop) {
-      className = "loop-box";
-    }
 
     return (
-      {muted: "muted", paused: false,
-      date_created: new Date(loop.created_at),
-      comment: null, loop: loop, className: className}
+      {muted: "muted", paused: false, comment: null}
     );
   },
 
@@ -46,7 +38,7 @@ var Loop = React.createClass({
   },
 
   _handleShowClick: function() {
-    this.props.clickHandler(this.state.loop.id);
+    this.props.clickHandler(this.props.loop.id);
   },
 
 
@@ -59,17 +51,19 @@ var Loop = React.createClass({
       icon = "fa fa-volume-up volume";
     }
 
-    var showLink = "#/loops/" + this.state.loop.id;
+    var showLink = "#/loops/" + this.props.loop.id;
+
+    var createdAtDate = new Date(this.props.loop.created_at).toDateString();
 
     return(
-      <div className={this.state.className}>
+      <div className="loop-box">
         <div className="loop-info">
-          <div className="author">{this.state.loop.author}</div>
-          <a className="created_at" href={showLink}>{this.state.date_created.toDateString()}</a>
+          <div className="author">{this.props.loop.author}</div>
+          <a className="created_at" href={showLink}>{createdAtDate}</a>
         </div>
         <i onClick={this.muteLogic} className={icon} ></i>
-        <video className="loop" loop autoPlay muted={this.state.muted} src={this.state.loop.url}></video>
-        <div className="title">{this.state.loop.title}</div>
+        <video className="loop" loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+        <div className="title">{this.props.loop.title}</div>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.commentChange}
             className="comment-box" type="text"

@@ -7,18 +7,20 @@ var Feed = React.createClass({
 
   getInitialState: function() {
     //come back later when you have more feed types
-
     ApiUtil.fetchAllLoops();
-    return {loops: LoopStore.all()};
+    return {loops: LoopStore.loops()};
 
   },
 
   componentDidMount: function() {
-    LoopStore.addListener(this._onChange);
+    this.loopListener = LoopStore.addListener(this._onChange);
   },
 
+
+  //remove listener
+
   _onChange: function() {
-    this.setState({loops: LoopStore.all()});
+    this.setState({loops: LoopStore.loops()});
   },
 
   render: function() {
