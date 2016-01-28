@@ -4,7 +4,7 @@ var Loop = React.createClass({
 
   getInitialState: function(){
     return (
-      {muted: "muted", date_created: new Date(this.props.loop.created_at), comment: null}
+      {muted: "muted", paused: false, date_created: new Date(this.props.loop.created_at), comment: null}
     );
   },
 
@@ -18,6 +18,16 @@ var Loop = React.createClass({
     } else {
       this.setState({muted: "muted"});
     }
+  },
+
+  pauseLogic: function(e){
+    // if (this.state.paused) {
+    //   this.setState({paused: false});
+    //   e.currentTarget.play();
+    // } else {
+    //   this.setState({paused: true});
+    //   e.currentTarget.pause();
+    // }
   },
 
   render: function() {
@@ -35,7 +45,7 @@ var Loop = React.createClass({
           <div className="created_at">{this.state.date_created.toDateString()}</div>
         </div>
         <i className={icon} ></i>
-        <video onClick={this.muteLogic} className="loop" loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+        <video onClick={this.muteLogic} className="loop" loop controls autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
         <div className="title">{this.props.loop.title}</div>
         <input onChange={this.commentChange} className="comment-box" type="text" placeholder="Say Something Nice" value={this.state.comment}/>
       </div>
