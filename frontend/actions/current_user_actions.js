@@ -8,6 +8,12 @@ var CurrentUserActions = {
       actionType: CurrentUserConstants.RECEIVE_CURRENT_USER,
       currentUser: currentUser
     });
+  },
+
+  clearCurrentUser: function() {
+    AppDispatcher.dispatch({
+      actionType: CurrentUserConstants.CLEAR_CURRENT_USER
+    });
   }
 };
 

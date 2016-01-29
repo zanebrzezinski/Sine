@@ -11,7 +11,7 @@ var SignIn = React.createClass({
     var credentials = $(e.currentTarget).serializeJSON();
 
     SessionsApiUtil.login(credentials, function() {
-      this.history.pushState({}, "/");
+      this.props.handleClick();
     }.bind(this));
 
   },

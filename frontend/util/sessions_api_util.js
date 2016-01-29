@@ -7,20 +7,20 @@ var SessionsApiUtil = {
       dataType: 'json',
       data: credentials,
       success: function (currentUser) {
-        console.log("logged in!");
         CurrentUserActions.receiveCurrentUser(currentUser);
         success && success();
       },
     });
   },
 
-  logout: function () {
+  logout: function (cb) {
     $.ajax({
-      url: 'XXXX',
-      type: 'XXXX',
+      url: '/api/session',
+      type: 'DELETE',
       dataType: 'json',
       success: function () {
-        console.log("logged out!");
+        CurrentUserActions.clearCurrentUser();
+        cb && cb();
       }
     });
   },
@@ -31,7 +31,6 @@ var SessionsApiUtil = {
       type: 'GET',
       dataType: 'json',
       success: function (currentUser) {
-        console.log("fetched current user!");
         CurrentUserActions.receiveCurrentUser(currentUser);
         cb && cb(currentUser);
       }
