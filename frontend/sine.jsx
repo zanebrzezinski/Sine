@@ -37,10 +37,26 @@ var router = (
       <IndexRoute component={Feed} />
       <Route path="loops/:loopId" component={LoopShow} />
       <Route path="users/:userId" component={User} />
-      <Route path="feed" component={FeedWrapper} />
+      <Route path="feed" component={FeedWrapper} onEnter={_ensureLoggedIn}/>
     </Route>
   </Router>
 );
+
+function _ensureLoggedIn(nextState, replace, callback) {
+
+  if (CurrentUserStore.userHasBeenFetched()) {
+    _redirectIfNotLoggedIn(); // this function below
+  } else {
+    SessionsApiUtil.fetchCurrentUser(_redirectIfNotLoggedIn);
+  }
+
+  function _redirectIfNotLoggedIn() {
+    if (!CurrentUserStore.isLoggedIn()) {
+      replace({}, "/");
+    }
+    callback();
+  }
+}
 
 window.initializeSine = function(){
   document.addEventListener("DOMContentLoaded", function () {

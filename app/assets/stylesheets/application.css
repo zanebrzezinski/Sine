@@ -232,6 +232,13 @@ header {
   padding-top: 100px;
 }
 
+.empty-feed {
+  width: 600px;
+  text-align: center;
+  color: #aaa;
+  font-size: 40px;
+}
+
 /* --- LOOP FEED VIEW --- */
 
 .loop-box-show-container {

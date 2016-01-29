@@ -39,8 +39,10 @@ var Feed = React.createClass({
     });
     if (loops.length === 0) {
       return(
-        <div className="empty-feed">
-          It looks like nothing is here.  You should try following some people
+        <div className="feed empty-feed">
+          <p>It looks like nothing is here.</p>
+          <p>You should try following some people.</p>
+          <p><i className="fa fa-frown-o"></i></p>
         </div>
       );
     } else {
