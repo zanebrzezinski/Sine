@@ -10,7 +10,8 @@ var Loop = require('./components/loop.jsx');
 var LoopShow = require('./components/loopShow.jsx');
 var User = require('./components/user.jsx');
 var Header = require('./components/header.jsx');
-
+var CurrentUserStore = require('./stores/current_user_store');
+var SessionsApiUtil = require('./util/sessions_api_util');
 
 var App = React.createClass({
   render: function() {
