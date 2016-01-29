@@ -51,8 +51,11 @@ var Header = React.createClass({
     if (CurrentUserStore.isLoggedIn()) {
       loggedInContent = (
         <div>
+          <nav className="nav-bar-icons">
+            <a href="/#/feed"><i className="fa fa-home nav-bar-icon"></i></a>
+            <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
+          </nav>
           <nav className="nav-bar-right">
-            <a href="/"><i className="fa fa-eye"></i></a>
             <img className="profile-picture" src={this.state.user.profile_picture} />
             <p onClick={this.logOut}>Sine Out</p>
           </nav>
@@ -61,8 +64,10 @@ var Header = React.createClass({
     } else {
       loggedInContent = (
         <div>
+          <nav className="nav-bar-icons">
+            <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
+          </nav>
           <nav className="nav-bar-right">
-            <a href="/"><i className="fa fa-eye"></i></a>
             <p onClick={this.handleClick} href="sessions/new">Sine in</p>
           </nav>
         </div>

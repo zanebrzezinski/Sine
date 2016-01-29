@@ -28,7 +28,11 @@ var SignIn = React.createClass({
         <form className="userform group" onSubmit={this.submit} method="post">
             <input className="textbox" type="text" name="username" placeholder="Username" />
             <input className="textbox" type="password" name="password" placeholder="Password" />
-            <button className='form-button'>Sine in</button>
+            <div className="form-buttons">
+              <button className='form-button'>Sine in</button>
+                or
+              <a href="#">Sine Up!</a>
+            </div>
         </form>
 
       </div>

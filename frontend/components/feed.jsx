@@ -37,12 +37,20 @@ var Feed = React.createClass({
         <li key={loop.id}>< Loop loop={loop}/></li>
       );
     });
+    if (loops.length === 0) {
+      return(
+        <div className="empty-feed">
+          It looks like nothing is here.  You should try following some people
+        </div>
+      );
+    } else {
+      return(
+        <ul className="feed">
+          {loops}
+        </ul>
+      );
+    }
 
-    return(
-      <ul className="feed">
-        {loops}
-      </ul>
-    );
   }
 
 
