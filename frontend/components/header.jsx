@@ -20,30 +20,29 @@ var Header = React.createClass({
 
   render: function(){
 
+    var content = (
+      <header>
+        <header className="navbar group">
+          <a href="/"><i className="fa fa-eye"></i></a>
+          <nav className="signed-out">
+            <p onClick={this.handleClick} href="sessions/new">Sine in</p>
+          </nav>
+        </header>
+      </header>
+    );
+
     if (this.state.modal) {
       return (
         <div>
           <SignIn handleClick={this.handleClick}/>
-          <header>
-            <header className="navbar group">
-              <a href="/"><i className="fa fa-eye"></i></a>
-              <nav className="signed-out">
-                <p href="sessions/new">Sine in</p>
-              </nav>
-            </header>
-          </header>
+          {content}
         </div>
       );
     } else {
       return (
-        <header>
-          <header className="navbar group">
-            <a href="/"><i className="fa fa-eye"></i></a>
-            <nav className="signed-out">
-              <p onClick={this.handleClick} href="sessions/new">Sine in</p>
-            </nav>
-          </header>
-        </header>
+        <div>
+          {content}
+        </div>
       );
     }
   }
