@@ -34,9 +34,9 @@ var SignIn = React.createClass({
         <div className="modal sign-in">
 
           <h1>Sine</h1>
-          <h2>Sign in</h2>
+          <h2>Sine in</h2>
 
-            <form className="userform group" onSubmit={this.submit} method="post">
+            <form className="userform group" onSubmit={this.submit}>
                 <input className="textbox" type="text" name="username" placeholder="Username" />
                 <input className="textbox" type="password" name="password" placeholder="Password" />
                 <div className="form-buttons">

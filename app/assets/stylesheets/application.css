@@ -145,7 +145,7 @@ header {
   cursor: pointer;
 }
 
-/* --- USER FORM --- */
+/* --- SIGN IN FORM --- */
 
 
 .modal-container {
@@ -227,6 +227,37 @@ header {
   text-align: center;
   color: #aaa;
   font-size: 40px;
+}
+
+/* --- SIGN UP FORM --- */
+
+.sign-up {
+  width: 420px;
+  left: calc(50% - 210px);
+  text-align: center;
+}
+
+.sign-up .profile-picture {
+  width: 80px;
+  height: 80px;
+  margin: 25px auto;
+  float: none;
+  display: block;
+}
+
+.file-upload {
+  margin: 10px;
+  height: 30px;
+}
+
+.sign-up .form-button {
+  margin-bottom: 10px;
+}
+
+.sign-up > h2 {
+  color: #aaa;
+  font-size: 40px;
+  margin: 20px auto;
 }
 
 /* --- LOOP FEED VIEW --- */
