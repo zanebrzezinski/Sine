@@ -70,26 +70,13 @@ header {
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #00BF8F;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .navbar {
   padding: 20px;
 }
 
-.signed-out {
-  float: right;
-  margin-top: 2px;
-  margin-right: 40px;
-}
-
-.signed-out > a {
-  background-color: #00BF8F;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 100000px;
-  margin: 5px;
-}
 
 .fa-eye {
   position: absolute;
@@ -124,13 +111,45 @@ header {
 
 /* --- USER FORM --- */
 
+
+.modal-container {
+  background-color: transparent;
+}
+
+.modal-cover {
+  background-color: #000;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  opacity: .5;
+}
+
 .userform-partial {
+  position: fixed;
+  left: calc(50% - 210px);
+  top: 200px;
   width: 420px;
   margin: auto;
   background-color: white;
   border-radius: 10px;
+  z-index: 150;
 }
 
+.signed-out {
+  float: right;
+  margin-top: 2px;
+  margin-right: 40px;
+}
+
+.signed-out > p {
+  background-color: #00BF8F;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 100000px;
+  margin: 5px;
+  cursor: pointer;
+}
 .userform-partial > h1 {
   text-align: center;
   color: #00BF8F;
@@ -169,7 +188,7 @@ header {
 .feed {
   width: 535px;
   margin: auto;
-  padding-top: 75px;
+  padding-top: 100px;
 }
 
 /* --- LOOP FEED VIEW --- */
@@ -193,7 +212,7 @@ header {
   color: #fff;
   opacity: 0.5;
   font-size: 20px;
-  z-index: 100;
+  z-index: 5;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   cursor: pointer;
 }
@@ -269,6 +288,7 @@ header {
   margin: auto;
   background-color: #FFF;
   position: relative;
+  margin-top: 100px;
 }
 
 .loop-box-show .loop {
@@ -318,7 +338,7 @@ header {
   margin-left: 0;
 }
 
-.profile-picture {
+.show-card .profile-picture {
   float: none;
   margin-bottom: 10px;
   display: block;

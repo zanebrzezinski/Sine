@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  has_attached_file :profile_picture, default_url: "app/assets/images/sine_wave.jpg"
+  has_attached_file :profile_picture, default_url: "https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg"
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password

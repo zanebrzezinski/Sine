@@ -21,8 +21,6 @@ var Loop = React.createClass({
     }
   },
 
-  // pause/unpause seems to cause problems in HTML5 video :( so this only
-  // sorta works. to be implemented where "onClick={this.mutelogic} is."
   pauseLogic: function(e){
     if (this.state.paused) {
       this.setState({paused: false});
@@ -66,8 +64,8 @@ var Loop = React.createClass({
       return(
         <div className="loop-box group">
           <div className="loop-info">
-            <img className="profile-picture" src="https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg" />
-            <a className="author" href="">{this.props.loop.author}</a>
+            <img className="profile-picture" src={this.props.loop.profile_picture} />
+            <a className="author" href={userLink}>{this.props.loop.author}</a>
             <a className="created_at" href={showLink}>{createdAtDate}</a>
           </div>
           <i onClick={this.muteLogic} className={icon} ></i>

@@ -23,12 +23,21 @@ var App = React.createClass({
   }
 });
 
+var FeedWrapper = React.createClass({
+  render: function() {
+    return (
+      < Feed feedType="Feed" />
+    );
+  }
+});
+
 var router = (
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Feed} />
       <Route path="loops/:loopId" component={LoopShow} />
       <Route path="users/:userId" component={User} />
+      <Route path="feed" component={FeedWrapper} />
     </Route>
   </Router>
 );

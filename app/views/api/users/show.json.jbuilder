@@ -6,6 +6,7 @@ json.loops do
     json.title loop.title
     json.url loop.url
     json.author loop.author.username
+    json.profile_picture loop.author.profile_picture
     json.created_at loop.created_at
   end
 end
