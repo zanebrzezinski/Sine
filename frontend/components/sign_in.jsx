@@ -1,19 +1,19 @@
 var React = require('react');
+var History = require('react-router').History;
+var SessionsApiUtil = require('../util/sessions_api_util');
 
 var SignIn = React.createClass({
+  mixins: [History],
 
-  getInitialState: function(){
+  submit: function (e) {
+    e.preventDefault();
 
-    return {username: "", password: ""};
+    var credentials = $(e.currentTarget).serializeJSON();
 
-  },
+    SessionsApiUtil.login(credentials, function() {
+      this.history.pushState({}, "/");
+    }.bind(this));
 
-  onChange: function(e) {
-    if (e.currentTarget.placeholder === "Username") {
-      this.setState({username: e.currentTarget.value});
-    } else {
-      this.setState({password: e.currentTarget.password});
-    }
   },
 
   render: function(){
@@ -25,9 +25,9 @@ var SignIn = React.createClass({
       <h1>Sine</h1>
       <h2>Sign in</h2>
 
-        <form className="userform group" method="post">
-            <input className="textbox" type="text" placeholder="Username" onChange={this.onChange} value={this.state.username}/>
-            <input className="textbox" type="password" placeholder="Password" onChange={this.onChange} value={this.state.password}/>
+        <form className="userform group" onSubmit={this.submit} method="post">
+            <input className="textbox" type="text" name="username" placeholder="Username" />
+            <input className="textbox" type="password" name="password" placeholder="Password" />
             <button className='form-button'>Sine in</button>
         </form>
 

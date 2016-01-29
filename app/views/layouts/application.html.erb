@@ -8,25 +8,7 @@
 
 </head>
 <body>
-  <!-- <header>
-    <% if signed_in? %>
-      <nav class="signed-in">
-        <div class="username"><%= current_user.username %></div>
-        <form action="<%= session_url %>" method="post">
-          <input type="hidden" name="_method" value="DELETE">
-          <%= auth_token %>
-          <button class="button">Sine Out</button>
-        </form>
-      </nav>
-    <% else %>
-      <nav class="signed-out">
-        <a href="<%= new_session_url %>">Sine in</a>
-      or
-        <a href="<%= new_user_url %>">Create an Account</a>
-      </nav>
-    <% end %>
-  </header> -->
-
+  
 <%= yield %>
 
 </body>

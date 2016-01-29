@@ -99,7 +99,7 @@ header {
   display: inline;
 }
 
-.button{
+.button {
   background-color: #00BF8F;
   color: #fff;
   padding: 4px 10px;
@@ -107,6 +107,14 @@ header {
   cursor: pointer;
 }
 
+.profile-picture {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: inline;
+  float: left;
+  margin: 10px;
+}
 
 
 /* --- USER FORM --- */
@@ -143,11 +151,11 @@ header {
 }
 
 .signed-out > p {
+  display: inline;
   background-color: #00BF8F;
   color: #fff;
   padding: 4px 10px;
   border-radius: 100000px;
-  margin: 5px;
   cursor: pointer;
 }
 .userform-partial > h1 {
@@ -271,13 +279,9 @@ header {
   color: #00BF8F;
 }
 
-.profile-picture {
+.loop-box .profile-picture {
   float: left;
   margin-right: 10px;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  display: inline
 }
 
 
