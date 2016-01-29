@@ -21,6 +21,7 @@ var ShowCard = React.createClass({
     return (
       <div className="show-card group">
         <div className="loop-info">
+          <img className="profile-picture" src="https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg" />
           <a className="author" href="">{this.props.loop.author}</a>
           <a className="created_at" href={showLink}>{createdAtDate}</a>
           <div className="title">{this.props.loop.title}</div>

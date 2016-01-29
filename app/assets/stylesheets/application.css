@@ -223,6 +223,10 @@ header {
   border-bottom: 1px solid #eee;
 }
 
+.created_at:hover{
+  color: #000;
+}
+
 .comment-box {
   border-radius: 5px;
   background-color: #EDEDED;
@@ -243,6 +247,20 @@ header {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+.author:hover{
+  color: #00BF8F;
+}
+
+.profile-picture {
+  float: left;
+  margin-right: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: inline
+}
+
 
 /* --- LOOP SHOW VIEW --- */
 
@@ -298,4 +316,10 @@ header {
 
 .show-card .comment-box {
   margin-left: 0;
+}
+
+.profile-picture {
+  float: none;
+  margin-bottom: 10px;
+  display: block;
 }
