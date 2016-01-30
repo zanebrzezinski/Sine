@@ -4,6 +4,7 @@ var SessionsApiUtil = require('../util/sessions_api_util');
 var History = require('react-router').History;
 
 var SignIn = require('./sign_in.jsx');
+var VideoUpload = require('./video_upload');
 
 var Header = React.createClass({
   mixins: [History],
@@ -16,7 +17,7 @@ var Header = React.createClass({
       user = "";
     }
     return(
-      {modal: false, user: user}
+      {signInModal: false, videoUploadModal: false, user: user}
     );
   },
 
@@ -29,11 +30,19 @@ var Header = React.createClass({
     this.setState({user: CurrentUserStore.currentUser()});
   },
 
-  handleClick: function(){
-    if (this.state.modal) {
-      this.setState({modal: false});
+  handleSignInClick: function(){
+    if (this.state.signInModal) {
+      this.setState({signInModal: false});
     } else {
-      this.setState({modal: true});
+      this.setState({signInModal: true});
+    }
+  },
+
+  handleVideoUploadClick: function() {
+    if (this.state.videoUploadModal) {
+      this.setState({videoUploadModal: false});
+    } else {
+      this.setState({videoUploadModal: true});
     }
   },
 
@@ -42,7 +51,7 @@ var Header = React.createClass({
   },
 
   componentWillReceiveProps: function() {
-    this.setState({modal: false});
+    this.setState({signInModal: false});
   },
 
   render: function(){
@@ -54,6 +63,7 @@ var Header = React.createClass({
           <nav className="nav-bar-icons">
             <a href="/#/feed"><i className="fa fa-home nav-bar-icon"></i></a>
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
+            <a onClick={this.handleVideoUploadClick}><i className="fa fa-video-camera nav-bar-icon"></i></a>
           </nav>
           <nav className="nav-bar-right">
             <img className="profile-picture" src={this.state.user.profile_picture} />
@@ -68,7 +78,7 @@ var Header = React.createClass({
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
           </nav>
           <nav className="nav-bar-right">
-            <p onClick={this.handleClick} href="sessions/new">Sine in</p>
+            <p onClick={this.handleSignInClick}>Sine in</p>
           </nav>
         </div>
       );
@@ -82,10 +92,17 @@ var Header = React.createClass({
       </header>
     );
 
-    if (this.state.modal) {
+    if (this.state.signInModal) {
       return (
         <div>
-          <SignIn handleClick={this.handleClick}/>
+          <SignIn handleClick={this.handleSignInClick}/>
+          {content}
+        </div>
+      );
+    } else if (this.state.videoUploadModal) {
+      return (
+        <div>
+          <VideoUpload handleClick={this.handleVideoUploadClick}/>
           {content}
         </div>
       );
