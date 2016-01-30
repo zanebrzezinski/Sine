@@ -1,6 +1,6 @@
 var React = require('react');
 var ApiUtil = require('../util/api_util');
-var CurrentUserStore = require('../stores/current_user_store');
+var SessionsApiUtil = require('../util/sessions_api_util');
 
 var UserForm = React.createClass({
 
@@ -40,11 +40,15 @@ var UserForm = React.createClass({
 
     formData.append("user[username]", this.state.username);
     formData.append("user[password]", this.state.password);
-    formData.append("user[profile_picture]", this.state.profilePicture);
-    ApiUtil.createUser(formData, function(){
-      debugger;
-      this.props.handleClick();
-    });
+    if (this.state.profilePicture) {
+      formData.append("user[profile_picture]", this.state.profilePicture);
+    }
+    ApiUtil.createUser(formData, function(user){
+      var credentials = {username: this.state.username, password: this.state.password};
+      SessionsApiUtil.login(credentials, function() {
+        this.props.handleClick();
+      }.bind(this));
+    }.bind(this));
 
   },
 

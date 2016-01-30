@@ -54,11 +54,10 @@ ApiUtil = {
       dataType: 'json',
       data: formData,
       success: function(user) {
-        ApiActions.createUser(user);
-        cb && cb();
+        cb && cb(user);
       },
       error: function(e) {
-        debugger;
+        console.log(e);
       }
     });
   }

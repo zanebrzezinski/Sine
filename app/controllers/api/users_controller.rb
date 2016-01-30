@@ -11,9 +11,12 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    debugger
-    @user = User.create!(user_params)
-    render :show
+    @user = User.new(user_params)
+    if @user.save
+      render :show
+    else
+      render json: {}
+    end
   end
 
   private
