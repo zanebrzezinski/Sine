@@ -10,4 +10,16 @@ class Api::UsersController < ApplicationController
     render :index
   end
 
+  def create
+    debugger
+    @user = User.create!(user_params)
+    render :show
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:password, :username, :profile_picture)
+  end
+
 end

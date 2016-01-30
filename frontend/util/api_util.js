@@ -43,6 +43,24 @@ ApiUtil = {
         ApiActions.receiveLoops(data.loops);
       },
     });
+  },
+
+  createUser: function(formData, cb) {
+    $.ajax({
+      url: '/api/users',
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      data: formData,
+      success: function(user) {
+        ApiActions.createUser(user);
+        cb && cb();
+      },
+      error: function(e) {
+        debugger;
+      }
+    });
   }
 };
 

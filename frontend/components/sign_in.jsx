@@ -53,7 +53,7 @@ var SignIn = React.createClass({
       return (
         <div>
           <div  className='modal-cover' onClick={this.props.handleClick} />
-          < UserForm />
+          < UserForm handleClick={this.props.handleClick}/>
         </div>
       );
     }

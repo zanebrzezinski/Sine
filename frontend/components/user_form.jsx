@@ -1,4 +1,6 @@
 var React = require('react');
+var ApiUtil = require('../util/api_util');
+var CurrentUserStore = require('../stores/current_user_store');
 
 var UserForm = React.createClass({
 
@@ -21,17 +23,28 @@ var UserForm = React.createClass({
     var file = e.currentTarget.files[0];
 
     reader.onloadend = function () {
-      this.setState({imageFile: file, profilePictureUrl: reader.result});
+      this.setState({profilePicture: file, profilePictureUrl: reader.result});
     }.bind(this);
 
     if (file) {
       reader.readAsDataURL(file); // will trigger a load end event when it completes, and invoke reader.onloadend
     } else {
-      this.setState({imageFile: null, profilePictureUrl: "https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg"});
+      this.setState({profilePicture: null, profilePictureUrl: "https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg"});
     }
   },
 
-  handleSubmit: function() {
+  handleSubmit: function(e) {
+    e.preventDefault();
+
+    var formData = new FormData();
+
+    formData.append("user[username]", this.state.username);
+    formData.append("user[password]", this.state.password);
+    formData.append("user[profile_picture]", this.state.profilePicture);
+    ApiUtil.createUser(formData, function(){
+      debugger;
+      this.props.handleClick();
+    });
 
   },
 
