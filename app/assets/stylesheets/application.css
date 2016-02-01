@@ -260,14 +260,14 @@ header {
   margin: 20px auto;
 }
 
-/* --- LOOP FEED VIEW --- */
+/* --- VIDEO UPLOAD VIEW --- */
 
 
 .video-upload > h2 {
   text-align: center;
   color: #9B9B9B;
   font-size: 16px;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 .upload-preview {
@@ -275,6 +275,9 @@ header {
   margin: auto;
 }
 
+.video-upload .form-button {
+  margin-bottom: 10px;
+}
 /* --- LOOP FEED VIEW --- */
 
 .loop-box-show-container {

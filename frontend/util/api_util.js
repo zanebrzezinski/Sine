@@ -45,6 +45,21 @@ ApiUtil = {
     });
   },
 
+  createLoop: function(formData, cb){
+    debugger
+    $.ajax({
+      url: '/api/loops',
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      data: formData,
+      success: function(user) {
+        cb && cb(user);
+      }
+    });
+  },
+
   createUser: function(formData, cb) {
     $.ajax({
       url: '/api/users',
@@ -55,9 +70,6 @@ ApiUtil = {
       data: formData,
       success: function(user) {
         cb && cb(user);
-      },
-      error: function(e) {
-        console.log(e);
       }
     });
   }

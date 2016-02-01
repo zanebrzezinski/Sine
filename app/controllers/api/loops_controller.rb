@@ -10,6 +10,7 @@ class Api::LoopsController < ApplicationController
   end
 
   def create
+    debugger
     @loop = Loop.new(loop_params)
     @loop.author_id = current_user.id
 
@@ -27,7 +28,7 @@ class Api::LoopsController < ApplicationController
   private
 
   def loop_params
-    params.require(:loop).permit(:title, :url)
+    params.require(:loop).permit(:title, :url, :loop_video)
   end
 
 

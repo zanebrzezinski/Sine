@@ -1,11 +1,12 @@
 var React = require('react');
 var Loop = require('./loop.jsx');
+var ApiUtil = require('../util/api_util');
 
 var VideoUpload = React.createClass({
 
   getInitialState: function() {
     return(
-      {loop: null, loopUrl: ""}
+      {title: "", loop: null, loopUrl: ""}
     );
   },
 
@@ -13,6 +14,9 @@ var VideoUpload = React.createClass({
     this.setLoop();
   },
 
+  changeTitle: function(e){
+    this.setState({title: e.currentTarget.value});
+  },
 
   setLoop: function() {
 
@@ -47,6 +51,21 @@ var VideoUpload = React.createClass({
     }
   },
 
+  handleSubmit: function(e) {
+    e.preventDefault();
+
+    var formData = new FormData();
+
+    formData.append("loop[title]", this.state.title);
+    if (this.state.loop) {
+      formData.append("loop[loop_video]", this.state.loop);
+    }
+
+    ApiUtil.createLoop(formData, function(){
+      this.props.handleClick();
+    }.bind(this));
+  },
+
 
 
   render: function() {
@@ -58,8 +77,10 @@ var VideoUpload = React.createClass({
           <h2>Upload</h2>
             <video className="upload-preview" loop controls autoPlay muted src={this.state.loopUrl}></video>
 
-            <form className="userform group" onSubmit={this.submit}>
+            <form className="userform group" onSubmit={this.handleSubmit}>
                 <input className="file-upload" type="file" onChange={this.changeFile}/>
+                  <input className="textbox" onChange={this.changeTitle} placeholder="Title" type="text" name="title" value={this.state.title}/>
+                <button className="form-button">Create Loop</button>
             </form>
 
         </div>

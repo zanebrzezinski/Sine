@@ -25,6 +25,7 @@ gem 'font-awesome-rails'
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
 gem 'figaro'
+gem 'paperclip-av-transcoder', '~> 0.6.4'
 
 
 # Use ActiveModel has_secure_password

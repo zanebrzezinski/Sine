@@ -1,5 +1,9 @@
 class Loop < ActiveRecord::Base
-  validates :title, :url, :author_id, presence: true
+
+  has_attached_file :loop_video
+  validates_attachment_content_type :loop_video, :content_type => /\Avideo\/.*\Z/
+
+  validates :title, :author_id, presence: true
 
   belongs_to(
     :author,
