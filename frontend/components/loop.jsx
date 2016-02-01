@@ -18,23 +18,21 @@ var Loop = React.createClass({
   },
 
   setLoop: function() {
-    // COME BACK HERE AND FINISH ME ZANE
-    // GENERAL IDEA AS FOLLOWS:
-    //
-    var video = document.getElementById(this.loopId);
+
+    this.video = document.getElementById(this.loopId);
 
     this.loopCallBack = function(){
-      if (video.currentTime >= 7) {
-        video.currentTime = 0;
+      if (this.video.currentTime >= 7) {
+        this.video.currentTime = 0;
       }
-    };
+    }.bind(this);
 
-    video.addEventListener("timeupdate", this.loopCallBack);
+    this.video.addEventListener("timeupdate", this.loopCallBack);
 
   },
 
   compontDidUnmount: function(){
-    video.removeEventListener("timeupdate", this.loopCallBack);
+    this.video.removeEventListener("timeupdate", this.loopCallBack);
   },
 
   muteLogic: function(e){
