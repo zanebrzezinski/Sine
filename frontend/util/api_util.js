@@ -46,7 +46,6 @@ ApiUtil = {
   },
 
   createLoop: function(formData, cb){
-    debugger
     $.ajax({
       url: '/api/loops',
       type: 'POST',
@@ -54,8 +53,9 @@ ApiUtil = {
       contentType: false,
       dataType: 'json',
       data: formData,
-      success: function(user) {
-        cb && cb(user);
+      success: function(data) {
+        ApiActions.receiveOneLoop(data);
+        cb && cb();
       }
     });
   },

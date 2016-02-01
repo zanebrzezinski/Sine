@@ -13,6 +13,10 @@ var resetLoops = function(loops) {
   }
 };
 
+var addOneLoop = function(loop) {
+  _loops.unshift(loop);
+};
+
 
 LoopStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
@@ -20,6 +24,9 @@ LoopStore.__onDispatch = function(payload) {
       resetLoops(payload.loops);
       LoopStore.__emitChange();
       break;
+    case Constants.LOOP_RECEIVED:
+      addOneLoop(payload.loop);
+      LoopStore.__emitChange();
   }
 };
 

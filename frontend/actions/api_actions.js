@@ -8,6 +8,13 @@ var ApiActions = {
       actionType: Constants.LOOPS_RECEIVED,
       loops: loops
     });
+  },
+
+  receiveOneLoop: function(loop) {
+    AppDispatcher.dispatch({
+      actionType: Constants.LOOP_RECEIVED,
+      loop: loop
+    });
   }
 };
 
