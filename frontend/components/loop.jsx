@@ -9,11 +9,36 @@ var Loop = React.createClass({
     );
   },
 
+  componentDidMount: function() {
+    this.setLoop();
+  },
+
   commentChange: function(e){
     this.setState({comment: e.currentTarget.value});
   },
 
+  setLoop: function() {
+    // COME BACK HERE AND FINISH ME ZANE
+    // GENERAL IDEA AS FOLLOWS:
+    //
+    var video = document.getElementById(this.loopId);
+
+    this.loopCallBack = function(){
+      if (video.currentTime >= 7) {
+        video.currentTime = 0;
+      }
+    };
+
+    video.addEventListener("timeupdate", this.loopCallBack);
+
+  },
+
+  compontDidUnmount: function(){
+    video.removeEventListener("timeupdate", this.loopCallBack);
+  },
+
   muteLogic: function(e){
+    debugger
     if (this.state.muted === "muted") {
       this.setState({muted: ""});
     } else {
@@ -52,12 +77,13 @@ var Loop = React.createClass({
     var showLink = "#/loops/" + this.props.loop.id;
     var userLink = "#/users/" + this.props.loop.author_id;
     var createdAtDate = new Date(this.props.loop.created_at).toDateString();
+    this.loopId = "loop"+this.props.loop.id;
 
     if (this.props.videoOnly) {
       return(
         <div className="loop">
           <i onClick={this.muteLogic} className={icon} ></i>
-          <video className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+          <video id={this.loopId} className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
         </div>
       );
     } else {
@@ -69,7 +95,7 @@ var Loop = React.createClass({
             <a className="created_at" href={showLink}>{createdAtDate}</a>
           </div>
           <i onClick={this.muteLogic} className={icon} ></i>
-          <video className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+          <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
           <div className="title">{this.props.loop.title}</div>
           <form onSubmit={this.handleSubmit}>
             <input onChange={this.commentChange}

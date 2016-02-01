@@ -262,6 +262,21 @@ header {
 
 /* --- LOOP FEED VIEW --- */
 
+
+.video-upload > h2 {
+  text-align: center;
+  color: #9B9B9B;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.upload-preview {
+  display: block;
+  margin: auto;
+}
+
+/* --- LOOP FEED VIEW --- */
+
 .loop-box-show-container {
   padding-top: 75px;
 }
