@@ -10,9 +10,9 @@ class Api::LoopsController < ApplicationController
   end
 
   def create
-    debugger
-    @loop = Loop.new(loop_params)
-    @loop.author_id = current_user.id
+    @loop = current_user.loops.new
+    @loop.crop_video(loop_params[:loop_video])
+    @loop.title = loop_params[:title]
 
     if @loop.save
       render :show
@@ -22,13 +22,13 @@ class Api::LoopsController < ApplicationController
   def destroy
     loop = Loop.find(params[:id])
     loop.destroy
-    render :root
+    render json: loop
   end
 
   private
 
   def loop_params
-    params.require(:loop).permit(:title, :url, :loop_video)
+    params.require(:loop).permit(:title, :loop_video)
   end
 
 

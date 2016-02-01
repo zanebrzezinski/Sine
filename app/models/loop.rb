@@ -12,4 +12,20 @@ class Loop < ActiveRecord::Base
     :primary_key => :id
   )
 
+  def crop_video(video)
+
+      offset = 0
+      duration = 7
+      current_format = File.extname(video.path)
+      basename = File.basename(video.path)
+
+      src = video
+      dst = Tempfile.new([basename, current_format])
+      dst.binmode
+
+      system("ffmpeg -y -ss #{offset} -i #{src.path} -t #{duration} #{dst.path}")
+
+      self.loop_video = dst
+  end
+
 end
