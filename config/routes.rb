@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :loops, only: [:show, :index, :create]
     resource :feed, only: [:show]
     resource :session, only: [:create, :destroy, :show]
+    get "search", to: "utils#search"
   end
 
 end

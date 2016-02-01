@@ -17,7 +17,7 @@ var Header = React.createClass({
       user = "";
     }
     return(
-      {signInModal: false, videoUploadModal: false, user: user}
+      {signInModal: false, videoUploadModal: false, user: user, search: ""}
     );
   },
 
@@ -28,6 +28,10 @@ var Header = React.createClass({
 
   _onChange: function() {
     this.setState({user: CurrentUserStore.currentUser()});
+  },
+
+  handleSearchChange: function(e){
+    this.setState({search: e.currentTarget.value});
   },
 
   handleSignInClick: function(){
@@ -66,6 +70,7 @@ var Header = React.createClass({
             <a onClick={this.handleVideoUploadClick}><i className="fa fa-video-camera nav-bar-icon"></i></a>
           </nav>
           <nav className="nav-bar-right">
+            <input className="nav-bar-search" onChange={this.handleSearchChange} type="text" value={this.state.search} placeholder="Search"/>
             <img className="profile-picture" src={this.state.user.profile_picture} />
             <p onClick={this.logOut}>Sine Out</p>
           </nav>
@@ -78,6 +83,7 @@ var Header = React.createClass({
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
           </nav>
           <nav className="nav-bar-right">
+            <input className="nav-bar-search" onChange={this.handleSearchChange} type="text" value={this.state.search} placeholder="Search"/>
             <p onClick={this.handleSignInClick}>Sine in</p>
           </nav>
         </div>

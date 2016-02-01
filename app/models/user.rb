@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  include PgSearch
+  multisearchable :against => [:title]
+
+
   has_many(
     :loops,
     :class_name => "Loop",

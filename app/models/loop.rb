@@ -5,6 +5,9 @@ class Loop < ActiveRecord::Base
 
   validates :title, :author_id, presence: true
 
+  include PgSearch
+  multisearchable :against => [:title]
+
   belongs_to(
     :author,
     :class_name => "User",

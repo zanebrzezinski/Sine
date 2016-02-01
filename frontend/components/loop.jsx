@@ -36,7 +36,6 @@ var Loop = React.createClass({
   },
 
   muteLogic: function(e){
-    debugger
     if (this.state.muted === "muted") {
       this.setState({muted: ""});
     } else {
