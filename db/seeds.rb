@@ -16,7 +16,6 @@ duda = User.create(username: "Lucas", password: "dudaduda")
 
 Loop.delete_all
 
-
 Following.delete_all
 Following.create(follower_id: degrom.id, followee_id: bartolo.id)
 Following.create(follower_id: degrom.id, followee_id: cespedes.id)

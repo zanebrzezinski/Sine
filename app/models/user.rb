@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   include PgSearch
-  multisearchable :against => [:title]
+  multisearchable :against => [:username]
 
 
   has_many(
