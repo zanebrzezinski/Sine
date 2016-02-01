@@ -10,6 +10,7 @@ var Loop = React.createClass({
   },
 
   componentDidMount: function() {
+      debugger
     this.setLoop();
   },
 

@@ -4,7 +4,7 @@ json.loops do
   json.array!(@user.loops.reverse) do |loop|
     json.id loop.id
     json.title loop.title
-    json.url loop.url
+    json.url loop.loop_video
     json.author loop.author.username
     json.profile_picture loop.author.profile_picture
     json.created_at loop.created_at
