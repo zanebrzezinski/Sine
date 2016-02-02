@@ -14,7 +14,8 @@ var Loop = React.createClass({
     }
 
     return (
-      {muted: "muted", paused: false, comment: null, user: user}
+      {muted: "muted", paused: false, comment: null, user: user,
+        likes: this.props.loop.likes.array.length}
     );
   },
 
@@ -61,6 +62,10 @@ var Loop = React.createClass({
     this.props.clickHandler(this.props.loop.id);
   },
 
+  addLike: function(e){
+    e.preventDefault();
+  },
+
 
 
   render: function() {
@@ -72,25 +77,24 @@ var Loop = React.createClass({
       muteIcon = "fa fa-volume-up volume";
     }
 
-    var likes = this.props.loop.likes.array.length;
 
 
     var currentUser = CurrentUserStore.currentUser();
 
     var content = "";
     var repostIcon = (
-      <a className="repost-icon" href="#"><i className="fa fa-refresh"></i></a>
+      <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
 
     if (this.props.loop.author_id === currentUser.id) {
       content = (
-        <a href="#" className="delete-icon"><i className="fa fa-trash-o"></i></a>
+        <p className="delete-icon"><i className="fa fa-trash-o"></i></p>
       );
       repostIcon = "";
     } else {
       content = "";
       repostIcon = (
-        <a className="repost-icon" href="#"><i className="fa fa-refresh"></i></a>
+        <p className="repost-icon"><i className="fa fa-refresh"></i></p>
       );
     }
 
@@ -119,8 +123,8 @@ var Loop = React.createClass({
           <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
           <div className="title">{this.props.loop.title}</div>
           <div className="loop-icons">
-            <a className="like-icon" href="#"><i className="fa fa-heart"></i></a>
-            <i className="icon-number">{likes}</i>
+            <p className="like-icon"><i className="fa fa-heart"></i></p>
+            <i className="icon-number" onClick={this.addLike}>{this.state.likes}</i>
             {repostIcon}
           </div>
           <form onSubmit={this.handleSubmit}>

@@ -374,13 +374,18 @@ header {
 }
 
 .delete-icon {
-  border: 1px solid red;
+  border: 1px solid #aaa;
   font-size: 20px;
-  color: red;
+  color: #aaa;
   float: right;
   margin: 0 20px;
   padding: 10px;
   border-radius: 5px;
+}
+
+.delete-icon:hover {
+  border-color: red;
+  color: red;
 }
 
 .loop-icons {
@@ -390,8 +395,10 @@ header {
   color: #aaa;
 }
 
-.loop-icons > a {
+.loop-icons > p {
+  display: inline;
   margin: 10px;
+  cursor: pointer;
 }
 
 .loop-icons > i {
