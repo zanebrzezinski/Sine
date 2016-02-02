@@ -27,6 +27,18 @@ class Loop < ActiveRecord::Base
     source: :user
   )
 
+  has_many(
+    :reposts,
+    class_name: "Repost",
+    foreign_key: :loop_id
+  )
+
+  has_many(
+    :reposters,
+    through: :reposts,
+    source: :user
+  )
+
   def crop_video(video)
 
       offset = 0

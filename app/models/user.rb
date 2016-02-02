@@ -57,6 +57,18 @@ class User < ActiveRecord::Base
     source: :loop
   )
 
+  has_many(
+    :reposts,
+    class_name: "Repost",
+    foreign_key: :reposter_id
+  )
+
+  has_many(
+    :reposted_loops,
+    through: :reposts,
+    source: :loop
+  )
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user && user.valid_password?(password)
