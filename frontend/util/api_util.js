@@ -72,6 +72,23 @@ ApiUtil = {
         cb && cb(user);
       }
     });
+  },
+
+  createLike: function(data) {
+    $.ajax({
+      url: '/api/likes',
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      data: data,
+      success: function(data) {
+        ApiActions.receiveLoops(data);
+      },
+      error: function(){
+        console.log("U SUK");
+      }
+    });
   }
 };
 

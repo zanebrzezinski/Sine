@@ -1,6 +1,7 @@
 var React = require('react');
 var CurrentUserStore = require('../stores/current_user_store');
 var SessionsApiUtil = require('../util/sessions_api_util');
+var ApiUtil = require('../util/api_util');
 
 
 var Loop = React.createClass({
@@ -62,8 +63,15 @@ var Loop = React.createClass({
     this.props.clickHandler(this.props.loop.id);
   },
 
-  addLike: function(e){
-    e.preventDefault();
+  addLike: function(){
+    var currentUser = CurrentUserStore.currentUser();
+
+    if (currentUser) {
+      var data = {loop_id: this.props.loop.id, liker_id: currentUser.id};
+      ApiUtil.createLike(data);
+    }
+
+
   },
 
 
@@ -123,8 +131,8 @@ var Loop = React.createClass({
           <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
           <div className="title">{this.props.loop.title}</div>
           <div className="loop-icons">
-            <p className="like-icon"><i className="fa fa-heart"></i></p>
-            <i className="icon-number" onClick={this.addLike}>{this.state.likes}</i>
+            <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
+            <i className="icon-number">{this.state.likes}</i>
             {repostIcon}
           </div>
           <form onSubmit={this.handleSubmit}>
