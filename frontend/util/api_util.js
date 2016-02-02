@@ -81,6 +81,7 @@ ApiUtil = {
       dataType: 'json',
       data: {likes: data},
       success: function(data) {
+        ApiActions.updateLoop(data);
         cb && cb();
       }
     });
@@ -93,7 +94,6 @@ ApiUtil = {
       dataType: 'json',
       data: {id: id},
       success: function(data) {
-        console.log("BAHLETED");
         cb && cb();
       }
     });

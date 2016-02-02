@@ -3,7 +3,8 @@ class Api::LikesController < ApplicationController
   def create
     @like = Like.new(like_params)
     if @like.save
-      render json: @like
+      @loop = Loop.find(@like.loop)
+      render "api/loops/show"
     end
   end
 

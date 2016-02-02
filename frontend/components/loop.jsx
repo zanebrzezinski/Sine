@@ -24,7 +24,6 @@ var Loop = React.createClass({
     this.token = CurrentUserStore.addListener(this._onChange);
     SessionsApiUtil.fetchCurrentUser();
     this.searchForLike();
-
   },
 
   searchForLike: function(){
@@ -112,10 +111,6 @@ var Loop = React.createClass({
 
     var currentUser = this.state.user;
 
-    var content = "";
-    var repostIcon = (
-      <p className="repost-icon"><i className="fa fa-refresh"></i></p>
-    );
 
     var likeIcon;
     if (this.state.liked) {
@@ -130,6 +125,10 @@ var Loop = React.createClass({
 
 
 
+    var content = "";
+    var repostIcon = (
+      <p className="repost-icon"><i className="fa fa-refresh"></i></p>
+    );
     if (this.props.loop.author_id === currentUser.id) {
       content = (
         <p className="delete-icon"><i className="fa fa-trash-o"></i></p>

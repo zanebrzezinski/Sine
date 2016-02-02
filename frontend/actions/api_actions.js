@@ -15,6 +15,13 @@ var ApiActions = {
       actionType: Constants.LOOP_RECEIVED,
       loop: loop
     });
+  },
+
+  updateLoop: function(loop) {
+    AppDispatcher.dispatch({
+      actionType: Constants.UPDATE_LOOP,
+      loop: loop
+    });
   }
 };
 
