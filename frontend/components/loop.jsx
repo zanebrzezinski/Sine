@@ -66,11 +66,12 @@ var Loop = React.createClass({
   addLike: function(){
     var currentUser = CurrentUserStore.currentUser();
 
-    if (currentUser) {
+    if (currentUser.id) {
       var data = {loop_id: this.props.loop.id, liker_id: currentUser.id};
-      ApiUtil.createLike(data);
+      ApiUtil.createLike(data, function() {
+        this.setState({likes: (this.state.likes + 1)});
+      }.bind(this));
     }
-
 
   },
 

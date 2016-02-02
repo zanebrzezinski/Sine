@@ -74,19 +74,14 @@ ApiUtil = {
     });
   },
 
-  createLike: function(data) {
+  createLike: function(data, cb) {
     $.ajax({
       url: '/api/likes',
       type: 'POST',
-      processData: false,
-      contentType: false,
       dataType: 'json',
-      data: data,
+      data: {likes: data},
       success: function(data) {
-        ApiActions.receiveLoops(data);
-      },
-      error: function(){
-        console.log("U SUK");
+        cb && cb();
       }
     });
   }
