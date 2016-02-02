@@ -7,7 +7,7 @@ var SearchApiUtil = {
       url: '/api/search',
       type: 'GET',
       dataType: 'json',
-      data: {query: query, page: page},
+      data: {query: query},
       success: function (data) {
         SearchActions.receiveResults(data);
       }

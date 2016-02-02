@@ -14,6 +14,10 @@ var VideoUpload = React.createClass({
     this.setLoop();
   },
 
+  _onChange: function() {
+    this.setState({user: CurrentUserStore.currentUser()});
+  },
+
   changeTitle: function(e){
     this.setState({title: e.currentTarget.value});
   },
@@ -75,7 +79,7 @@ var VideoUpload = React.createClass({
         <div className="modal video-upload">
 
           <h2>Upload</h2>
-            <video className="upload-preview" loop controls autoPlay muted src={this.state.loopUrl}></video>
+            <video className="upload-preview" loop autoPlay muted src={this.state.loopUrl}></video>
 
             <form className="userform group" onSubmit={this.handleSubmit}>
                 <input className="file-upload" type="file" onChange={this.changeFile}/>

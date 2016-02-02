@@ -12,8 +12,8 @@ var Header = React.createClass({
 
   getInitialState: function(){
     var user;
-    if (CurrentUserStore.userHasBeenFetched) {
-      user = CurrentUserStore.currentUser;
+    if (CurrentUserStore.userHasBeenFetched()) {
+      user = CurrentUserStore.currentUser();
     } else {
       user = "";
     }
@@ -23,8 +23,12 @@ var Header = React.createClass({
   },
 
   componentDidMount: function() {
-    CurrentUserStore.addListener(this._onChange);
+    this.token = CurrentUserStore.addListener(this._onChange);
     SessionsApiUtil.fetchCurrentUser();
+  },
+
+  componentWillUnmount: function() {
+    this.token.remove();
   },
 
   _onChange: function() {
@@ -66,8 +70,7 @@ var Header = React.createClass({
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
             <a onClick={this.handleVideoUploadClick}><i className="fa fa-video-camera nav-bar-icon"></i></a>
           </nav>
-          <nav className="nav-bar-right">
-            < Search />
+          <nav className="nav-bar-right group">
             <img className="profile-picture" src={this.state.user.profile_picture} />
             <p onClick={this.logOut}>Sine Out</p>
           </nav>
@@ -79,8 +82,7 @@ var Header = React.createClass({
           <nav className="nav-bar-icons">
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
           </nav>
-          <nav className="nav-bar-right">
-            < Search />
+          <nav className="nav-bar-right group">
             <p onClick={this.handleSignInClick}>Sine in</p>
           </nav>
         </div>

@@ -375,6 +375,16 @@ header {
   margin-right: 10px;
 }
 
+.delete-icon {
+  border: 1px solid red;
+  font-size: 20px;
+  color: red;
+  float: right;
+  margin: 0 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 
 /* --- LOOP SHOW VIEW --- */
 

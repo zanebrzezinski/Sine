@@ -1,38 +1,38 @@
 var React = require('react');
+var CurrentUserStore = require('../stores/current_user_store');
+var SessionsApiUtil = require('../util/sessions_api_util');
+
 
 var Loop = React.createClass({
 
   getInitialState: function(){
+    var user;
+    if (CurrentUserStore.userHasBeenFetched()) {
+      user = CurrentUserStore.currentUser();
+    } else {
+      user = "";
+    }
 
     return (
-      {muted: "muted", paused: false, comment: null}
+      {muted: "muted", paused: false, comment: null, user: user}
     );
   },
 
   componentDidMount: function() {
-    this.setLoop();
+    this.token = CurrentUserStore.addListener(this._onChange);
+    SessionsApiUtil.fetchCurrentUser();
+  },
+
+  _onChange: function() {
+    this.setState({user: CurrentUserStore.currentUser()});
+  },
+
+  componentWillUnmount: function() {
+    this.token.remove();
   },
 
   commentChange: function(e){
     this.setState({comment: e.currentTarget.value});
-  },
-
-  setLoop: function() {
-
-    this.video = document.getElementById(this.loopId);
-
-    this.loopCallBack = function(){
-      if (this.video.currentTime >= 7) {
-        this.video.currentTime = 0;
-      }
-    }.bind(this);
-
-    this.video.addEventListener("timeupdate", this.loopCallBack);
-
-  },
-
-  compontDidUnmount: function(){
-    this.video.removeEventListener("timeupdate", this.loopCallBack);
   },
 
   muteLogic: function(e){
@@ -71,6 +71,18 @@ var Loop = React.createClass({
       icon = "fa fa-volume-up volume";
     }
 
+    var content = "";
+
+    var currentUser = CurrentUserStore.currentUser();
+
+    if (this.props.loop.author_id === currentUser.id) {
+      content = (
+        <a href="#" className="delete-icon"><i className="fa fa-trash-o"></i></a>
+      );
+    } else {
+      content = "";
+    }
+
     var showLink = "#/loops/" + this.props.loop.id;
     var userLink = "#/users/" + this.props.loop.author_id;
     var createdAtDate = new Date(this.props.loop.created_at).toDateString();
@@ -86,7 +98,8 @@ var Loop = React.createClass({
     } else {
       return(
         <div className="loop-box group">
-          <div className="loop-info">
+          <div className="loop-info group">
+            {content}
             <img className="profile-picture" src={this.props.loop.profile_picture} />
             <a className="author" href={userLink}>{this.props.loop.author}</a>
             <a className="created_at" href={showLink}>{createdAtDate}</a>
