@@ -381,6 +381,7 @@ header {
   margin: 0 20px;
   padding: 10px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .delete-icon:hover {
