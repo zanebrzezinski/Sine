@@ -64,12 +64,15 @@ var Loop = React.createClass({
 
 
   render: function() {
-    var icon;
+
+    var muteIcon;
     if (this.state.muted === "muted") {
-      icon = "fa fa-volume-off volume";
+      muteIcon = "fa fa-volume-off volume";
     } else {
-      icon = "fa fa-volume-up volume";
+      muteIcon = "fa fa-volume-up volume";
     }
+
+    var likes = this.props.loop.likes.array.length;
 
 
     var currentUser = CurrentUserStore.currentUser();
@@ -99,7 +102,7 @@ var Loop = React.createClass({
     if (this.props.videoOnly) {
       return(
         <div className="loop">
-          <i onClick={this.muteLogic} className={icon} ></i>
+          <i onClick={this.muteLogic} className={muteIcon} ></i>
           <video id={this.loopId} className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
         </div>
       );
@@ -112,11 +115,12 @@ var Loop = React.createClass({
             <a className="author" href={userLink}>{this.props.loop.author}</a>
             <a className="created_at" href={showLink}>{createdAtDate}</a>
           </div>
-          <i onClick={this.muteLogic} className={icon} ></i>
+          <i onClick={this.muteLogic} className={muteIcon} ></i>
           <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
           <div className="title">{this.props.loop.title}</div>
           <div className="loop-icons">
             <a className="like-icon" href="#"><i className="fa fa-heart"></i></a>
+            <i className="icon-number">{likes}</i>
             {repostIcon}
           </div>
           <form onSubmit={this.handleSubmit}>

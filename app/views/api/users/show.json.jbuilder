@@ -8,5 +8,10 @@ json.loops do
     json.author loop.author.username
     json.profile_picture loop.author.profile_picture
     json.created_at loop.created_at
+    json.likes do
+      json.array(loop.likings) do |liking|
+        json.user liking.username
+      end
+    end
   end
 end

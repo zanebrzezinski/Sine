@@ -36,6 +36,8 @@ var ShowCard = React.createClass({
   render: function() {
     var loop = this.props.loop;
 
+    var likes = loop.likes.array.length;
+
     var showLink = "#/loops/" + loop.id;
     var userLink = "#/users/" + loop.author_id;
     var createdAtDate = new Date(loop.created_at).toDateString();
@@ -71,6 +73,7 @@ var ShowCard = React.createClass({
         </div>
         <div className="loop-icons">
           <a className="like-icon" href="#"><i className="fa fa-heart"></i></a>
+          <i className="icon-number">{likes}</i>
           {repostIcon}
         </div>
       <form onSubmit={this.handleSubmit}>

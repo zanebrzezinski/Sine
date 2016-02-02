@@ -124,7 +124,6 @@ header {
   cursor: pointer;
 }
 
-
 .profile-picture {
   margin-top: -10px;
   margin-right: 20px;
@@ -393,6 +392,13 @@ header {
 
 .loop-icons > a {
   margin: 10px;
+}
+
+.loop-icons > i {
+  font-style: normal;
+  font-size: 12px;
+  color: #aaa;
+  margin-right: 20px;
 }
 
 .like-icon:hover{
