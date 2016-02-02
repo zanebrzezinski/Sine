@@ -22,4 +22,6 @@ server side
 * Server side trimming of loops with FFMPEG and saving of only trimmed assets
 to preserve server space.
 
-[Design Documentation][./docs/Design_documentation.md]
+
+[Design Documentation][Design Documentation]
+[Design Documentation]: ./docs/Design_documentation.md
