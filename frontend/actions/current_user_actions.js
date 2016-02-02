@@ -1,4 +1,3 @@
-
 var AppDispatcher = require('../dispatcher/dispatcher');
 var CurrentUserConstants = require('../constants/current_user_constants');
 
