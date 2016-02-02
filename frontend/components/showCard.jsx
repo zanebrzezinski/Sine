@@ -34,7 +34,7 @@ var ShowCard = React.createClass({
   },
 
   addLike: function(){
-    var currentUser = CurrentUserStore.currentUser();
+    var currentUser = this.state.user;
 
     if (currentUser.id) {
       var data = {loop_id: this.props.loop.id, liker_id: currentUser.id};
@@ -55,7 +55,7 @@ var ShowCard = React.createClass({
     var createdAtDate = new Date(loop.created_at).toDateString();
 
 
-    var currentUser = CurrentUserStore.currentUser();
+    var currentUser = this.state.user;
 
     var content = "";
     var repostIcon = (

@@ -129,7 +129,8 @@ var Loop = React.createClass({
     var repostIcon = (
       <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
-    if (this.props.loop.author_id === currentUser.id) {
+
+    if (this.props.loop.author_id === this.state.user.id) {
       content = (
         <p className="delete-icon"><i className="fa fa-trash-o"></i></p>
       );

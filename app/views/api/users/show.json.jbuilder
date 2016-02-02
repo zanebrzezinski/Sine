@@ -9,8 +9,9 @@ json.loops do
     json.profile_picture loop.author.profile_picture
     json.created_at loop.created_at
     json.likes do
-      json.array(loop.likings) do |liking|
-        json.user liking.username
+      json.array(loop.likes) do |like|
+        json.id like.id
+        json.liker_id like.liker_id
       end
     end
   end

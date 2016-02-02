@@ -16,10 +16,10 @@ duda = User.create(username: "Lucas", password: "dudaduda")
 
 Loop.delete_all
 loop = Loop.create(title: "Test", author_id: bartolo.id, loop_video: File.new("#{Rails.root}/app/assets/videos/temp_video.mp4"))
-# loop2 = Loop.create(title: "Spunky", author_id: degrom.id, loop_video: File.new("#{Rails.root}/app/assets/videos/temp_video.mp4"))
-# loop3 = Loop.create(title: "First loop", author_id: cespedes.id, loop_video: File.new("#{Rails.root}/app/assets/videos/spunky_Tadpole_-_Google_Video_512kb.mp4"))
-# loop4 = Loop.create(title: "First loop", author_id: lagares.id, loop_video: File.new("#{Rails.root}/app/assets/videos/superman_electric_earthquake_512kb.mp4"))
-# loop5 = Loop.create(title: "First loop", author_id: duda.id, loop_video: File.new("#{Rails.root}/app/assets/videos/the_new_three_stooges_the_noisy_silent_movie_512kb.mp4"))
+loop2 = Loop.create(title: "Spunky", author_id: degrom.id, loop_video: File.new("#{Rails.root}/app/assets/videos/temp_video.mp4"))
+loop3 = Loop.create(title: "First loop", author_id: cespedes.id, loop_video: File.new("#{Rails.root}/app/assets/videos/spunky_Tadpole_-_Google_Video_512kb.mp4"))
+loop4 = Loop.create(title: "First loop", author_id: lagares.id, loop_video: File.new("#{Rails.root}/app/assets/videos/superman_electric_earthquake_512kb.mp4"))
+loop5 = Loop.create(title: "First loop", author_id: duda.id, loop_video: File.new("#{Rails.root}/app/assets/videos/the_new_three_stooges_the_noisy_silent_movie_512kb.mp4"))
 
 Following.delete_all
 Following.create(follower_id: degrom.id, followee_id: bartolo.id)
