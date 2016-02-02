@@ -50,7 +50,7 @@ class Loop < ActiveRecord::Base
       dst = Tempfile.new([basename, current_format])
       dst.binmode
 
-      system("ffmpeg -y -ss #{offset} -i #{src.path} -t #{duration} #{dst.path}")
+      system("ffmpeg -y -ss #{offset} -i #{src.path} -t #{duration} -strict -2 #{dst.path}")
 
       self.loop_video = dst
   end
