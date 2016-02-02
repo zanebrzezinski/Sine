@@ -3,9 +3,11 @@ json.results do
     result = result.searchable
 
     if result.class == User
-      json.partial!("api/users/" + result.id)
+      @user = result
+      json.partial!("api/users/user")
     else
-      json.partial!("api/loops/" + result.id)
+      @loop = result
+      json.partial!("api/loops/loop")
     end
 
     json._type result.class.to_s

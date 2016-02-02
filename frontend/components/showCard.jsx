@@ -33,6 +33,18 @@ var ShowCard = React.createClass({
     this.setState({comment: e.currentTarget.value});
   },
 
+  addLike: function(){
+    var currentUser = CurrentUserStore.currentUser();
+
+    if (currentUser.id) {
+      var data = {loop_id: this.props.loop.id, liker_id: currentUser.id};
+      ApiUtil.createLike(data, function() {
+        this.setState({likes: (this.state.likes + 1)});
+      }.bind(this));
+    }
+
+  },
+
   render: function() {
     var loop = this.props.loop;
 
@@ -42,22 +54,23 @@ var ShowCard = React.createClass({
     var userLink = "#/users/" + loop.author_id;
     var createdAtDate = new Date(loop.created_at).toDateString();
 
+
     var currentUser = CurrentUserStore.currentUser();
 
     var content = "";
     var repostIcon = (
-      <a className="repost-icon" href="#"><i className="fa fa-refresh"></i></a>
+      <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
 
     if (this.props.loop.author_id === currentUser.id) {
       content = (
-        <a href="#" className="delete-icon"><i className="fa fa-trash-o"></i></a>
+        <p className="delete-icon"><i className="fa fa-trash-o"></i></p>
       );
       repostIcon = "";
     } else {
       content = "";
       repostIcon = (
-        <a className="repost-icon" href="#"><i className="fa fa-refresh"></i></a>
+        <p className="repost-icon"><i className="fa fa-refresh"></i></p>
       );
     }
 
@@ -72,7 +85,7 @@ var ShowCard = React.createClass({
           <div className="title">{this.props.loop.title}</div>
         </div>
         <div className="loop-icons">
-          <a className="like-icon" href="#"><i className="fa fa-heart"></i></a>
+          <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
           <i className="icon-number">{likes}</i>
           {repostIcon}
         </div>

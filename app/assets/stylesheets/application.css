@@ -417,6 +417,10 @@ header {
   color: #00BF8F;
 }
 
+.liked {
+  color: red;
+}
+
 /* --- LOOP SHOW VIEW --- */
 
 .loop-box-show {

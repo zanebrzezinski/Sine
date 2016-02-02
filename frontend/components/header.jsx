@@ -71,6 +71,7 @@ var Header = React.createClass({
             <a onClick={this.handleVideoUploadClick}><i className="fa fa-video-camera nav-bar-icon"></i></a>
           </nav>
           <nav className="nav-bar-right group">
+            <Search />
             <img className="profile-picture" src={this.state.user.profile_picture} />
             <p onClick={this.logOut}>Sine Out</p>
           </nav>
@@ -83,6 +84,7 @@ var Header = React.createClass({
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
           </nav>
           <nav className="nav-bar-right group">
+            <Search />
             <p onClick={this.handleSignInClick}>Sine in</p>
           </nav>
         </div>

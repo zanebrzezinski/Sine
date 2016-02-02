@@ -14,19 +14,34 @@ var Loop = React.createClass({
       user = "";
     }
 
+
     return (
       {muted: "muted", paused: false, comment: null, user: user,
-        likes: this.props.loop.likes.array.length}
+        likes: this.props.loop.likes.array.length, liked: false}
     );
   },
 
   componentDidMount: function() {
     this.token = CurrentUserStore.addListener(this._onChange);
     SessionsApiUtil.fetchCurrentUser();
+
+    this.searchForLike();
+
+  },
+
+  searchForLike: function(){
+    this.props.loop.likes.array.forEach (function(like){
+      if (this.state.user.id === like.liker_id) {
+        this.setState({liked: true});
+        return;
+      }
+      this.setState({liked: false});
+    }.bind(this));
   },
 
   _onChange: function() {
     this.setState({user: CurrentUserStore.currentUser()});
+    this.searchForLike();
   },
 
   componentWillUnmount: function() {
@@ -64,14 +79,26 @@ var Loop = React.createClass({
   },
 
   addLike: function(){
-    var currentUser = CurrentUserStore.currentUser();
+    var currentUser = this.state.user;
 
     if (currentUser.id) {
       var data = {loop_id: this.props.loop.id, liker_id: currentUser.id};
       ApiUtil.createLike(data, function() {
-        this.setState({likes: (this.state.likes + 1)});
+        this.setState({likes: (this.state.likes + 1), liked: true});
       }.bind(this));
     }
+
+  },
+
+  removeLike: function() {
+    var currentUser = this.state.user;
+
+    var likeId;
+    this.props.loop.likes.array.forEach(function(like){
+      if (currentUser.id === like.liker_id) {
+        likeId = like.id;
+      }
+    }.bind(this));
 
   },
 
@@ -87,13 +114,25 @@ var Loop = React.createClass({
     }
 
 
-
-    var currentUser = CurrentUserStore.currentUser();
+    var currentUser = this.state.user;
 
     var content = "";
     var repostIcon = (
       <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
+
+    var likeIcon;
+    if (this.state.liked) {
+      likeIcon = (
+        <p className="like-icon liked" onClick={this.removeLike}><i className="fa fa-heart"></i></p>
+      );
+    } else {
+      likeIcon = (
+        <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
+      );
+    }
+
+
 
     if (this.props.loop.author_id === currentUser.id) {
       content = (
@@ -132,7 +171,7 @@ var Loop = React.createClass({
           <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
           <div className="title">{this.props.loop.title}</div>
           <div className="loop-icons">
-            <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
+            {likeIcon}
             <i className="icon-number">{this.state.likes}</i>
             {repostIcon}
           </div>
