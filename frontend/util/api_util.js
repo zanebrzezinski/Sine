@@ -84,6 +84,19 @@ ApiUtil = {
         cb && cb();
       }
     });
+  },
+
+  destroyLike: function(id, cb) {
+    $.ajax({
+      url: '/api/likes',
+      type: 'DELETE',
+      dataType: 'json',
+      data: {id: id},
+      success: function(data) {
+        console.log("BAHLETED");
+        cb && cb();
+      }
+    });
   }
 };
 

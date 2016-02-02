@@ -14,7 +14,6 @@ var Loop = React.createClass({
       user = "";
     }
 
-
     return (
       {muted: "muted", paused: false, comment: null, user: user,
         likes: this.props.loop.likes.array.length, liked: false}
@@ -24,19 +23,21 @@ var Loop = React.createClass({
   componentDidMount: function() {
     this.token = CurrentUserStore.addListener(this._onChange);
     SessionsApiUtil.fetchCurrentUser();
-
     this.searchForLike();
 
   },
 
   searchForLike: function(){
+    var likeId;
     this.props.loop.likes.array.forEach (function(like){
       if (this.state.user.id === like.liker_id) {
         this.setState({liked: true});
+        likeId = like.id;
         return;
       }
       this.setState({liked: false});
     }.bind(this));
+    return likeId;
   },
 
   _onChange: function() {
@@ -91,15 +92,10 @@ var Loop = React.createClass({
   },
 
   removeLike: function() {
-    var currentUser = this.state.user;
-
-    var likeId;
-    this.props.loop.likes.array.forEach(function(like){
-      if (currentUser.id === like.liker_id) {
-        likeId = like.id;
-      }
+    var likeId = this.searchForLike();
+    ApiUtil.destroyLike(likeId, function() {
+      this.setState({likes: (this.state.likes - 1), liked: false});
     }.bind(this));
-
   },
 
 
