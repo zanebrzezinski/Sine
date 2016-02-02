@@ -29,13 +29,16 @@ Following.create(follower_id: duda.id, followee_id: bartolo.id)
 Following.create(follower_id: duda.id, followee_id: cespedes.id)
 Following.create(follower_id: duda.id, followee_id: lagares.id)
 Following.create(follower_id: duda.id, followee_id: degrom.id)
+Following.create(follower_id: lagares.id, followee_id: bartolo.id)
+Following.create(follower_id: lagares.id, followee_id: cespedes.id)
+Following.create(follower_id: lagares.id, followee_id: degrom.id)
 
 Like.delete_all
 Like.create(liker_id: bartolo.id, loop_id: loop.id)
-# Like.create(liker_id: degrom.id, loop_id: loop2.id)
-# Like.create(liker_id: cespedes.id, loop_id: loop3.id)
-# Like.create(liker_id: lagares.id, loop_id: loop4.id)
-# Like.create(liker_id: duda.id, loop_id: loop5.id)
+Like.create(liker_id: degrom.id, loop_id: loop2.id)
+Like.create(liker_id: cespedes.id, loop_id: loop3.id)
+Like.create(liker_id: lagares.id, loop_id: loop4.id)
+Like.create(liker_id: duda.id, loop_id: loop5.id)
 
 Repost.delete_all
 
