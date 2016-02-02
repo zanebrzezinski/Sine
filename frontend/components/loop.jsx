@@ -71,16 +71,24 @@ var Loop = React.createClass({
       icon = "fa fa-volume-up volume";
     }
 
-    var content = "";
 
     var currentUser = CurrentUserStore.currentUser();
+
+    var content = "";
+    var repostIcon = (
+      <a className="repost-icon" href="#"><i className="fa fa-refresh"></i></a>
+    );
 
     if (this.props.loop.author_id === currentUser.id) {
       content = (
         <a href="#" className="delete-icon"><i className="fa fa-trash-o"></i></a>
       );
+      repostIcon = "";
     } else {
       content = "";
+      repostIcon = (
+        <a className="repost-icon" href="#"><i className="fa fa-refresh"></i></a>
+      );
     }
 
     var showLink = "#/loops/" + this.props.loop.id;
@@ -107,6 +115,10 @@ var Loop = React.createClass({
           <i onClick={this.muteLogic} className={icon} ></i>
           <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
           <div className="title">{this.props.loop.title}</div>
+          <div className="loop-icons">
+            <a className="like-icon" href="#"><i className="fa fa-heart"></i></a>
+            {repostIcon}
+          </div>
           <form onSubmit={this.handleSubmit}>
             <input onChange={this.commentChange}
               className="comment-box" type="text"

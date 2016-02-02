@@ -15,6 +15,18 @@ class Loop < ActiveRecord::Base
     :primary_key => :id
   )
 
+  has_many(
+    :likes,
+    class_name: "Like",
+    foreign_key: :loop_id
+  )
+
+  has_many(
+    :likings,
+    through: :likes,
+    source: :user
+  )
+
   def crop_video(video)
 
       offset = 0

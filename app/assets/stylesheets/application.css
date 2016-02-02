@@ -338,7 +338,6 @@ header {
   padding-top: 20px;
   padding-left: 5px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
 }
 
 .created_at:hover{
@@ -385,6 +384,24 @@ header {
   border-radius: 5px;
 }
 
+.loop-icons {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin: 10px 20px;
+  color: #aaa;
+}
+
+.loop-icons > a {
+  margin: 10px;
+}
+
+.like-icon:hover{
+  color: red;
+}
+
+.repost-icon:hover{
+  color: #00BF8F;
+}
 
 /* --- LOOP SHOW VIEW --- */
 
@@ -447,4 +464,8 @@ header {
   float: none;
   margin-bottom: 10px;
   display: block;
+}
+
+.show-card .loop-icons {
+  border-bottom: none;
 }

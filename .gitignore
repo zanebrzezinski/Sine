@@ -13,6 +13,7 @@
 /tmp
 
 /app/assets/javascripts/bundle.js
+/app/assets/videos
 node_modules/
 
 # Ignore application configuration
