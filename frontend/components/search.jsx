@@ -4,7 +4,7 @@ var SearchApiUtil = require('../util/search_api_util');
 var Search = React.createClass({
 
   getInitialState: function(){
-    return {page: 1, query: ""};
+    return {page: 1, query: "", hidden: ""};
   },
 
   componentDidMount: function() {
@@ -12,6 +12,7 @@ var Search = React.createClass({
   },
 
   _onChange: function() {
+    this.setState({hidden: ""});
     this.forceUpdate();
   },
 
@@ -35,6 +36,10 @@ var Search = React.createClass({
     this.listener.remove();
   },
 
+  hideSearch: function(){
+    this.setState({hidden: "hidden"});
+  },
+
 
   render: function(){
 
@@ -42,13 +47,13 @@ var Search = React.createClass({
       if (searchResult._type === "User")
         return (
           <li key={searchResult._type + searchResult.id}>
-          <a href={"/#/users/" + searchResult.id}><i className="fa fa-user search-icon"></i>
+          <a className="search-results-link" href={"/#/users/" + searchResult.id}><i className="fa fa-user search-icon"></i>
           {searchResult.username}</a></li>
         );
       else if (searchResult._type === "Loop") {
         return (
           <li key={searchResult._type + searchResult.id}>
-          <a href={"/#/loops/" + searchResult.id}><i className="fa fa-video-camera search-icon"></i>
+          <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i className="fa fa-video-camera search-icon"></i>
           {searchResult.title}</a></li>
         );
       }
@@ -56,9 +61,9 @@ var Search = React.createClass({
 
     return(
       <div>
-        <input className="nav-bar-search" onKeyUp={this.search} onChange={this._onChange} type="text" value={this.state.search} placeholder="Search"/>
-        <div className="search-results">
-          <ul className="search-results-list">
+        <input className="nav-bar-search " onKeyUp={this.search} onChange={this._onChange} type="text" value={this.state.search} placeholder="Search"/>
+        <div className={"search-results " + this.state.hidden} onClick={this.hideSearch}>
+          <ul className={"search-results-list " + this.state.hidden}>
             {searchResults}
           </ul>
         </div>

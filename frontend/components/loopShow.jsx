@@ -20,6 +20,10 @@ var LoopShow = React.createClass({
     this.token.remove();
   },
 
+  componentWillReceiveProps: function(newProps) {
+    ApiUtil.fetchOneLoop(newProps.params.loopId);
+  },
+
   _onChange: function() {
     this.setState({loop: LoopStore.loops()[0]});
   },
