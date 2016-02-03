@@ -15,8 +15,6 @@ lagares = User.create(username: "Lagares", password: "Lagares")
 duda = User.create(username: "Lucas", password: "dudaduda")
 guest = User.create(username: "Guest", password: "password")
 
-Loop.delete_all
-
 Following.delete_all
 Following.create(follower_id: degrom.id, followee_id: bartolo.id)
 Following.create(follower_id: degrom.id, followee_id: cespedes.id)
