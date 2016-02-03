@@ -18,12 +18,21 @@ var addOneLoop = function(loop) {
 };
 
 var updateLoop = function(loop) {
-    for (var i = 0; i < _loops.length; i++) {
-      if (loop.id === _loops[i].id) {
-        _loops[i] = loop;
-        return;
-      }
+  for (var i = 0; i < _loops.length; i++) {
+    if (loop.id === _loops[i].id) {
+      _loops[i] = loop;
+      return;
     }
+  }
+};
+
+var deleteLoop = function(loop) {
+  for (var i = 0; i < _loops.length; i++) {
+    if (loop.id === _loops[i].id) {
+      _loops.splice(i, 1);
+      return;
+    }
+  }
 };
 
 
@@ -39,6 +48,10 @@ LoopStore.__onDispatch = function(payload) {
       break;
     case Constants.UPDATE_LOOP:
       updateLoop(payload.loop);
+      LoopStore.__emitChange();
+      break;
+    case Constants.DELETE_LOOP:
+      deleteLoop(payload.loop);
       LoopStore.__emitChange();
       break;
   }

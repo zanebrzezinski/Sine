@@ -20,9 +20,9 @@ class Api::LoopsController < ApplicationController
   end
 
   def destroy
-    loop = Loop.find(params[:id])
-    loop.destroy
-    render json: loop
+    @loop = Loop.find(params[:id])
+    @loop.destroy
+    render json: @loop
   end
 
   private

@@ -87,13 +87,18 @@ var Loop = React.createClass({
         this.setState({likes: (this.state.likes + 1), liked: true});
       }.bind(this));
     }
-
   },
 
   removeLike: function() {
     var likeId = this.searchForLike();
     ApiUtil.destroyLike(likeId, function() {
       this.setState({likes: (this.state.likes - 1), liked: false});
+    }.bind(this));
+  },
+
+  deletePost: function(){
+    ApiUtil.destroyLoop(this.props.loop.id, function(){
+      console.log("deleted");
     }.bind(this));
   },
 
@@ -132,7 +137,7 @@ var Loop = React.createClass({
 
     if (this.props.loop.author_id === this.state.user.id) {
       content = (
-        <p className="delete-icon"><i className="fa fa-trash-o"></i></p>
+        <p className="delete-icon" onClick={this.deletePost}><i className="fa fa-trash-o"></i></p>
       );
       repostIcon = "";
     } else {

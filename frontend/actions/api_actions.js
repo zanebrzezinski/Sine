@@ -22,7 +22,14 @@ var ApiActions = {
       actionType: Constants.UPDATE_LOOP,
       loop: loop
     });
-  }
+  },
+  
+  deleteLoop: function(loop) {
+    AppDispatcher.dispatch({
+      actionType: Constants.DELETE_LOOP,
+      loop: loop
+    });
+  },
 };
 
 module.exports = ApiActions;

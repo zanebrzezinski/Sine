@@ -1,7 +1,8 @@
 var LoopConstants = {
   LOOPS_RECEIVED: "LOOPS RECEIVED",
   LOOP_RECEIVED: "LOOP RECEIVED",
-  UPDATE_LOOP: "UPDATE LOOP"
+  UPDATE_LOOP: "UPDATE LOOP",
+  DELETE_LOOP: "DELETE LOOP"
 };
 
 module.exports = LoopConstants;

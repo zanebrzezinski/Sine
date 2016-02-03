@@ -97,6 +97,19 @@ ApiUtil = {
         cb && cb();
       }
     });
+  },
+
+  destroyLoop: function(id, cb){
+    $.ajax({
+      url: '/api/loops/' + id,
+      type: 'DELETE',
+      dataType: 'json',
+      data: {id: id},
+      success: function(data) {
+        ApiActions.deleteLoop(data);
+        cb && cb();
+      }
+    });
   }
 };
 
