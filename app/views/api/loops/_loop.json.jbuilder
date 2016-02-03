@@ -4,8 +4,9 @@ json.url loop.loop_video
 json.author_id loop.author_id
 json.author loop.author.username
 json.author_followers do
-  json.array(loop.author.followers) do |follower|
-    json.follower follower.id
+  json.array(loop.author.followed_by_followings) do |follower|
+    json.id follower.id
+    json.follower follower.follower_id
   end
 end
 json.profile_picture asset_path(loop.author.profile_picture)

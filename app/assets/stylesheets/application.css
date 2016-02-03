@@ -314,7 +314,7 @@ header {
   padding-bottom: 20px
 }
 
-h1 {
+.user-info > h1 {
   display: inline;
   margin: 20px;
   font-size: 40px;
@@ -490,6 +490,27 @@ h1 {
 .delete-icon:hover {
   border-color: red;
   color: red;
+}
+
+.follow-icon {
+  border: 1px solid #00BF8F;
+  font-size: 20px;
+  color: #00BF8F;
+  float: right;
+  margin: 0 20px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.follow-icon:hover {
+  background-color: #00BF8F;
+  color: #fff;
+}
+
+.following {
+  background-color: #00BF8F;
+  color: #fff;
 }
 
 .loop-icons {

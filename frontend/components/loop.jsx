@@ -19,7 +19,16 @@ var Loop = React.createClass({
 
   searchForFollowing: function() {
     var followingId;
-    // this.props.loop.author_followers
+
+    this.props.loop.author_followers.array.forEach (function(follower){
+      if (this.props.user.id === follower.follower) {
+        this.setState({following: true});
+        followingId = follower.id;
+        return;
+      }
+      this.setState({following: false});
+    }.bind(this));
+    return followingId;
   },
 
   searchForLike: function(){
@@ -37,6 +46,7 @@ var Loop = React.createClass({
 
   componentWillReceiveProps: function() {
     this.searchForLike();
+    this.searchForFollowing();
   },
 
   commentChange: function(e){
@@ -87,6 +97,24 @@ var Loop = React.createClass({
     }.bind(this));
   },
 
+  addFollowing: function(){
+    var currentUser = this.props.user;
+    if (currentUser.id) {
+      var data = {follower_id: currentUser.id, followee_id: this.props.loop.author_id};
+      ApiUtil.createFollowing(data, function(){
+        this.setState({following: true});
+      });
+    }
+  },
+
+  removeFollowing: function(){
+    debugger
+    var followingId = this.searchForFollowing();
+    ApiUtil.destroyFollowing(followingId, function() {
+      this.setState({following: false});
+    }.bind(this));
+  },
+
   deletePost: function(){
     ApiUtil.destroyLoop(this.props.loop.id, function(){
     }.bind(this));
@@ -117,10 +145,20 @@ var Loop = React.createClass({
         <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
       );
     }
+    var followContent;
+
+    if (this.state.following) {
+      followContent = (
+        <p className="follow-icon following" onClick={this.removeFollowing}><i className="fa fa-user"></i></p>
+      );
+    } else {
+      followContent = (
+        <p className="follow-icon" onClick={this.addFollowing}><i className="fa fa-user"></i></p>
+      );
+    }
 
 
 
-    var content = "";
     var repostIcon = (
       <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
@@ -131,7 +169,7 @@ var Loop = React.createClass({
       );
       repostIcon = "";
     } else {
-      content = "";
+      content = followContent;
       repostIcon = (
         <p className="repost-icon"><i className="fa fa-refresh"></i></p>
       );
