@@ -89,7 +89,7 @@ ApiUtil = {
 
   destroyLike: function(id, cb) {
     $.ajax({
-      url: '/api/likes',
+      url: '/api/likes/' + id,
       type: 'DELETE',
       dataType: 'json',
       data: {id: id},

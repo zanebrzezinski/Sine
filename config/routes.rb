@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     resources :loops, only: [:show, :index, :create, :destroy]
     resource :feed, only: [:show]
     resource :session, only: [:create, :destroy, :show]
-    resource :likes, only: [:create, :destroy]
-    resource :followings, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
+    resources :followings, only: [:create, :destroy]
+    resources :taggings, only: [:create, :destroy]
+    resources :tags, only: [:show]
+
     get "search", to: "utils#search"
   end
 
