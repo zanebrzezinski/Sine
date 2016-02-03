@@ -75,6 +75,7 @@ var Header = React.createClass({
           </nav>
           <Search />
           <nav className="nav-bar-right group">
+            <span className="username">{this.state.user.username}</span>
             <img className="profile-picture nav-bar-profile-picture" src={this.state.user.profile_picture} />
             <ul className="profile-picture-menu">
               <li>Logged in as {this.state.username}</li>

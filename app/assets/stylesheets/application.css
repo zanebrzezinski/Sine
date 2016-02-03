@@ -143,6 +143,12 @@ header {
   border-radius: 100000px;
   cursor: pointer;
 }
+
+.username {
+  float: left;
+  font-weight: bold;
+  color: #00BF8F;
+}
 /* --- SEARCH --- */
 
 .nav-bar-search {
