@@ -2,6 +2,10 @@ class Tag < ActiveRecord::Base
 
   validates :tag, presence: true, uniqueness: true
 
+  include PgSearch
+  multisearchable :against => [:tag]
+
+
   has_many(
     :taggings,
   )

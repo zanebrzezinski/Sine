@@ -8,6 +8,9 @@ json.results do
     elsif result.class == Loop
       @loop = result
       json.partial!("api/loops/loop")
+    elsif result.class == Tag
+      @tag = result
+      json.partial!("api/tags/tag")
     end
 
     json._type result.class.to_s

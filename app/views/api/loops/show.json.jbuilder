@@ -8,3 +8,9 @@ json.likes do
     json.liker_id like.liker_id
   end
 end
+json.tags do
+  json.array(@loop.tags) do |tag|
+    json.id tag.id
+    json.tag tag.tag
+  end
+end

@@ -44,17 +44,24 @@ var Search = React.createClass({
   render: function(){
 
     var searchResults = SearchResultsStore.all().map(function (searchResult) {
-      if (searchResult._type === "User")
+      if (searchResult._type === "User") {
         return (
           <li key={searchResult._type + searchResult.id}>
           <a className="search-results-link" href={"/#/users/" + searchResult.id}><i className="fa fa-user search-icon"></i>
           {searchResult.username}</a></li>
         );
+      }
       else if (searchResult._type === "Loop") {
         return (
           <li key={searchResult._type + searchResult.id}>
           <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i className="fa fa-video-camera search-icon"></i>
           {searchResult.title}</a></li>
+        );
+      } else if (searchResult.__type === "Tag") {
+        return (
+          <li key={searchResult._type + searchResult.id}>
+          <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i class="fa fa-hashtag"></i>
+          {searchResult.tag}</a></li>
         );
       }
     });

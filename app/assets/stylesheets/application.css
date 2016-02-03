@@ -263,6 +263,11 @@ header {
   display: block;
 }
 
+.guest {
+  background-color: #aaa;
+  margin: 10px auto;
+}
+
 /* --- FEED --- */
 
 .feed {
@@ -457,6 +462,19 @@ header {
 
 .liked {
   color: red;
+}
+
+.tags {
+  margin: 20px;
+}
+
+.tag:before {
+  content: "#";
+  color: #00BF8F;
+}
+
+.tag:hover {
+  color: #00BF8F;
 }
 
 /* --- LOOP SHOW VIEW --- */

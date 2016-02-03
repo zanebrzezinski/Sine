@@ -152,40 +152,37 @@ var Loop = React.createClass({
     var createdAtDate = new Date(this.props.loop.created_at).toDateString();
     this.loopId = "loop"+this.props.loop.id;
 
-    if (this.props.videoOnly) {
+    var tags = this.props.loop.tags.array.map(function(tag){
       return(
-        <div className="loop">
-          <i onClick={this.muteLogic} className={muteIcon} ></i>
-          <video id={this.loopId} className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
-        </div>
+        <a key={tag.id} href="#" className="tag">{tag.tag} </a>
       );
-    } else {
-      return(
-        <div className="loop-box group">
-          <div className="loop-info group">
-            {content}
-            <img className="profile-picture" src={this.props.loop.profile_picture} />
-            <a className="author" href={userLink}>{this.props.loop.author}</a>
-            <a className="created_at" href={showLink}>{createdAtDate}</a>
-          </div>
-          <i onClick={this.muteLogic} className={muteIcon} ></i>
-          <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
-          <div className="title">{this.props.loop.title}</div>
-          <div className="loop-icons">
-            {likeIcon}
-            <i className="icon-number">{this.state.likes}</i>
-            {repostIcon}
-          </div>
-          <form onSubmit={this.handleSubmit}>
-            <input onChange={this.commentChange}
-              className="comment-box" type="text"
-              placeholder="Say Something Nice" value={this.state.comment}/>
-          </form>
-        </div>
-      );
-    }
+    });
 
 
+    return(
+      <div className="loop-box group">
+        <div className="loop-info group">
+          {content}
+          <img className="profile-picture" src={this.props.loop.profile_picture} />
+          <a className="author" href={userLink}>{this.props.loop.author}</a>
+          <a className="created_at" href={showLink}>{createdAtDate}</a>
+        </div>
+        <i onClick={this.muteLogic} className={muteIcon} ></i>
+        <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
+        <div className="title">{this.props.loop.title}</div>
+        <div className="tags">{tags}</div>
+        <div className="loop-icons">
+          {likeIcon}
+          <i className="icon-number">{this.state.likes}</i>
+          {repostIcon}
+        </div>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.commentChange}
+            className="comment-box" type="text"
+            placeholder="Say Something Nice" value={this.state.comment}/>
+        </form>
+      </div>
+    );
   }
 });
 
