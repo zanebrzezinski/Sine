@@ -8,12 +8,18 @@ var Loop = React.createClass({
 
     return (
       {muted: "muted", paused: false, comment: null,
-        likes: this.props.loop.likes.array.length, liked: false}
+        likes: this.props.loop.likes.array.length, liked: false, following: false}
     );
   },
 
   componentDidMount: function() {
     this.searchForLike();
+    this.searchForFollowing();
+  },
+
+  searchForFollowing: function() {
+    var followingId;
+    // this.props.loop.author_followers
   },
 
   searchForLike: function(){

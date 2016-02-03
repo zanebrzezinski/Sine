@@ -12,8 +12,8 @@ class Api::TaggingsController < ApplicationController
         end
       end
     end
-
-    render json: {}
+    @loop = Loop.find(tag_params[:loop_id])
+    render "api/loops/show"
   end
 
   private

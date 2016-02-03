@@ -131,7 +131,7 @@ ApiUtil = {
       dataType: 'json',
       data: {taggings: tags},
       success: function(data) {
-        console.log("CREATED TAGS");
+        ApiActions.updateLoop(data);
       }
     });
   }
