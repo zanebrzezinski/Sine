@@ -77,7 +77,6 @@ var Feed = React.createClass({
       return(
         <div className="feed empty-feed">
           <p>It looks like nothing is here.</p>
-          <p>You should try following some people.</p>
           <p><i className="fa fa-frown-o"></i></p>
         </div>
       );

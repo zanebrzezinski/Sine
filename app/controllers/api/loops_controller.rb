@@ -5,7 +5,7 @@ class Api::LoopsController < ApplicationController
   end
 
   def index
-    @loops = Loop.all.sort_by(&:created_at).reverse
+    @loops = Loop.all.includes(:author).sort_by(&:created_at).reverse
     render :index
   end
 
