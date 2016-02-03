@@ -194,6 +194,22 @@ header {
   display: none;
 }
 
+.fa-home:hover .home-tool-tip{
+  display: block;
+}
+
+.nav-bar-profile-picture{
+  cursor: pointer;
+}
+
+.profile-picture-menu {
+  display: none;
+}
+
+.tool-tip {
+  display: none;
+}
+
 /* --- SIGN IN FORM --- */
 
 

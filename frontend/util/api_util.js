@@ -45,6 +45,18 @@ ApiUtil = {
     });
   },
 
+  fetchTagLoops: function(id) {
+    $.ajax({
+      type: "GET",
+      url: "api/tags/" + id,
+      dataType: "json",
+      success: function(data) {
+        debugger
+        ApiActions.receiveLoops(data);
+      },
+    });
+  },
+
   createLoop: function(formData, cb){
     $.ajax({
       url: '/api/loops',

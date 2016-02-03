@@ -67,12 +67,19 @@ var Header = React.createClass({
         <div>
           <nav className="nav-bar-icons">
             <a href="/#/feed"><i className="fa fa-home nav-bar-icon"></i></a>
+            <span className="home-tool-tip tool-tip">Home</span>
             <a href="/"><i className="fa fa-eye nav-bar-icon"></i></a>
+            <span className="discover-tool-tip tool-tip">Discover</span>
             <a onClick={this.handleVideoUploadClick}><i className="fa fa-video-camera nav-bar-icon"></i></a>
+            <span className="upload-tool-tip tool-tip">Upload</span>
           </nav>
           <Search />
           <nav className="nav-bar-right group">
-            <img className="profile-picture" src={this.state.user.profile_picture} />
+            <img className="profile-picture nav-bar-profile-picture" src={this.state.user.profile_picture} />
+            <ul className="profile-picture-menu">
+              <li>Logged in as {this.state.username}</li>
+              <li></li>
+            </ul>
             <p onClick={this.logOut}>Sine Out</p>
           </nav>
         </div>

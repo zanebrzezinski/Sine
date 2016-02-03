@@ -21,6 +21,8 @@ var Feed = React.createClass({
       ApiUtil.fetchFeed();
     } else if (this.props.feedType === "User") {
       ApiUtil.fetchUserLoops(this.props.id);
+    } else if (this.props.feedType === "Tag") {
+      ApiUtil.fetchTagLoops(this.props.id);
     }
 
     return {loops: LoopStore.loops(), user: user};
@@ -45,14 +47,15 @@ var Feed = React.createClass({
     this.setState({user: CurrentUserStore.currentUser()});
   },
 
-  componentWillReceiveProps: function(){
-    if (typeof this.props.feedType === "undefined") {
+  componentWillReceiveProps: function(newProps){
+    if (typeof newProps.feedType === "undefined") {
       ApiUtil.fetchAllLoops();
-    } else if (this.props.feedType === "Feed") {
+    } else if (newProps.feedType === "Feed") {
       ApiUtil.fetchFeed();
-    } else if (this.props.feedType === "User") {
-      ApiUtil.fetchUserLoops(this.props.id);
+    } else if (newProps.feedType === "Tag") {
+      ApiUtil.fetchTagLoops(newProps.id);
     }
+
     this.setState({loops: LoopStore.loops()});
   },
 

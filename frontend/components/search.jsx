@@ -58,10 +58,9 @@ var Search = React.createClass({
           {searchResult.title}</a></li>
         );
       } else if (searchResult._type === "Tag") {
-
         return (
           <li key={searchResult._type + searchResult.id}>
-          <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i className="fa fa-hashtag"></i>
+          <a className="search-results-link" href={"/#/tag/" + searchResult.id}><i className="fa fa-hashtag"></i>
           {searchResult.tag}</a></li>
         );
       } else {

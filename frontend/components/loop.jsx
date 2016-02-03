@@ -138,7 +138,7 @@ var Loop = React.createClass({
 
     var tags = this.props.loop.tags.array.map(function(tag){
       return(
-        <a key={tag.id} href="#" className="tag">{tag.tag} </a>
+        <a key={tag.id} href={"#/tag/" + tag.id} className="tag">{tag.tag} </a>
       );
     });
 

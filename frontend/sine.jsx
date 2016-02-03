@@ -32,6 +32,14 @@ var FeedWrapper = React.createClass({
   }
 });
 
+var TagFeedWrapper = React.createClass({
+  render: function() {
+    return (
+      < Feed feedType="Tag" id={this.props.params.tagId} />
+    );
+  }
+});
+
 var router = (
   <Router>
     <Route path="/" component={App}>
@@ -39,6 +47,7 @@ var router = (
       <Route path="loops/:loopId" component={LoopShow} />
       <Route path="users/:userId" component={User} />
       <Route path="feed" component={FeedWrapper} onEnter={_ensureLoggedIn}/>
+      <Route path="tag/:tagId" component={TagFeedWrapper} />
     </Route>
   </Router>
 );
