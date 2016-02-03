@@ -39,6 +39,16 @@ class Loop < ActiveRecord::Base
     source: :user
   )
 
+  has_many(
+    :taggings
+  )
+
+  has_many(
+    :tags,
+    through: :taggings,
+    source: :tag
+  )
+
   def crop_video(video)
 
       offset = 0
