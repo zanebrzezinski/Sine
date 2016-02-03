@@ -30,7 +30,6 @@ var Loop = React.createClass({
   },
 
   componentWillReceiveProps: function() {
-    forceUpdate();
     this.searchForLike();
   },
 
