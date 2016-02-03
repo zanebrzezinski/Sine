@@ -40,6 +40,14 @@ var TagFeedWrapper = React.createClass({
   }
 });
 
+var LikeFeedWrapper = React.createClass({
+  render: function() {
+    return (
+      < Feed feedType="Like" id={this.props.params.tagId} />
+    );
+  }
+});
+
 var router = (
   <Router>
     <Route path="/" component={App}>

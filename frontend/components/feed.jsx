@@ -23,6 +23,8 @@ var Feed = React.createClass({
       ApiUtil.fetchUserLoops(this.props.id);
     } else if (this.props.feedType === "Tag") {
       ApiUtil.fetchTagLoops(this.props.id);
+    } else if (this.props.feedType === "Likes") {
+      ApiUtil.fetchLikeLoops(this.props.id);
     }
 
     return {loops: LoopStore.loops(), user: user};
@@ -48,12 +50,17 @@ var Feed = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps){
+
     if (typeof newProps.feedType === "undefined") {
       ApiUtil.fetchAllLoops();
     } else if (newProps.feedType === "Feed") {
       ApiUtil.fetchFeed();
     } else if (newProps.feedType === "Tag") {
       ApiUtil.fetchTagLoops(newProps.id);
+    } else if (newProps.feedType === "Likes") {
+      ApiUtil.fetchLikeLoops(this.props.id);
+    } else if (newProps.feedType === "User") {
+      ApiUtil.fetchUserLoops(this.props.id);
     }
 
     this.setState({loops: LoopStore.loops()});

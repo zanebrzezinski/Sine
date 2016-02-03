@@ -103,12 +103,11 @@ var Loop = React.createClass({
       var data = {follower_id: currentUser.id, followee_id: this.props.loop.author_id};
       ApiUtil.createFollowing(data, function(){
         this.setState({following: true});
-      });
+      }.bind(this));
     }
   },
 
   removeFollowing: function(){
-    debugger
     var followingId = this.searchForFollowing();
     ApiUtil.destroyFollowing(followingId, function() {
       this.setState({following: false});
@@ -119,8 +118,6 @@ var Loop = React.createClass({
     ApiUtil.destroyLoop(this.props.loop.id, function(){
     }.bind(this));
   },
-
-
 
   render: function() {
 

@@ -46,6 +46,17 @@ ApiUtil = {
     });
   },
 
+  fetchLikeLoops: function(id) {
+    $.ajax({
+      type: "GET",
+      url: "api/users/" + id,
+      dataType: "json",
+      success: function(data) {
+        ApiActions.receiveLoops(data.liked_loops);
+      },
+    });
+  },
+
   fetchTagLoops: function(id) {
     $.ajax({
       type: "GET",
@@ -102,6 +113,30 @@ ApiUtil = {
   destroyLike: function(id, cb) {
     $.ajax({
       url: '/api/likes/' + id,
+      type: 'DELETE',
+      dataType: 'json',
+      data: {id: id},
+      success: function(data) {
+        cb && cb();
+      }
+    });
+  },
+
+  createFollowing: function(data, cb) {
+    $.ajax({
+      url: '/api/followings/',
+      type: 'POST',
+      dataType: 'json',
+      data: {followings: data},
+      success: function(data) {
+        cb && cb();
+      }
+    });
+  },
+
+  destroyFollowing: function(id, cb) {
+    $.ajax({
+      url: '/api/followings/' + id,
       type: 'DELETE',
       dataType: 'json',
       data: {id: id},

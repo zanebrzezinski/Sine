@@ -6,7 +6,7 @@ var UserCard = React.createClass({
 
   getInitialState: function() {
     return(
-        {user: UserStore.user()[0]}
+        {user: UserStore.user()[0], userClass: "", likesClass: "greyed"}
     );
   },
 
@@ -19,6 +19,17 @@ var UserCard = React.createClass({
     this.setState({user: UserStore.user()[0]});
   },
 
+  likeFeed: function() {
+    console.log("users greyed");
+    this.setState({userClass: "greyed", likesClass: ""});
+    this.props.likeFeed();
+  },
+
+  userFeed: function() {
+    this.setState({userClass: "", likesClass: "greyed"});
+    this.props.userFeed();
+  },
+
   render: function() {
 
     if (this.state.user && this.state.user.length !== 0) {
@@ -27,9 +38,23 @@ var UserCard = React.createClass({
           <div className="user-info">
             <img className="profile-picture-large" src={this.state.user.profile_picture} />
             <h1>{this.state.user.username}</h1>
+            <div className="follow-info">
+              <div className="followers">
+                <div className="followers-count">{this.state.user.followers.length}</div>
+                <div className="followers-word">Followers</div>
+              </div>
+              <div className="followings">
+                <div className="followings-count">{this.state.user.followed_users.length} </div>
+                <div className="followings-word">Following</div>
+              </div>
+            </div>
           </div>
           <div className = "social-info">
-            <div className="posts">{this.state.user.loops.length} Posts</div>
+            <div className={"user-social-info " + this.state.userClass} onClick={this.userFeed}>
+              {this.state.user.loops.length} Posts</div>
+
+            <div className={"user-social-info " + this.state.likesClass} onClick={this.likeFeed}>
+              {this.state.user.likes.length} Likes</div>
           </div>
         </div>
       );

@@ -309,7 +309,7 @@ header {
 }
 
 .user-info {
-  width: 535px;
+  width: 700px;
   margin: auto;
   padding-bottom: 20px
 }
@@ -334,6 +334,32 @@ header {
   text-align: center;
   font-size: 16px;
   padding: 5px;
+}
+
+.user-social-info {
+  display: inline;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.follow-info {
+  float: right;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.followers {
+  display: inline-block;
+  margin: 0 20px;
+  float: left;
+}
+
+.followings {
+  display: inline-block
+}
+
+.greyed {
+  color: #aaa;
 }
 
 /* --- SIGN UP FORM --- */
@@ -583,44 +609,4 @@ header {
   z-index: 100;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   cursor: pointer;
-}
-
-.show-card {
-  float: right;
-  width: 324px;
-}
-
-.show-card .title {
-  margin-top: 25%;
-  display: block;
-  border: none;
-}
-
-.show-card > form {
-
-  border-top: 1px solid #eee;
-  width: 300px;
-  position: absolute;
-  bottom: 0;
-  margin-left: 10px
-}
-
-.show-card > form > input[type=text] {
-  padding: 10px;
-  font-size: 12px;
-  width: 285px;
-}
-
-.show-card .comment-box {
-  margin-left: 0;
-}
-
-.show-card .profile-picture {
-  float: none;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.show-card .loop-icons {
-  border-bottom: none;
 }
