@@ -367,6 +367,13 @@ h1 {
   margin: 20px auto;
 }
 
+.upload {
+  display: block;
+  background-color: #7870cc;
+  margin: auto;
+  text-align: center;
+}
+
 /* --- VIDEO UPLOAD VIEW --- */
 
 

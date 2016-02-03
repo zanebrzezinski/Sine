@@ -66,7 +66,7 @@ var Feed = React.createClass({
         <li key={loop.id}>< Loop loop={loop} user={this.state.user}/></li>
       );
     }.bind(this));
-    if (loops.length === 0) {
+    if (loops.length === 0 && this.state.user !== "") {
       return(
         <div className="feed empty-feed">
           <p>It looks like nothing is here.</p>

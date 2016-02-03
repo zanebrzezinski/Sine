@@ -6,7 +6,7 @@ var VideoUpload = React.createClass({
 
   getInitialState: function() {
     return(
-      {title: "", loop: null, loopUrl: "", tags: ""}
+      {title: "", loop: null, loopUrl: "", tags: "", buttonClass: "form-button"}
     );
   },
 
@@ -62,6 +62,8 @@ var VideoUpload = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
 
+    this.setState({buttonClass: "hidden"});
+
     var formData = new FormData();
 
     formData.append("loop[title]", this.state.title);
@@ -78,6 +80,11 @@ var VideoUpload = React.createClass({
 
 
   render: function() {
+    var content = "";
+    if (this.state.buttonClass === "hidden") {
+      content = <p className="form-button upload">Please Wait... Processing your loop</p>;
+    }
+
     return (
       <div>
         <div  className='modal-cover' onClick={this.props.handleClick} />
@@ -90,7 +97,8 @@ var VideoUpload = React.createClass({
                 <input className="file-upload" type="file" onChange={this.changeFile}/>
                   <input className="textbox" onChange={this.changeTitle} placeholder="Title" type="text" name="title" value={this.state.title}/>
                   <input className="textbox" onChange={this.changeTags} placeholder="Enter Tags" type="text" name="tags" value={this.state.tags}/>
-                <button className="form-button">Create Loop</button>
+                <button className={this.state.buttonClass}>Create Loop</button>
+                {content}
             </form>
 
         </div>
