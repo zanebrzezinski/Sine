@@ -1,35 +1,25 @@
 var React = require('react');
-var CurrentUserStore = require('../stores/current_user_store');
-var SessionsApiUtil = require('../util/sessions_api_util');
 var ApiUtil = require('../util/api_util');
 
 
 var Loop = React.createClass({
 
   getInitialState: function(){
-    var user;
-    if (CurrentUserStore.userHasBeenFetched()) {
-      user = CurrentUserStore.currentUser();
-    } else {
-      user = "";
-    }
 
     return (
-      {muted: "muted", paused: false, comment: null, user: user,
+      {muted: "muted", paused: false, comment: null,
         likes: this.props.loop.likes.array.length, liked: false}
     );
   },
 
   componentDidMount: function() {
-    this.token = CurrentUserStore.addListener(this._onChange);
-    SessionsApiUtil.fetchCurrentUser();
     this.searchForLike();
   },
 
   searchForLike: function(){
     var likeId;
     this.props.loop.likes.array.forEach (function(like){
-      if (this.state.user.id === like.liker_id) {
+      if (this.props.user.id === like.liker_id) {
         this.setState({liked: true});
         likeId = like.id;
         return;
@@ -39,13 +29,9 @@ var Loop = React.createClass({
     return likeId;
   },
 
-  _onChange: function() {
-    this.setState({user: CurrentUserStore.currentUser()});
+  componentWillReceiveProps: function() {
+    forceUpdate();
     this.searchForLike();
-  },
-
-  componentWillUnmount: function() {
-    this.token.remove();
   },
 
   commentChange: function(e){
@@ -79,7 +65,7 @@ var Loop = React.createClass({
   },
 
   addLike: function(){
-    var currentUser = this.state.user;
+    var currentUser = this.props.user;
 
     if (currentUser.id) {
       var data = {loop_id: this.props.loop.id, liker_id: currentUser.id};
@@ -98,7 +84,6 @@ var Loop = React.createClass({
 
   deletePost: function(){
     ApiUtil.destroyLoop(this.props.loop.id, function(){
-      console.log("deleted");
     }.bind(this));
   },
 
@@ -114,7 +99,7 @@ var Loop = React.createClass({
     }
 
 
-    var currentUser = this.state.user;
+    var currentUser = this.props.user;
 
 
     var likeIcon;
@@ -135,7 +120,7 @@ var Loop = React.createClass({
       <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
 
-    if (this.props.loop.author_id === this.state.user.id) {
+    if (this.props.loop.author_id === this.props.user.id) {
       content = (
         <p className="delete-icon" onClick={this.deletePost}><i className="fa fa-trash-o"></i></p>
       );

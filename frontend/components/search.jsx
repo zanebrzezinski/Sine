@@ -19,8 +19,6 @@ var Search = React.createClass({
   search: function (e) {
     var query = e.target.value;
     SearchApiUtil.search(query, 1);
-    console.log(SearchResultsStore.all());
-    console.log("searched");
 
     this.setState({page: 1, query: query});
   },
@@ -44,6 +42,8 @@ var Search = React.createClass({
   render: function(){
 
     var searchResults = SearchResultsStore.all().map(function (searchResult) {
+
+
       if (searchResult._type === "User") {
         return (
           <li key={searchResult._type + searchResult.id}>
@@ -57,12 +57,15 @@ var Search = React.createClass({
           <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i className="fa fa-video-camera search-icon"></i>
           {searchResult.title}</a></li>
         );
-      } else if (searchResult.__type === "Tag") {
+      } else if (searchResult._type === "Tag") {
+
         return (
           <li key={searchResult._type + searchResult.id}>
-          <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i class="fa fa-hashtag"></i>
+          <a className="search-results-link" href={"/#/loops/" + searchResult.id}><i className="fa fa-hashtag"></i>
           {searchResult.tag}</a></li>
         );
+      } else {
+        return;
       }
     });
 
