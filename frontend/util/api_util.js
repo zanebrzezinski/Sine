@@ -40,6 +40,7 @@ ApiUtil = {
       url: "api/users/" + id,
       dataType: "json",
       success: function(data) {
+        ApiActions.receiveUser(data);
         ApiActions.receiveLoops(data.loops);
       },
     });
@@ -51,7 +52,6 @@ ApiUtil = {
       url: "api/tags/" + id,
       dataType: "json",
       success: function(data) {
-        debugger
         ApiActions.receiveLoops(data);
       },
     });

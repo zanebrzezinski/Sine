@@ -1,5 +1,6 @@
 var AppDispatcher = require('../dispatcher/dispatcher');
 var Constants = require('../constants/loop_constants.js');
+var userConstants = require('../constants/user_constants.js');
 var LoopStore = require('../stores/loopStore.js');
 
 var ApiActions = {
@@ -23,13 +24,20 @@ var ApiActions = {
       loop: loop
     });
   },
-  
+
   deleteLoop: function(loop) {
     AppDispatcher.dispatch({
       actionType: Constants.DELETE_LOOP,
       loop: loop
     });
   },
+
+  receiveUser: function(user) {
+    AppDispatcher.dispatch({
+      actionType: userConstants.USER_RECEIVED,
+      user: user
+    });
+  }
 };
 
 module.exports = ApiActions;

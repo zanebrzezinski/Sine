@@ -299,6 +299,43 @@ header {
   font-size: 40px;
 }
 
+/* --- USERCARD --- */
+
+.user-card {
+  padding-top: 100px;
+  margin: auto;
+  background-color: #00BF8F;
+  color: #fff;
+}
+
+.user-info {
+  width: 535px;
+  margin: auto;
+  padding-bottom: 20px
+}
+
+h1 {
+  display: inline;
+  margin: 20px;
+  font-size: 40px;
+}
+
+.profile-picture-large{
+  display: inline;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+}
+
+.social-info {
+  background-color: white;
+  color: #00BF8F;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+}
+
 /* --- SIGN UP FORM --- */
 
 .sign-up {
