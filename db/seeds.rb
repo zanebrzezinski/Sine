@@ -13,7 +13,7 @@ degrom = User.create(username: "Degrom", password: "degrom")
 cespedes = User.create(username: "Yoenis", password: "Cespedex")
 lagares = User.create(username: "Lagares", password: "Lagares")
 duda = User.create(username: "Lucas", password: "dudaduda")
-guest = User.create(username: "Guest", password: "password")
+guest = User.create(username: "guest", password: "password")
 
 Following.delete_all
 Following.create(follower_id: degrom.id, followee_id: bartolo.id)
@@ -30,13 +30,6 @@ Following.create(follower_id: guest.id, followee_id: degrom.id)
 Following.create(follower_id: guest.id, followee_id: bartolo.id)
 Following.create(follower_id: guest.id, followee_id: cespedes.id)
 Following.create(follower_id: guest.id, followee_id: duda.id)
-
-Like.delete_all
-Like.create(liker_id: bartolo.id, loop_id: loop.id)
-Like.create(liker_id: degrom.id, loop_id: loop2.id)
-Like.create(liker_id: cespedes.id, loop_id: loop3.id)
-Like.create(liker_id: lagares.id, loop_id: loop4.id)
-Like.create(liker_id: duda.id, loop_id: loop5.id)
 
 Repost.delete_all
 
