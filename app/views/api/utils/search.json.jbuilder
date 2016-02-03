@@ -5,7 +5,7 @@ json.results do
     if result.class == User
       @user = result
       json.partial!("api/users/user")
-    else
+    elsif result.class == Loop
       @loop = result
       json.partial!("api/loops/loop")
     end

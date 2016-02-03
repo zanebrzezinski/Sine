@@ -39,14 +39,26 @@ var Search = React.createClass({
   render: function(){
 
     var searchResults = SearchResultsStore.all().map(function (searchResult) {
-      return <li>{searchResult}</li>;
+      if (searchResult._type === "User")
+        return (
+          <li key={searchResult._type + searchResult.id}>
+          <a href={"/#/users/" + searchResult.id}><i className="fa fa-user search-icon"></i>
+          {searchResult.username}</a></li>
+        );
+      else if (searchResult._type === "Loop") {
+        return (
+          <li key={searchResult._type + searchResult.id}>
+          <a href={"/#/loops/" + searchResult.id}><i className="fa fa-video-camera search-icon"></i>
+          {searchResult.title}</a></li>
+        );
+      }
     });
 
     return(
       <div>
         <input className="nav-bar-search" onKeyUp={this.search} onChange={this._onChange} type="text" value={this.state.search} placeholder="Search"/>
         <div className="search-results">
-          <ul>
+          <ul className="search-results-list">
             {searchResults}
           </ul>
         </div>

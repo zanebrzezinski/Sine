@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :feed, only: [:show]
     resource :session, only: [:create, :destroy, :show]
     resource :likes, only: [:create, :destroy]
+    resource :followings, only: [:create, :destroy]
     get "search", to: "utils#search"
   end
 
