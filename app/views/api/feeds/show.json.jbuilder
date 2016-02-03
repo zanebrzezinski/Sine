@@ -1,3 +1,3 @@
 json.array!(@loops) do |loop|
-  json.partial!("loops/loop", loop: loop)
+  json.partial!("api/loops/loop", loop: loop)
 end
