@@ -6,7 +6,7 @@ var VideoUpload = React.createClass({
 
   getInitialState: function() {
     return(
-      {title: "", loop: null, loopUrl: ""}
+      {title: "", loop: null, loopUrl: "", tags: ""}
     );
   },
 
@@ -20,6 +20,10 @@ var VideoUpload = React.createClass({
 
   changeTitle: function(e){
     this.setState({title: e.currentTarget.value});
+  },
+
+  changeTags: function(e){
+    this.setState({tags: e.currentTarget.value});
   },
 
   setLoop: function() {
@@ -65,7 +69,8 @@ var VideoUpload = React.createClass({
       formData.append("loop[loop_video]", this.state.loop);
     }
 
-    ApiUtil.createLoop(formData, function(){
+    ApiUtil.createLoop(formData, function(loop){
+      ApiUtil.createTaggings({tags: this.state.tags, loop_id: loop.id});
       this.props.handleClick();
     }.bind(this));
   },
@@ -84,6 +89,7 @@ var VideoUpload = React.createClass({
             <form className="userform group" onSubmit={this.handleSubmit}>
                 <input className="file-upload" type="file" onChange={this.changeFile}/>
                   <input className="textbox" onChange={this.changeTitle} placeholder="Title" type="text" name="title" value={this.state.title}/>
+                  <input className="textbox" onChange={this.changeTags} placeholder="Enter Tags" type="text" name="tags" value={this.state.tags}/>
                 <button className="form-button">Create Loop</button>
             </form>
 

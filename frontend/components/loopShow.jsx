@@ -1,7 +1,7 @@
 var React = require('react');
 ApiUtil = require('../util/api_util.js');
 var Loop = require('./loop');
-var ShowCard = require('./showCard');
+// var ShowCard = require('./showCard');
 var LoopStore = require('../stores/loopStore.js');
 
 

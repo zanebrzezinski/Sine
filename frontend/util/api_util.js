@@ -55,7 +55,7 @@ ApiUtil = {
       data: formData,
       success: function(data) {
         ApiActions.receiveOneLoop(data);
-        cb && cb();
+        cb && cb(data);
       }
     });
   },
@@ -108,6 +108,18 @@ ApiUtil = {
       success: function(data) {
         ApiActions.deleteLoop(data);
         cb && cb();
+      }
+    });
+  },
+
+  createTaggings: function(tags){
+    $.ajax({
+      url: '/api/taggings/',
+      type: 'POST',
+      dataType: 'json',
+      data: {taggings: tags},
+      success: function(data) {
+        console.log("CREATED TAGS");
       }
     });
   }
