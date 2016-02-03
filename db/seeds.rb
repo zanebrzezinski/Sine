@@ -30,7 +30,3 @@ Following.create(follower_id: guest.id, followee_id: degrom.id)
 Following.create(follower_id: guest.id, followee_id: bartolo.id)
 Following.create(follower_id: guest.id, followee_id: cespedes.id)
 Following.create(follower_id: guest.id, followee_id: duda.id)
-
-Repost.delete_all
-
-Repost.create(reposter_id: degrom, loop_id: loop.id)
