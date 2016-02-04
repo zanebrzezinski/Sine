@@ -23,3 +23,8 @@ json.tags do
     json.tag tag.tag
   end
 end
+json.comments do
+  json.array(loop.comments) do |comment|
+    json.partial!("api/comments/comment", comment: comment)
+  end
+end

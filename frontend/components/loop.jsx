@@ -1,6 +1,8 @@
 var React = require('react');
 var ApiUtil = require('../util/api_util');
 
+var Comments = require('./comments');
+
 
 var Loop = React.createClass({
 
@@ -201,11 +203,7 @@ var Loop = React.createClass({
           <i className="icon-number">{this.state.likes}</i>
           {repostIcon}
         </div>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.commentChange}
-            className="comment-box" type="text"
-            placeholder="Say Something Nice" value={this.state.comment}/>
-        </form>
+        < Comments />
       </div>
     );
   }

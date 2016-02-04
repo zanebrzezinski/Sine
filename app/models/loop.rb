@@ -49,6 +49,8 @@ class Loop < ActiveRecord::Base
     source: :tag
   )
 
+  has_many :comments
+
   def crop_video(video)
 
       offset = 0

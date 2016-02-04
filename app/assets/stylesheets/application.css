@@ -485,9 +485,6 @@ header {
   margin-top: 10px;
   margin-left: 17px;
   margin-bottom: 10px;
-}
-
-.loop-box > form > input[type=text] {
   padding: 10px;
   font-size: 12px;
 }

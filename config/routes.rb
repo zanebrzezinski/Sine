@@ -9,8 +9,10 @@ Rails.application.routes.draw do
     resources :followings, only: [:create, :destroy]
     resources :taggings, only: [:create, :destroy]
     resources :tags, only: [:show]
+    resources :comments, only: [:create, :destroy, :index]
 
     get "search", to: "utils#search"
+    get "auth/twitter/callback", to: "sessions#omniauth_twitter"
   end
 
 end

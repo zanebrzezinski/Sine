@@ -8,11 +8,11 @@
 
 
 User.delete_all
-bartolo = User.create(username: "Bartolo", password: "bartolo")
-degrom = User.create(username: "Degrom", password: "degrom")
-cespedes = User.create(username: "Yoenis", password: "Cespedex")
-lagares = User.create(username: "Lagares", password: "Lagares")
-duda = User.create(username: "Lucas", password: "dudaduda")
+bartolo = User.create(username: "Bartolo", password: "bartolo", profile_picture: "http://assets.nydailynews.com/polopoly_fs/1.1743180!/img/httpImage/image.jpg_gen/derivatives/gallery_1200/2015-mets-spring-training-portraits-bartolo-colon.jpg")
+degrom = User.create(username: "Degrom", password: "degrom", profile_picture: "http://metsmerizedonline.com/wp-content/uploads/2015/04/IMG_20150419_130107-e1429490604945.jpg?6c20df")
+cespedes = User.create(username: "Yoenis", password: "Cespedex", profile_picture: "http://i.imgur.com/esrM4wd.png")
+lagares = User.create(username: "Lagares", password: "Lagares", profile_picture: "http://www3.pictures.zimbio.com/gi/Juan+Lagares+m_q_WonA_hQm.jpg")
+duda = User.create(username: "Lucas", password: "dudaduda", profile_picture: "https://pbs.twimg.com/media/CYyQiQ3WkAEti6A.jpg")
 guest = User.create(username: "guest", password: "password")
 
 Loop.delete_all
