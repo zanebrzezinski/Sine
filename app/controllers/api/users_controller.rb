@@ -5,6 +5,19 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def userloops
+    @loops = Loop.includes(:likes, :tags,
+    { comments: :user, author: :followed_by_followings })
+    .where("author_id = ?", params[:user_id])
+
+    @loops = @loops.reverse
+    @loops = Kaminari.paginate_array(@loops).page(params[:page])
+
+
+
+    render "api/loops/index"
+  end
+
   def index
     @users = User.all
     render :index

@@ -35,34 +35,47 @@ ApiUtil = {
     });
   },
 
-  fetchUserLoops: function(id) {
+  fetchUser: function(id) {
     $.ajax({
       type: "GET",
       url: "api/users/" + id,
       dataType: "json",
       success: function(data) {
         ApiActions.receiveUser(data);
-        ApiActions.receiveLoops(data.loops);
       },
     });
   },
 
-  fetchLikeLoops: function(id) {
+  fetchUserLoops: function(id) {
+    $.ajax({
+      type: "GET",
+      url: "api/users/" + id + "/userloops",
+      dataType: "json",
+      success: function(data) {
+        ApiActions.receiveLoops(data);
+      },
+    });
+  },
+
+
+  fetchLikeLoops: function(id, page) {
     $.ajax({
       type: "GET",
       url: "api/users/" + id,
       dataType: "json",
+      data: {page: page},
       success: function(data) {
-        ApiActions.receiveLoops(data.liked_loops);
+        ApiActions.receiveLoops(data.liked_loops.reverse());
       },
     });
   },
 
-  fetchTagLoops: function(id) {
+  fetchTagLoops: function(id, page) {
     $.ajax({
       type: "GET",
       url: "api/tags/" + id,
       dataType: "json",
+      data: {page: page},
       success: function(data) {
         ApiActions.receiveLoops(data);
       },

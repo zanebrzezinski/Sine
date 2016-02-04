@@ -15,6 +15,10 @@ var UserCard = React.createClass({
     this.setState({user: UserStore.user()});
   },
 
+  componentWillUnmount: function(){
+    this.token.remove();
+  },
+
   _onChange: function(){
     this.setState({user: UserStore.user()[0]});
   },

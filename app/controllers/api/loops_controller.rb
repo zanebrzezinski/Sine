@@ -1,14 +1,18 @@
 class Api::LoopsController < ApplicationController
   def show
-    @loop = Loop.includes(:likes, :tags, { comments: :user, author: :followed_by_followings }).find(params[:id])
+    @loop = Loop.page(params[:page])
+    .includes(:likes, :tags, { comments: :user, author: :followed_by_followings }).find(params[:id])
     render :show
   end
 
   def index
-    @loops = Loop.all.page(params[:page])
+    @loops = Loop.all
       .includes(:likes, :tags,
       { comments: :user, author: :followed_by_followings })
-      .sort_by(&:created_at).reverse
+      .sort_by(&:created_at)
+
+    @loops = @loops.reverse
+    @loops = Kaminari.paginate_array(@loops).page(params[:page])
     render :index
   end
 

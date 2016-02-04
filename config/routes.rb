@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:show, :index, :create]
+    resources :users, only: [:show, :index, :create] do
+      get "userloops", to: "users#userloops"
+    end
     resources :loops, only: [:show, :index, :create, :destroy]
     resource :feed, only: [:show]
     resource :session, only: [:create, :destroy, :show]

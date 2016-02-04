@@ -1,6 +1,8 @@
 var React = require('react');
 var Feed = require('./feed.jsx');
 var UserCard = require('./user_card.jsx');
+var UserStore = require('../stores/user_store');
+var ApiUtil = require('../util/api_util.js');
 
 
 var User = React.createClass({
@@ -9,6 +11,10 @@ var User = React.createClass({
     return (
       {feedType: "User"}
     );
+  },
+
+  componentDidMount: function() {
+    ApiUtil.fetchUser(this.props.params.userId);
   },
 
   likeFeed: function() {

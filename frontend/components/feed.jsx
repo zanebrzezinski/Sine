@@ -42,6 +42,14 @@ var Feed = React.createClass({
     var nextPage = this.state.page + 1;
     this.determineFeedTypeAndFetch(this.props.feedType, nextPage);
     this.setState({page: nextPage});
+    window.scroll(0, 0);
+  },
+
+  prevPage: function() {
+    var prevPage = this.state.page - 1;
+    this.determineFeedTypeAndFetch(this.props.feedType, prevPage);
+    this.setState({page: prevPage});
+    window.scroll(0, 0);
   },
 
   componentWillUnmount: function() {
@@ -69,6 +77,25 @@ var Feed = React.createClass({
         <li key={loop.id}>< Loop loop={loop} user={this.state.user}/></li>
       );
     }.bind(this));
+
+    var buttons;
+
+    if (this.state.page > 1) {
+      buttons = (
+        <div className="page-buttons">
+          <button className="page-button" onClick={this.nextPage}>Next</button>
+          <button className="page-button prev" onClick={this.prevPage}>Previous</button>
+        </div>
+      );
+    } else {
+      buttons = (
+        <div className="page-buttons">
+          <button className="page-button" onClick={this.nextPage}>More</button>
+        </div>
+      );
+    }
+
+
     if (loops.length === 0 && this.state.user !== "") {
       return(
         <div className="feed empty-feed">
@@ -78,11 +105,11 @@ var Feed = React.createClass({
       );
     } else {
       return(
-        <div>
-          <ul className="feed">
+        <div className="feed">
+          <ul >
             {loops}
           </ul>
-          <button className="next-button" onClick={this.nextPage}>More</button>
+            {buttons}
         </div>
       );
     }
