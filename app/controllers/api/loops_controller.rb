@@ -5,7 +5,7 @@ class Api::LoopsController < ApplicationController
   end
 
   def index
-    @loops = Loop.all.page(1)
+    @loops = Loop.all.page(params[:page])
       .includes(:likes, :tags,
       { comments: :user, author: :followed_by_followings })
       .sort_by(&:created_at).reverse

@@ -14,20 +14,22 @@ var Feed = React.createClass({
     } else {
       user = "";
     }
-
-    if (typeof this.props.feedType === "undefined") {
-      ApiUtil.fetchAllLoops();
-    } else if (this.props.feedType === "Feed") {
-      ApiUtil.fetchFeed();
-    } else if (this.props.feedType === "User") {
-      ApiUtil.fetchUserLoops(this.props.id);
-    } else if (this.props.feedType === "Tag") {
-      ApiUtil.fetchTagLoops(this.props.id);
-    } else if (this.props.feedType === "Likes") {
-      ApiUtil.fetchLikeLoops(this.props.id);
-    }
-
+    this.determineFeedTypeAndFetch(this.props.feedType, 1);
     return {loops: LoopStore.loops(), user: user, page: 1};
+  },
+
+  determineFeedTypeAndFetch: function(feedType, page){
+    if (typeof feedType === "undefined") {
+      ApiUtil.fetchAllLoops(page);
+    } else if (feedType === "Feed") {
+      ApiUtil.fetchFeed(page);
+    } else if (feedType === "User") {
+      ApiUtil.fetchUserLoops(this.props.id, page);
+    } else if (feedType === "Tag") {
+      ApiUtil.fetchTagLoops(this.props.id, page);
+    } else if (feedType === "Likes") {
+      ApiUtil.fetchLikeLoops(this.props.id, page);
+    }
   },
 
   componentDidMount: function() {
@@ -37,6 +39,9 @@ var Feed = React.createClass({
   },
 
   nextPage: function() {
+    var nextPage = this.state.page + 1;
+    this.determineFeedTypeAndFetch(this.props.feedType, nextPage);
+    this.setState({page: nextPage});
   },
 
   componentWillUnmount: function() {
@@ -53,19 +58,7 @@ var Feed = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps){
-
-    if (typeof newProps.feedType === "undefined") {
-      ApiUtil.fetchAllLoops();
-    } else if (newProps.feedType === "Feed") {
-      ApiUtil.fetchFeed();
-    } else if (newProps.feedType === "Tag") {
-      ApiUtil.fetchTagLoops(newProps.id);
-    } else if (newProps.feedType === "Likes") {
-      ApiUtil.fetchLikeLoops(this.props.id);
-    } else if (newProps.feedType === "User") {
-      ApiUtil.fetchUserLoops(this.props.id);
-    }
-
+    this.determineFeedTypeAndFetch(newProps.feedType, 1);
     this.setState({loops: LoopStore.loops()});
   },
 
@@ -85,15 +78,15 @@ var Feed = React.createClass({
       );
     } else {
       return(
-        <ul className="feed">
-          {loops}
-        </ul>
+        <div>
+          <ul className="feed">
+            {loops}
+          </ul>
+          <button className="next-button" onClick={this.nextPage}>More</button>
+        </div>
       );
     }
-
   }
-
-
 });
 
 module.exports = Feed;

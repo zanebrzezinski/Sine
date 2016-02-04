@@ -1,11 +1,12 @@
 var ApiActions = require('../actions/api_actions');
 
 ApiUtil = {
-  fetchAllLoops: function() {
+  fetchAllLoops: function(page) {
     $.ajax({
       type: "GET",
       url: "api/loops",
       dataType: "json",
+      data: {page: page},
       success: function(data) {
         ApiActions.receiveLoops(data);
       }
