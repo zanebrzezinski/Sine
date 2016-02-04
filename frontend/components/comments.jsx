@@ -7,7 +7,7 @@ var Comments = React.createClass({
 
   getInitialState: function() {
     return(
-      {comment: "", commentShow: false, page: 1, numComments: 3}
+      {comment: "", commentShow: false, numComments: 3}
     );
   },
 
@@ -33,10 +33,10 @@ var Comments = React.createClass({
     ApiUtil.createComment(
       {comment: this.state.comment,
       loop_id: this.props.loopId, user_id: this.props.currentUser.id},
-      this.state.page,
       function(){
         this.setState({comment: "", commentShow: true});
-      }.bind(this));
+      }.bind(this)
+    );
   },
 
   render: function(){
