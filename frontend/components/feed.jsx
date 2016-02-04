@@ -19,16 +19,22 @@ var Feed = React.createClass({
   },
 
   determineFeedTypeAndFetch: function(feedType, page){
+
+    var cb = function(){
+      window.scroll(0, 0);
+    };
+
+
     if (typeof feedType === "undefined") {
-      ApiUtil.fetchAllLoops(page);
+      ApiUtil.fetchAllLoops(page, cb);
     } else if (feedType === "Feed") {
-      ApiUtil.fetchFeed(page);
+      ApiUtil.fetchFeed(page, cb);
     } else if (feedType === "User") {
-      ApiUtil.fetchUserLoops(this.props.id, page);
+      ApiUtil.fetchUserLoops(this.props.id, page, cb);
     } else if (feedType === "Tag") {
-      ApiUtil.fetchTagLoops(this.props.id, page);
+      ApiUtil.fetchTagLoops(this.props.id, page, cb);
     } else if (feedType === "Likes") {
-      ApiUtil.fetchLikeLoops(this.props.id, page);
+      ApiUtil.fetchLikeLoops(this.props.id, page, cb);
     }
   },
 
@@ -42,7 +48,6 @@ var Feed = React.createClass({
     var nextPage = this.state.page + 1;
     this.determineFeedTypeAndFetch(this.props.feedType, nextPage);
     this.setState({page: nextPage});
-    window.scroll(0, 0);
   },
 
   prevPage: function() {

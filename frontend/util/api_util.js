@@ -1,7 +1,7 @@
 var ApiActions = require('../actions/api_actions');
 
 ApiUtil = {
-  fetchAllLoops: function(page) {
+  fetchAllLoops: function(page, cb) {
     $.ajax({
       type: "GET",
       url: "api/loops",
@@ -9,6 +9,7 @@ ApiUtil = {
       data: {page: page},
       success: function(data) {
         ApiActions.receiveLoops(data);
+        cb && cb();
       }
     });
   },
@@ -24,13 +25,15 @@ ApiUtil = {
     });
   },
 
-  fetchFeed: function() {
+  fetchFeed: function(page, cb) {
     $.ajax({
       type: "GET",
       url: "api/feed",
+      data: {page: page},
       dataType: "json",
       success: function(data) {
         ApiActions.receiveLoops(data);
+        cb && cb();
       },
     });
   },
@@ -46,19 +49,20 @@ ApiUtil = {
     });
   },
 
-  fetchUserLoops: function(id) {
+  fetchUserLoops: function(id, page, cb) {
     $.ajax({
       type: "GET",
       url: "api/users/" + id + "/userloops",
       dataType: "json",
       success: function(data) {
         ApiActions.receiveLoops(data);
+        cb && cb();
       },
     });
   },
 
 
-  fetchLikeLoops: function(id, page) {
+  fetchLikeLoops: function(id, page, cb) {
     $.ajax({
       type: "GET",
       url: "api/users/" + id,
@@ -66,11 +70,12 @@ ApiUtil = {
       data: {page: page},
       success: function(data) {
         ApiActions.receiveLoops(data.liked_loops.reverse());
+        cb && cb();
       },
     });
   },
 
-  fetchTagLoops: function(id, page) {
+  fetchTagLoops: function(id, page, cb) {
     $.ajax({
       type: "GET",
       url: "api/tags/" + id,
@@ -78,6 +83,7 @@ ApiUtil = {
       data: {page: page},
       success: function(data) {
         ApiActions.receiveLoops(data);
+        cb && cb();
       },
     });
   },
