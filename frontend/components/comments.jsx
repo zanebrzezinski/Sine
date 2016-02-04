@@ -7,7 +7,7 @@ var Comments = React.createClass({
 
   getInitialState: function() {
     return(
-      {comment: "", commentShow: false, page: 1}
+      {comment: "", commentShow: false, page: 1, numComments: 3}
     );
   },
 
@@ -16,7 +16,16 @@ var Comments = React.createClass({
   },
 
   showComments: function() {
-    this.setState({commentShow: true});
+    var commentLength = this.props.comments.array.length;
+    if (this.state.commentShow) {
+      if (this.state.numComments + 3 > commentLength) {
+        this.state.numComments = commentLength;
+      } else {
+        this.setState({numComments: this.state.numComments + 3});
+      }
+    } else{
+      this.setState({commentShow: true});
+    }
   },
 
   handleSubmit: function(e){
@@ -31,19 +40,21 @@ var Comments = React.createClass({
   },
 
   render: function(){
-
     var commentCount = this.props.comments.array.length;
 
     if (this.state.commentShow) {
-      commentShow = < CommentShow comments={this.props.comments} />;
+      commentShow = (
+        < CommentShow
+        comments={this.props.comments.array.slice(commentCount - this.state.numComments)} />
+    );
     } else {
       commentShow = "";
     }
 
     return(
       <div>
-        {commentShow}
         <p className="comment-count" onClick={this.showComments}>{commentCount} Comments</p>
+        {commentShow}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.commentChange}
             className="comment-box" type="text"

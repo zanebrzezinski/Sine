@@ -27,13 +27,16 @@ var Feed = React.createClass({
       ApiUtil.fetchLikeLoops(this.props.id);
     }
 
-    return {loops: LoopStore.loops(), user: user};
+    return {loops: LoopStore.loops(), user: user, page: 1};
   },
 
   componentDidMount: function() {
     this.userToken = CurrentUserStore.addListener(this._onUserChange);
     SessionsApiUtil.fetchCurrentUser();
     this.loopToken = LoopStore.addListener(this._onChange);
+  },
+
+  nextPage: function() {
   },
 
   componentWillUnmount: function() {

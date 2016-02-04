@@ -594,6 +594,7 @@ header {
 
 .comment-count {
   margin-left: 17px;
+  margin-bottom: 10px;
   font-size: 12px;
   cursor: pointer;
   color: #aaa;
@@ -618,6 +619,14 @@ header {
 
 .comment-body {
   display: inline;
+}
+
+.comment-profile-picture {
+  display: inline;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin: 0 10px;
 }
 
 /* --- LOOP SHOW VIEW --- */
