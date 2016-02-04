@@ -37,7 +37,14 @@ var ApiActions = {
       actionType: userConstants.USER_RECEIVED,
       user: user
     });
-  }
+  },
+
+  updateLoopComment: function(comment) {
+    AppDispatcher.dispatch({
+      actionType: Constants.COMMENT_RECEIVED,
+      comment: comment
+    });
+  },
 };
 
 module.exports = ApiActions;

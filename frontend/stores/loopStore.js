@@ -35,6 +35,16 @@ var deleteLoop = function(loop) {
   }
 };
 
+var addCommentToLoop = function(comment) {
+  var loopId = comment.loop;
+  for (var i = 0; i < _loops.length; i++) {
+    if (loopId === _loops[i].id) {
+      _loops[i].comments.array.push(comment);
+      return;
+    }
+  }
+};
+
 
 LoopStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
@@ -52,6 +62,10 @@ LoopStore.__onDispatch = function(payload) {
       break;
     case Constants.DELETE_LOOP:
       deleteLoop(payload.loop);
+      LoopStore.__emitChange();
+      break;
+    case Constants.COMMENT_RECEIVED:
+      addCommentToLoop(payload.comment);
       LoopStore.__emitChange();
       break;
   }

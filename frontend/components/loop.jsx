@@ -203,7 +203,8 @@ var Loop = React.createClass({
           <i className="icon-number">{this.state.likes}</i>
           {repostIcon}
         </div>
-        < Comments />
+        < Comments comments={this.props.loop.comments}
+         loopId={this.props.loop.id} currentUser={this.props.user}/>
       </div>
     );
   }

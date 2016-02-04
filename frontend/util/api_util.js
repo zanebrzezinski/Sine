@@ -170,7 +170,20 @@ ApiUtil = {
         ApiActions.updateLoop(data);
       }
     });
-  }
+  },
+
+  createComment: function(data, cb){
+    $.ajax({
+      url: '/api/comments/',
+      type: 'POST',
+      dataType: 'json',
+      data: {comment: data},
+      success: function(data) {
+        ApiActions.updateLoopComment(data);
+        cb && cb();
+      }
+    });
+  },
 };
 
 module.exports = ApiUtil;
