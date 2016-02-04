@@ -1,6 +1,6 @@
 class Api::LoopsController < ApplicationController
   def show
-    @loop = Loop.find(params[:id])
+    @loop = Loop.includes(:likes, :tags, { comments: :user, author: :followed_by_followings }).find(params[:id])
     render :show
   end
 

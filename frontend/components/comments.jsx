@@ -7,7 +7,7 @@ var Comments = React.createClass({
 
   getInitialState: function() {
     return(
-      {comment: "", commentShow: false}
+      {comment: "", commentShow: false, page: 1}
     );
   },
 
@@ -21,11 +21,13 @@ var Comments = React.createClass({
 
   handleSubmit: function(e){
     e.preventDefault();
-    ApiUtil.createComment({comment: this.state.comment,
+    ApiUtil.createComment(
+      {comment: this.state.comment,
       loop_id: this.props.loopId, user_id: this.props.currentUser.id},
-    function(){
-      this.setState({comment: "", commentShow: true});
-    }.bind(this));
+      this.state.page,
+      function(){
+        this.setState({comment: "", commentShow: true});
+      }.bind(this));
   },
 
   render: function(){

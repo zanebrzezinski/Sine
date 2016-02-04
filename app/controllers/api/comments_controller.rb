@@ -11,7 +11,6 @@ class Api::CommentsController < ApplicationController
 
   def index
     @comments = Comment.all.where("loop_id = #{params[:id]}")
-
     render :index
   end
 
