@@ -28,6 +28,7 @@ gem 'figaro'
 gem 'paperclip-av-transcoder', '~> 0.6.4'
 gem 'pg_search'
 gem 'kaminari'
+gem 'omniauth-twitter'
 
 
 # Use ActiveModel has_secure_password

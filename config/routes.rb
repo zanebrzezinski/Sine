@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy, :index]
 
     get "search", to: "utils#search"
-    get "auth/twitter/callback", to: "sessions#omniauth_twitter"
   end
+  get "auth/twitter/callback", to: "sessions#omniauth_twitter"
 
 end
