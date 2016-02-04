@@ -579,9 +579,14 @@ header {
   color: red;
 }
 
+/*
 .repost-icon:hover{
   color: #00BF8F;
 }
+
+.repost-icon {
+  display: none;
+}*/
 
 .liked {
   color: red;

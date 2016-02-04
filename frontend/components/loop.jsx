@@ -159,7 +159,8 @@ var Loop = React.createClass({
 
 
     var repostIcon = (
-      <p className="repost-icon"><i className="fa fa-refresh"></i></p>
+      ""
+      // <p className="repost-icon"><i className="fa fa-refresh"></i></p>
     );
 
     if (this.props.loop.author_id === this.props.user.id) {
@@ -170,7 +171,8 @@ var Loop = React.createClass({
     } else {
       content = followContent;
       repostIcon = (
-        <p className="repost-icon"><i className="fa fa-refresh"></i></p>
+        ""
+        // <p className="repost-icon"><i className="fa fa-refresh"></i></p>
       );
     }
 
