@@ -47,6 +47,8 @@ var SignIn = React.createClass({
                   <button className='form-button'>Sine in</button>
                     or
                   <button className='form-button' onClick={this.renderUserForm}>Sine Up</button>
+                    or
+                  <a className="twitter" href="/auth/twitter"><i className="fa fa-twitter"></i></a>
                 </div>
             </form>
 

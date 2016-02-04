@@ -290,6 +290,12 @@ header {
   margin: 10px auto;
 }
 
+.twitter {
+  font-size: 30px;
+  display: block;
+  color: #4099FF;
+}
+
 /* --- FEED --- */
 
 .feed {

@@ -105,7 +105,8 @@ class User < ActiveRecord::Base
     User.create(
       provider: provider,
       uid: uid,
-      email: auth_hash[:info][:name],
+      profile_picture: auth_hash[:info][:image],
+      username: auth_hash[:info][:nickname],
       password: SecureRandom::urlsafe_base64
     )
   end
