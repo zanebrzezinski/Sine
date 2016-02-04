@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Api::UtilsController < ApplicationController
 
   def search
     @search_results = PgSearch
