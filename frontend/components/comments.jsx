@@ -19,7 +19,7 @@ var Comments = React.createClass({
     var commentLength = this.props.comments.array.length;
     if (this.state.commentShow) {
       if (this.state.numComments + 3 > commentLength) {
-        this.state.numComments = commentLength;
+        this.setState({numComments: commentLength});
       } else {
         this.setState({numComments: this.state.numComments + 3});
       }
@@ -34,7 +34,8 @@ var Comments = React.createClass({
       {comment: this.state.comment,
       loop_id: this.props.loopId, user_id: this.props.currentUser.id},
       function(){
-        this.setState({comment: "", commentShow: true});
+        this.setState({comment: ""});
+        this.showComments();
       }.bind(this)
     );
   },

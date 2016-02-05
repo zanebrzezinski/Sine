@@ -672,6 +672,11 @@ header {
   margin: 0 10px;
 }
 
+.comments-list {
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
 /* --- LOOP SHOW VIEW --- */
 
 .loop-box-show {

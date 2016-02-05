@@ -14,7 +14,7 @@ var CommentShow = React.createClass({
     });
 
     return(
-      <ul>
+      <ul className="comments-list">
         {comments}
       </ul>
     );
