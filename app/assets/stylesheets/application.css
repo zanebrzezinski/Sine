@@ -451,6 +451,7 @@ header {
 .upload-preview {
   display: block;
   margin: auto;
+  width: 300px;
 }
 
 .video-upload .form-button {

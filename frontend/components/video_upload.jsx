@@ -55,7 +55,7 @@ var VideoUpload = React.createClass({
     }.bind(this);
 
     if (file) {
-      reader.readAsDataURL(file); // will trigger a load end event when it completes, and invoke reader.onloadend
+      reader.readAsDataURL(file);
     } else {
       this.setState({loop: null, loopUrl: ""});
     }
