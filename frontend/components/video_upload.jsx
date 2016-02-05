@@ -1,8 +1,10 @@
 var React = require('react');
 var Loop = require('./loop.jsx');
 var ApiUtil = require('../util/api_util');
+var History = require('react-router').History;
 
 var VideoUpload = React.createClass({
+  mixins: [History],
 
   getInitialState: function() {
     return(
@@ -74,6 +76,7 @@ var VideoUpload = React.createClass({
     ApiUtil.createLoop(formData, function(loop){
       ApiUtil.createTaggings({tags: this.state.tags, loop_id: loop.id});
       this.props.handleClick();
+      this.history.pushState({}, "loops/" + loop.id);
     }.bind(this));
   },
 
