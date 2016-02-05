@@ -85,7 +85,7 @@ header {
 }
 
 .navbar {
-  padding: 20px;
+  padding: 20px 0 20px 0;
 }
 
 
@@ -132,7 +132,7 @@ header {
 .nav-bar-right {
   position: absolute;
   top: 25px;
-  right: 65px;
+  right: 10px;
 }
 
 .nav-bar-right > p {
@@ -156,7 +156,7 @@ header {
   font-size: 12px;
   width: 170px;
   background-color: #e4e4e4;
-  padding: 5px 30px 4px 10px;
+  padding: 10px 20px 9px 20px;
   margin: auto;
   border-radius: 100000px;
 }
@@ -261,7 +261,7 @@ header {
   display: block;
   background: #E4E4E4;
   margin: 10px auto;
-  padding: 0 10px;
+  padding: 5px 10px;
   height: 30px;
   width: 360px;
   font-size: 12px;
@@ -311,14 +311,18 @@ header {
   font-size: 40px;
 }
 
+.page-buttons {
+  margin: auto;
+  text-align: center;
+}
+
 .page-button {
   background-color: #00BF8F;
   color: #FFF;
   padding: 10px 20px;
-  margin-top: 10px;
+  margin-right: 10px;
   border-radius: 500px;
   cursor: pointer;
-  display: block;
   margin: auto;
   font-size: 20px;
   margin-bottom: 40px;
@@ -326,6 +330,7 @@ header {
 
 .prev {
   background-color: #7870cc;
+  margin: 10px;
 }
 
 /* --- USERCARD --- */
@@ -420,6 +425,10 @@ header {
   color: #aaa;
   font-size: 40px;
   margin: 20px auto;
+}
+
+.sign-up .textbox {
+  text-align: left;
 }
 
 .upload {
@@ -553,6 +562,11 @@ header {
 .following {
   background-color: #00BF8F;
   color: #fff;
+}
+
+.following:hover {
+  background-color: red;
+  border: 1px solid red;
 }
 
 .loop-icons {

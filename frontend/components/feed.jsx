@@ -88,8 +88,8 @@ var Feed = React.createClass({
     if (this.state.page > 1) {
       buttons = (
         <div className="page-buttons">
-          <button className="page-button" onClick={this.nextPage}>Next</button>
           <button className="page-button prev" onClick={this.prevPage}>Previous</button>
+          <button className="page-button" onClick={this.nextPage}>Next</button>
         </div>
       );
     } else {
