@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
       :followed_by_followings }],
     loops: [:likes, :tags, { comments: :user, author:
       :followed_by_followings }]
-    ).find(current_user.id)
+    ).find(params[:id])
     render :show
   end
 
