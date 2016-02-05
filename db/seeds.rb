@@ -17,18 +17,18 @@ zane = User.create(username: "Zane", password: "zanzane", profile_picture: "http
 guest = User.create(username: "guest", password: "password", profile_picture: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_0807.jpg?X-Amz-Date=20160205T184942Z&X-Amz-Expires=300&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Signature=cffe1e831dfd714e77d758820d775f7150c63df82c09912901dc452ca588945a&X-Amz-Credential=ASIAJNHUVDFXBTRMQSRA/20160205/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=Host&x-amz-security-token=AQoDYXdzEHoakAK9zbtc2wV1m6G8U/ZxioquJ4WaP7Juys1iXNntDWNy6ypG3kgU0TGyHn0vYF3lUlZujZs7SwmrxKLrfiLn2z2Ib5GbnD1vGb0Ijhztep30WyenbzblINoQj1JAmyTK/7UuNiB10RWjFUnH0032Ob2RUm2c6zUIcLN91%2BadwDuafCNshWz0pwL%2B1JMWvOzJw9D9F0M/c3p2SyLNQkxeCfhILY5M6n8P7NOj%2Bi77LitCtm/k2m9gj4TuCoiZrWzHw/hYlEJrg0ZP6On0vLxsNz%2BIV8xDARIYul27SrqpSbasF0GZAwlpsBjLfO5jfTL8aWE9WYkEaT6lIJsmpMnwtpdDseDMwbS1LWBC4zaCrBje0CCXoNO1BQ%3D%3D")
 
 Loop.delete_all
-one = Loop.create(title: "glitchy", author_id: bartolo.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-10jce6g.mp420160202-32776-1w0ijxr.mp4")
-three = Loop.create(title: "jackie", author_id: degrom.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-1qmqivl.mp420160202-32776-oid9r4.mp4")
-ten = Loop.create(title: "Ike", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-kwdicw.mp420160202-32776-1qhydmn.mp4")
-six = Loop.create(title: "baseball", author_id: cespedes.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-6juz36.mp420160202-32776-1q5dnr0.mp4")
-eleven = Loop.create(title: "Cereal", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-xw4as7.mp420160202-32776-jbpm4i.mp4")
-two = Loop.create(title: "Richard", author_id: bartolo.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-1fcubbl.mp420160202-32776-hz3ikj.mp4")
-eight = Loop.create(title: "family", author_id: duda.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-a1vneh.mp420160202-32776-3acqq.mp4")
-twelve = Loop.create(title: "harry bellefonte", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-zbc36q.mp420160202-32776-1menla7.mp4")
-five = Loop.create(title: "oatmeal", author_id: cespedes.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-4l5rby.mp420160202-32776-1bpf2wz.mp4")
-seven = Loop.create(title: "purple richard", author_id: duda.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-964q4i.mp420160202-32776-uxrx9j.mp4")
-nine = Loop.create(title: "experience", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-ah7emp.mp420160202-32776-8r7654.mp4")
-four = Loop.create(title: "square guy", author_id: degrom.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-1xoxwh6.mp420160202-32776-fy5ilw.mp4")
+# one = Loop.create(title: "glitchy", author_id: bartolo.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-10jce6g.mp420160202-32776-1w0ijxr.mp4")
+# three = Loop.create(title: "jackie", author_id: degrom.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-1qmqivl.mp420160202-32776-oid9r4.mp4")
+# ten = Loop.create(title: "Ike", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-kwdicw.mp420160202-32776-1qhydmn.mp4")
+# six = Loop.create(title: "baseball", author_id: cespedes.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-6juz36.mp420160202-32776-1q5dnr0.mp4")
+# eleven = Loop.create(title: "Cereal", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-xw4as7.mp420160202-32776-jbpm4i.mp4")
+# two = Loop.create(title: "Richard", author_id: bartolo.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-1fcubbl.mp420160202-32776-hz3ikj.mp4")
+# eight = Loop.create(title: "family", author_id: duda.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-a1vneh.mp420160202-32776-3acqq.mp4")
+# twelve = Loop.create(title: "harry bellefonte", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-zbc36q.mp420160202-32776-1menla7.mp4")
+# five = Loop.create(title: "oatmeal", author_id: cespedes.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-4l5rby.mp420160202-32776-1bpf2wz.mp4")
+# seven = Loop.create(title: "purple richard", author_id: duda.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-964q4i.mp420160202-32776-uxrx9j.mp4")
+# nine = Loop.create(title: "experience", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-ah7emp.mp420160202-32776-8r7654.mp4")
+# four = Loop.create(title: "square guy", author_id: degrom.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/RackMultipart20160202-32776-1xoxwh6.mp420160202-32776-fy5ilw.mp4")
 
 
 Tag.delete_all
