@@ -22,6 +22,10 @@ var Feed = React.createClass({
 
     var cb = function(){
       window.scroll(0, 0);
+
+      if (this.state.page > 1 && LoopStore.loops().length === 0) {
+        this.setState({page: this.state.page - 1, lastPage: true});
+      }
     };
 
 
