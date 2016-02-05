@@ -95,7 +95,7 @@ var Feed = React.createClass({
     } else {
       buttons = (
         <div className="page-buttons">
-          <button className="page-button" onClick={this.nextPage}>More</button>
+          <button className="page-button" onClick={this.nextPage}>Next</button>
         </div>
       );
     }
