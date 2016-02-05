@@ -1,4 +1,5 @@
 var ApiActions = require('../actions/api_actions');
+var ErrorActions = require('../actions/error_actions');
 
 ApiUtil = {
   fetchAllLoops: function(page, cb) {

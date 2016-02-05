@@ -3,7 +3,13 @@ class Api::SessionsController < ApplicationController
   def show
 
     if current_user
-      @user = User.includes(liked_loops: [:likes, :tags, { comments: :user, author: :followed_by_followings }]).find(current_user.id)
+      @user = User
+      .includes(
+      liked_loops: [:likes, :tags, { comments: :user, author:
+        :followed_by_followings }],
+      loops: [:likes, :tags, { comments: :user, author:
+        :followed_by_followings }]
+      ).find(current_user.id)
       render "api/users/show"
     else
       render json: {}
