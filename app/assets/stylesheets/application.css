@@ -525,6 +525,7 @@ header {
 .loop-box .profile-picture {
   float: left;
   margin-right: 10px;
+  margin-top: 1px;
 }
 
 .delete-icon {

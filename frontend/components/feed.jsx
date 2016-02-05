@@ -15,7 +15,7 @@ var Feed = React.createClass({
       user = "";
     }
     this.determineFeedTypeAndFetch(this.props.feedType, 1);
-    return {loops: LoopStore.loops(), user: user, page: 1};
+    return {loops: LoopStore.loops(), user: user, page: 1, lastPage: false};
   },
 
   determineFeedTypeAndFetch: function(feedType, page){
@@ -53,7 +53,7 @@ var Feed = React.createClass({
   prevPage: function() {
     var prevPage = this.state.page - 1;
     this.determineFeedTypeAndFetch(this.props.feedType, prevPage);
-    this.setState({page: prevPage});
+    this.setState({page: prevPage, lastPage: false});
     window.scroll(0, 0);
   },
 
@@ -63,7 +63,12 @@ var Feed = React.createClass({
   },
 
   _onChange: function() {
-    this.setState({loops: LoopStore.loops()});
+    if (this.state.page > 1 && LoopStore.loops().length === 0) {
+      this.setState({page: this.state.page - 1});
+      this.setState({lastPage: true});
+    } else {
+      this.setState({loops: LoopStore.loops()});
+    }
   },
 
   _onUserChange: function() {
@@ -85,11 +90,17 @@ var Feed = React.createClass({
 
     var buttons;
 
-    if (this.state.page > 1) {
+    if (this.state.page > 1 && this.state.lastPage === false) {
       buttons = (
         <div className="page-buttons">
           <button className="page-button prev" onClick={this.prevPage}>Previous</button>
           <button className="page-button" onClick={this.nextPage}>Next</button>
+        </div>
+      );
+    } else if (this.state.lastPage === true) {
+      buttons = (
+        <div className="page-buttons">
+          <button className="page-button prev" onClick={this.prevPage}>Previous</button>
         </div>
       );
     } else {

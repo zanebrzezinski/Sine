@@ -23,6 +23,10 @@ var User = React.createClass({
     }
   },
 
+  componentWillReceiveProps: function(newProps) {
+    ApiUtil.fetchUser(newProps.params.userId);
+  },
+
   userFeed: function() {
     if (this.state.feedType === "Likes") {
       this.setState({feedType: "User"});

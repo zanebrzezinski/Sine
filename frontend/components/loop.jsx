@@ -193,8 +193,10 @@ var Loop = React.createClass({
       <div className="loop-box group">
         <div className="loop-info group">
           {content}
-          <img className="profile-picture" src={this.props.loop.profile_picture} />
-          <a className="author" href={userLink}>{this.props.loop.author}</a>
+          <a className="author" href={userLink}>
+            <img className="profile-picture" src={this.props.loop.profile_picture} />
+            {this.props.loop.author}
+          </a>
           <a className="created_at" href={showLink}>{createdAtDate}</a>
         </div>
         <i onClick={this.muteLogic} className={muteIcon} ></i>
