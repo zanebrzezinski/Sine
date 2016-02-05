@@ -13,7 +13,7 @@ degrom = User.create(username: "Degrom", password: "degrom", profile_picture: "h
 cespedes = User.create(username: "Yoenis", password: "Cespedex", profile_picture: "http://i.imgur.com/esrM4wd.png")
 lagares = User.create(username: "Lagares", password: "Lagares", profile_picture: "http://www3.pictures.zimbio.com/gi/Juan+Lagares+m_q_WonA_hQm.jpg")
 duda = User.create(username: "Lucas", password: "dudaduda", profile_picture: "https://pbs.twimg.com/media/CYyQiQ3WkAEti6A.jpg")
-zane = User.create(username: "Zane", password: "zanzane", profile_picture: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_0807.jpg")
+zane = User.create(username: "Zane", password: "zanzane")
 guest = User.create(username: "guest", password: "password")
 
 Loop.delete_all
