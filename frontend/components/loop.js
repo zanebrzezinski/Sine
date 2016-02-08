@@ -1,10 +1,9 @@
-var React = require('react');
 var ApiUtil = require('../util/api_util');
 
 var Comments = require('./comments');
 
 
-var Loop = React.createClass({
+var Loop = React.createClass({displayName: "Loop",
 
   getInitialState: function(){
 
@@ -138,11 +137,11 @@ var Loop = React.createClass({
 
     if (this.state.liked) {
       likeIcon = (
-        <p className="like-icon liked" onClick={this.removeLike}><i className="fa fa-heart"></i></p>
+        React.createElement("p", {className: "like-icon liked", onClick: this.removeLike}, React.createElement("i", {className: "fa fa-heart"}))
       );
     } else {
       likeIcon = (
-        <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
+        React.createElement("p", {className: "like-icon", onClick: this.addLike}, React.createElement("i", {className: "fa fa-heart"}))
       );
     }
     var followContent;
@@ -151,11 +150,11 @@ var Loop = React.createClass({
     if (this.props.user.id) {
       if (this.state.following) {
         followContent = (
-          <p className="follow-icon following" onClick={this.removeFollowing}><i className="fa fa-user"></i></p>
+          React.createElement("p", {className: "follow-icon following", onClick: this.removeFollowing}, React.createElement("i", {className: "fa fa-user"}))
         );
       } else {
         followContent = (
-          <p className="follow-icon" onClick={this.addFollowing}><i className="fa fa-user"></i></p>
+          React.createElement("p", {className: "follow-icon", onClick: this.addFollowing}, React.createElement("i", {className: "fa fa-user"}))
         );
       }
     }
@@ -169,7 +168,7 @@ var Loop = React.createClass({
 
     if (this.props.loop.author_id === this.props.user.id) {
       content = (
-        <p className="delete-icon" onClick={this.deletePost}><i className="fa fa-trash-o"></i></p>
+        React.createElement("p", {className: "delete-icon", onClick: this.deletePost}, React.createElement("i", {className: "fa fa-trash-o"}))
       );
       repostIcon = "";
     } else {
@@ -187,33 +186,33 @@ var Loop = React.createClass({
 
     var tags = this.props.loop.tags.array.map(function(tag){
       return(
-        <a key={tag.id} href={"#/tag/" + tag.id} className="tag">{tag.tag} </a>
+        React.createElement("a", {key: tag.id, href: "#/tag/" + tag.id, className: "tag"}, tag.tag, " ")
       );
     });
 
 
     return(
-      <div className="loop-box group">
-        <div className="loop-info group">
-          {content}
-          <a className="author" href={userLink}>
-            <img className="profile-picture" src={this.props.loop.profile_picture} />
-            {this.props.loop.author}
-          </a>
-          <a className="created_at" href={showLink}>{createdAtDate}</a>
-        </div>
-        <i onClick={this.muteLogic} className={muteIcon} ></i>
-        <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
-        <div className="title">{this.props.loop.title}</div>
-        <div className="tags">{tags}</div>
-        <div className="loop-icons">
-          {likeIcon}
-          <i className="icon-number">{this.state.likes}</i>
-          {repostIcon}
-        </div>
-        < Comments comments={this.props.loop.comments}
-         loopId={this.props.loop.id} currentUser={this.props.user}/>
-      </div>
+      React.createElement("div", {className: "loop-box group"}, 
+        React.createElement("div", {className: "loop-info group"}, 
+          content, 
+          React.createElement("a", {className: "author", href: userLink}, 
+            React.createElement("img", {className: "profile-picture", src: this.props.loop.profile_picture}), 
+            this.props.loop.author
+          ), 
+          React.createElement("a", {className: "created_at", href: showLink}, createdAtDate)
+        ), 
+        React.createElement("i", {onClick: this.muteLogic, className: muteIcon}), 
+        React.createElement("video", {id: this.loopId, className: "loop", onClick: this.pauseLogic, loop: true, autoPlay: true, muted: this.state.muted, src: this.props.loop.url}), 
+        React.createElement("div", {className: "title"}, this.props.loop.title), 
+        React.createElement("div", {className: "tags"}, tags), 
+        React.createElement("div", {className: "loop-icons"}, 
+          likeIcon, 
+          React.createElement("i", {className: "icon-number"}, this.state.likes), 
+          repostIcon
+        ), 
+        React.createElement(Comments, {comments: this.props.loop.comments, 
+         loopId: this.props.loop.id, currentUser: this.props.user})
+      )
     );
   }
 });
