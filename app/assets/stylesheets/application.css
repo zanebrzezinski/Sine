@@ -37,7 +37,7 @@ button, article, footer, small {
 body {
   background: #eee;
   box-sizing: content-box;
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   line-height: 1.1666666666;
   color: #000;
@@ -247,7 +247,6 @@ header {
   text-align: center;
   color: #00BF8F;
   font-size: 60px;
-  font-family: fantasy;
   margin-top: 10px;
 }
 
@@ -728,5 +727,4 @@ header {
   color: red;
   font-size: 200px;
   opacity: 1;
-  font-family: fantasy;
 }
