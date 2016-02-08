@@ -1,11 +1,10 @@
-var React = require('react');
 var LoopStore = require('../stores/loopStore.js');
 var CurrentUserStore = require('../stores/current_user_store');
 var SessionsApiUtil = require('../util/sessions_api_util');
 var ApiUtil = require('../util/api_util.js');
 var Loop = require('./loop');
 
-var Feed = React.createClass({
+var Feed = React.createClass({displayName: "Feed",
 
   getInitialState: function() {
     var user;
@@ -84,7 +83,7 @@ var Feed = React.createClass({
     var clickHandler = this._showFeedItem;
     var loops = this.state.loops.map(function(loop){
       return(
-        <li key={loop.id}>< Loop loop={loop} user={this.state.user}/></li>
+        React.createElement("li", {key: loop.id}, React.createElement(Loop, {loop: loop, user: this.state.user}))
       );
     }.bind(this));
 
@@ -92,41 +91,41 @@ var Feed = React.createClass({
 
     if (this.state.page > 1 && this.state.lastPage === false) {
       buttons = (
-        <div className="page-buttons">
-          <button className="page-button prev" onClick={this.prevPage}>Previous</button>
-          <button className="page-button" onClick={this.nextPage}>Next</button>
-        </div>
+        React.createElement("div", {className: "page-buttons"}, 
+          React.createElement("button", {className: "page-button prev", onClick: this.prevPage}, "Previous"), 
+          React.createElement("button", {className: "page-button", onClick: this.nextPage}, "Next")
+        )
       );
     } else if (this.state.lastPage === true) {
       buttons = (
-        <div className="page-buttons">
-          <button className="page-button prev" onClick={this.prevPage}>Previous</button>
-        </div>
+        React.createElement("div", {className: "page-buttons"}, 
+          React.createElement("button", {className: "page-button prev", onClick: this.prevPage}, "Previous")
+        )
       );
     } else {
       buttons = (
-        <div className="page-buttons">
-          <button className="page-button" onClick={this.nextPage}>Next</button>
-        </div>
+        React.createElement("div", {className: "page-buttons"}, 
+          React.createElement("button", {className: "page-button", onClick: this.nextPage}, "Next")
+        )
       );
     }
 
 
     if (loops.length === 0 && this.state.user !== "") {
       return(
-        <div className="feed empty-feed">
-          <p>It looks like nothing is here.</p>
-          <p><i className="fa fa-frown-o"></i></p>
-        </div>
+        React.createElement("div", {className: "feed empty-feed"}, 
+          React.createElement("p", null, "It looks like nothing is here."), 
+          React.createElement("p", null, React.createElement("i", {className: "fa fa-frown-o"}))
+        )
       );
     } else {
       return(
-        <div className="feed">
-          <ul >
-            {loops}
-          </ul>
-            {buttons}
-        </div>
+        React.createElement("div", {className: "feed"}, 
+          React.createElement("ul", null, 
+            loops
+          ), 
+            buttons
+        )
       );
     }
   }

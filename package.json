@@ -32,7 +32,7 @@
     "react-addons-linked-state-mixin": "0.14.6",
     "react-dom": "0.14.6",
     "react-router": "^1.0.3",
-    "webpack": "^1.12.12"
+    "webpack": "^1.12.13"
   },
   "engines": {
     "node": "4.1.1",
