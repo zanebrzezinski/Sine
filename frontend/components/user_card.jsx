@@ -38,11 +38,11 @@ var UserCard = React.createClass({
 
     if (this.state.user && this.state.user.length !== 0) {
       return (
-        <div className="user-card">
-          <div className="user-info">
+        <div className="card">
+          <div className="card-info">
             <img className="profile-picture-large" src={this.state.user.profile_picture} />
             <h1>{this.state.user.username}</h1>
-            <div className="follow-info">
+            <div className="card-sub-info">
               <div className="followers">
                 <div className="followers-count">{this.state.user.followers.length}</div>
                 <div className="followers-word">Followers</div>

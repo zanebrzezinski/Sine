@@ -335,20 +335,20 @@ header {
 
 /* --- USERCARD --- */
 
-.user-card {
+.card {
   padding-top: 100px;
   margin: auto;
   background-color: #00BF8F;
   color: #fff;
 }
 
-.user-info {
+.card-info {
   width: 700px;
   margin: auto;
   padding-bottom: 20px
 }
 
-.user-info > h1 {
+.card-info > h1 {
   display: inline;
   margin: 20px;
   font-size: 40px;
@@ -376,10 +376,16 @@ header {
   cursor: pointer;
 }
 
-.follow-info {
+.card-sub-info {
   float: right;
   text-align: center;
   margin-top: 50px;
+}
+
+.loop-count {
+  float: right;
+  text-align: center;
+  margin-top: 25px;
 }
 
 .followers {

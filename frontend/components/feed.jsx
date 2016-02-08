@@ -20,9 +20,12 @@ var Feed = React.createClass({
 
   determineFeedTypeAndFetch: function(feedType, page){
 
-    var cb = function(){
+    var cb = function(tag){
+      if (tag) {
+        this.setState({tag: tag});
+      }
       window.scroll(0, 0);
-    };
+    }.bind(this);
 
 
     if (typeof feedType === "undefined") {
@@ -84,10 +87,27 @@ var Feed = React.createClass({
     var clickHandler = this._showFeedItem;
     var loops = this.state.loops.map(function(loop){
       return(
-        <li key={loop.id}>< Loop loop={loop} user={this.state.user}/></li>
+        <li key={loop.id}><Loop loop={loop} user={this.state.user}/></li>
       );
     }.bind(this));
 
+    var card;
+    if (this.props.feedType === "Feed") {
+      card = (<div className="card">
+        <div className="card-info">
+          <h1>Feed</h1>
+        </div>
+      </div>);
+    } else if (this.props.feedType === "Tag" && this.state.tag) {
+      card = (<div className="card">
+        <div className="card-info">
+          <h1>{"#" + this.state.tag}</h1>
+          <div className="loop-count">
+            <div>{loops.length + " loops"}</div>
+          </div>
+        </div>
+      </div>);
+    }
     var buttons;
 
     if (this.state.page > 1 && this.state.lastPage === false) {
@@ -121,11 +141,14 @@ var Feed = React.createClass({
       );
     } else {
       return(
-        <div className="feed">
-          <ul >
-            {loops}
-          </ul>
-            {buttons}
+        <div>
+          {card}
+          <div className="feed">
+            <ul >
+              {loops}
+            </ul>
+              {buttons}
+          </div>
         </div>
       );
     }

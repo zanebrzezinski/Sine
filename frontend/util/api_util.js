@@ -83,8 +83,8 @@ ApiUtil = {
       dataType: "json",
       data: {page: page},
       success: function(data) {
-        ApiActions.receiveLoops(data);
-        cb && cb();
+        ApiActions.receiveLoops(data.loops);
+        cb && cb(data.tag);
       },
     });
   },

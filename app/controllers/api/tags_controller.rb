@@ -5,6 +5,6 @@ class Api::TagsController < ApplicationController
     @loops = @tag.loops.reverse
     @loops = Kaminari.paginate_array(@loops).page(params[:page])
 
-    render "api/loops/index"
+    render :show
   end
 end
