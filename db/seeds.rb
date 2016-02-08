@@ -38,7 +38,7 @@ eighteen = Loop.create(title: "nature", author_id: duda.id, loop_video: "https:/
 twenty = Loop.create(title: "jumpin jehoshaphat", author_id: guest.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_1874.mp4")
 twentyone = Loop.create(title: "happy nixon", author_id: bartolo.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_1894.mp4")
 nineteen = Loop.create(title: "travolta 4 ever", author_id: zane.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_1777.mp4")
-twentytwo = Loop.create(title: "bb u dance so good", author_id: duda.id loop_video: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_1947.mp4")
+twentytwo = Loop.create(title: "bb u dance so good", author_id: duda.id, loop_video: "https://s3.amazonaws.com/sine-app-seeds/zane/untitled+folder/IMG_1947.mp4")
 
 
 Tag.delete_all
