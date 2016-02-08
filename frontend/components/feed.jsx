@@ -14,11 +14,17 @@ var Feed = React.createClass({
     } else {
       user = "";
     }
-    this.determineFeedTypeAndFetch(this.props.feedType, 1);
+
+    if (this.props.id) {
+      this.determineFeedTypeAndFetch(this.props.feedType, 1, this.props.id);
+    } else {
+      this.determineFeedTypeAndFetch(this.props.feedType, 1);
+    }
+
     return {loops: LoopStore.loops(), user: user, page: 1, lastPage: false};
   },
 
-  determineFeedTypeAndFetch: function(feedType, page){
+  determineFeedTypeAndFetch: function(feedType, page, id){
 
     var cb = function(tag){
       if (tag) {
@@ -27,17 +33,16 @@ var Feed = React.createClass({
       window.scroll(0, 0);
     }.bind(this);
 
-
     if (typeof feedType === "undefined") {
       ApiUtil.fetchAllLoops(page, cb);
     } else if (feedType === "Feed") {
       ApiUtil.fetchFeed(page, cb);
     } else if (feedType === "User") {
-      ApiUtil.fetchUserLoops(this.props.id, page, cb);
+      ApiUtil.fetchUserLoops(id, page, cb);
     } else if (feedType === "Tag") {
-      ApiUtil.fetchTagLoops(this.props.id, page, cb);
+      ApiUtil.fetchTagLoops(id, page, cb);
     } else if (feedType === "Likes") {
-      ApiUtil.fetchLikeLoops(this.props.id, page, cb);
+      ApiUtil.fetchLikeLoops(id, page, cb);
     }
   },
 
@@ -79,7 +84,11 @@ var Feed = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps){
-    this.determineFeedTypeAndFetch(newProps.feedType, 1);
+    if (this.props.id) {
+      this.determineFeedTypeAndFetch(newProps.feedType, 1, newProps.id);
+    } else {
+      this.determineFeedTypeAndFetch(newProps.feedType, 1);
+    }
     this.setState({loops: LoopStore.loops()});
   },
 
