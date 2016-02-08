@@ -150,7 +150,6 @@ ApiUtil = {
       dataType: 'json',
       data: {followings: data},
       success: function(data) {
-        debugger
         cb && cb();
       }
     });
