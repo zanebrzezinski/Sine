@@ -1,6 +1,6 @@
 # Sine
 
-[Sine][http://sine-app.heroku.com]
+[Sine](http://sine-app.heroku.com)
 
 Sine is a web application built with Ruby on Rails, PostgreSQUL, and React.js,
 that allows users to upload and view short loops of video content, as well as
