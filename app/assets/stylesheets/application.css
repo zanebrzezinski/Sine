@@ -513,6 +513,10 @@ header {
   padding-bottom: 15px;
 }
 
+.title:hover{
+  color: #00BF8F;
+}
+
 .created_at:hover{
   color: #000;
 }
@@ -601,14 +605,9 @@ header {
   color: red;
 }
 
-/*
-.repost-icon:hover{
-  color: #00BF8F;
+.no-hover:hover{
+  color: #aaa;
 }
-
-.repost-icon {
-  display: none;
-}*/
 
 .liked {
   color: red;

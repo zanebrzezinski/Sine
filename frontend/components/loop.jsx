@@ -136,15 +136,22 @@ var Loop = React.createClass({
 
     var likeIcon;
 
-    if (this.state.liked) {
-      likeIcon = (
-        <p className="like-icon liked" onClick={this.removeLike}><i className="fa fa-heart"></i></p>
-      );
+    if (this.props.user.id) {
+      if (this.state.liked) {
+        likeIcon = (
+          <p className="like-icon liked" onClick={this.removeLike}><i className="fa fa-heart"></i></p>
+        );
+      } else {
+        likeIcon = (
+          <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
+        );
+      }
     } else {
       likeIcon = (
-        <p className="like-icon" onClick={this.addLike}><i className="fa fa-heart"></i></p>
+        <p className="like-icon no-hover" title="Please sign in to like a post"><i className="fa fa-heart"></i></p>
       );
     }
+
     var followContent;
 
 
@@ -160,24 +167,12 @@ var Loop = React.createClass({
       }
     }
 
-
-
-    var repostIcon = (
-      ""
-      // <p className="repost-icon"><i className="fa fa-refresh"></i></p>
-    );
-
     if (this.props.loop.author_id === this.props.user.id) {
       content = (
         <p className="delete-icon" onClick={this.deletePost}><i className="fa fa-trash-o"></i></p>
       );
-      repostIcon = "";
     } else {
       content = followContent;
-      repostIcon = (
-        ""
-        // <p className="repost-icon"><i className="fa fa-refresh"></i></p>
-      );
     }
 
     var showLink = "#/loops/" + this.props.loop.id;
@@ -204,12 +199,11 @@ var Loop = React.createClass({
         </div>
         <i onClick={this.muteLogic} className={muteIcon} ></i>
         <video id={this.loopId}  className="loop" onClick={this.pauseLogic} loop autoPlay muted={this.state.muted} src={this.props.loop.url}></video>
-        <div className="title">{this.props.loop.title}</div>
+        <div className="title"><a href={showLink}>{this.props.loop.title}</a></div>
         <div className="tags">{tags}</div>
         <div className="loop-icons">
           {likeIcon}
           <i className="icon-number">{this.state.likes}</i>
-          {repostIcon}
         </div>
         < Comments comments={this.props.loop.comments}
          loopId={this.props.loop.id} currentUser={this.props.user}/>
