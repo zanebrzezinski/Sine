@@ -42,11 +42,17 @@ var Comments = React.createClass({
 
   render: function(){
     var commentCount = this.props.comments.array.length;
+    var commentSlice = commentCount - this.state.numComments;
 
     if (this.state.commentShow) {
+
+      if (commentCount - this.state.numComments < 0) {
+        commentSlice = 0;
+      }
+
       commentShow = (
         < CommentShow
-        comments={this.props.comments.array.slice(commentCount - this.state.numComments)} />
+        comments={this.props.comments.array.slice(commentSlice)} />
     );
     } else {
       commentShow = "";
