@@ -8,7 +8,6 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 var Feed = require('./components/feed.jsx');
 var Loop = require('./components/loop.jsx');
-var LoopShow = require('./components/loopShow.jsx');
 var User = require('./components/user.jsx');
 var Header = require('./components/header.jsx');
 var Errors = require('./components/errors.jsx');
@@ -51,11 +50,19 @@ var LikeFeedWrapper = React.createClass({
   }
 });
 
+var LoopShowFeedWrapper = React.createClass({
+  render: function() {
+    return (
+      < Feed feedType="Show" id={this.props.params.loopId} />
+    );
+  }
+});
+
 var router = (
   <Router>
     <Route path="/" component={App}>
       <IndexRoute component={Feed} />
-      <Route path="loops/:loopId" component={LoopShow} />
+      <Route path="loops/:loopId" component={LoopShowFeedWrapper} />
       <Route path="users/:userId" component={User} />
       <Route path="feed" component={FeedWrapper} onEnter={_ensureLoggedIn}/>
       <Route path="tag/:tagId" component={TagFeedWrapper} />

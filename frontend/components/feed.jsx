@@ -43,6 +43,8 @@ var Feed = React.createClass({
       ApiUtil.fetchTagLoops(id, page, cb);
     } else if (feedType === "Likes") {
       ApiUtil.fetchLikeLoops(id, page, cb);
+    } else if (feedType === "Show") {
+      ApiUtil.fetchOneLoop(id, cb);
     }
   },
 
