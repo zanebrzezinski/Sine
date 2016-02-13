@@ -721,10 +721,6 @@ header {
 }
 
 .error {
-  z-index: 100000000000000;
   text-align: center;
-  position: fixed;
   color: red;
-  font-size: 200px;
-  opacity: 1;
 }

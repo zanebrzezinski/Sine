@@ -31,7 +31,6 @@ var VideoUpload = React.createClass({
   setLoop: function() {
 
     this.video = document.getElementsByClassName("upload-preview")[0];
-
     this.loopCallBack = function(){
       if (this.video.currentTime >= 7) {
         this.video.currentTime = 0;
@@ -49,21 +48,48 @@ var VideoUpload = React.createClass({
   changeFile: function(e) {
     var reader = new FileReader();
     var file = e.currentTarget.files[0];
+    if (file.type.slice(0,5) === "video") {
+      reader.onloadend = function () {
+        this.setState({loop: file, loopUrl: reader.result});
+      }.bind(this);
 
-    reader.onloadend = function () {
-      this.setState({loop: file, loopUrl: reader.result});
-    }.bind(this);
-
-    if (file) {
-      reader.readAsDataURL(file);
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({loop: null, loopUrl: ""});
+      }
     } else {
-      this.setState({loop: null, loopUrl: ""});
+      var error;
+      if (this.state.error) {
+        error = this.state.error;
+        error.push(" Please select a valid file to upload");
+      } else {
+        error = [" Please select a valid file to upload"];
+      }
+      this.setState({error: error });
     }
   },
 
   handleSubmit: function(e) {
     e.preventDefault();
 
+    var error;
+    if (!this.state.title || !this.state.loop) {
+      if (!this.state.title) {
+        if (this.state.error) {
+          error = this.state.error;
+          error.push(" Please enter a Title");
+        } else {
+          error = [" Please enter a Title"];
+        }
+      }
+      if (!this.state.loop) {
+        error.push(" Please select a video to upload");
+      }
+
+      this.setState({error: error});
+      return;
+    }
     this.setState({buttonClass: "hidden"});
 
     var formData = new FormData();
@@ -88,12 +114,24 @@ var VideoUpload = React.createClass({
       content = <p className="form-button upload">Please Wait... Processing your loop</p>;
     }
 
+    var errors;
+    if (this.state.error) {
+      errors = this.state.error.map(function(error){
+        return(
+          <li key={error} className="error">{error}</li>
+        );
+      });
+    }
+
+
+
     return (
       <div>
         <div  className='modal-cover' onClick={this.props.handleClick} />
         <div className="modal video-upload">
 
           <h2>Upload</h2>
+          <ul>{errors}</ul>
             <video className="upload-preview" loop autoPlay muted src={this.state.loopUrl}></video>
 
             <form className="userform group" onSubmit={this.handleSubmit}>
