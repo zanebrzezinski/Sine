@@ -1,4 +1,4 @@
-json.extract! @user, :username, :id, :likes, :followers, :followed_users
+json.extract! @user, :username, :id, :likes, :followers, :followed_users, :followings_followed
 json.profile_picture asset_path(@user.profile_picture)
 json.liked_loops do
   json.array!(@user.liked_loops) do |loop|

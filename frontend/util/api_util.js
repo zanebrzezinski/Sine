@@ -1,5 +1,6 @@
 var ApiActions = require('../actions/api_actions');
 var ErrorActions = require('../actions/error_actions');
+var CurrentUserActions = require("./../actions/current_user_actions");
 
 ApiUtil = {
   fetchAllLoops: function(page, cb) {
@@ -149,7 +150,8 @@ ApiUtil = {
       type: 'POST',
       dataType: 'json',
       data: {followings: data},
-      success: function(data) {
+      success: function(currentUser) {
+        CurrentUserActions.receiveCurrentUser(currentUser);
         cb && cb();
       }
     });
@@ -161,7 +163,8 @@ ApiUtil = {
       type: 'DELETE',
       dataType: 'json',
       data: {id: id},
-      success: function(data) {
+      success: function(currentUser) {
+        CurrentUserActions.receiveCurrentUser(currentUser);
         cb && cb();
       }
     });

@@ -95,15 +95,11 @@ var Feed = React.createClass({
   addFollowing: function(followee_id){
     var currentUser = this.state.user;
     var data = {follower_id: currentUser.id, followee_id: followee_id};
-    ApiUtil.createFollowing(data, function(){
-      this.forceUpdate();
-    }.bind(this));
+    ApiUtil.createFollowing(data);
   },
 
   removeFollowing: function(followingId){
-    ApiUtil.destroyFollowing(followingId, function(){
-      this.forceUpdate();
-    }.bind(this));
+    ApiUtil.destroyFollowing(followingId);
   },
 
   render: function() {
@@ -112,9 +108,9 @@ var Feed = React.createClass({
 
       var followingId;
       if (this.state.user.id) {
-        loop.author_followers.array.forEach (function(follower){
-          if (this.state.user.id === follower.follower) {
-            followingId = follower.id;
+        this.state.user.followings_followed.forEach (function(following){
+          if (following.followee_id === loop.author_id) {
+            followingId = following.id;
             return;
           }
         }.bind(this));
