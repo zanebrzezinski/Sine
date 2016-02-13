@@ -92,11 +92,38 @@ var Feed = React.createClass({
     this.setState({loops: LoopStore.loops()});
   },
 
+  addFollowing: function(followee_id){
+    var currentUser = this.state.user;
+    var data = {follower_id: currentUser.id, followee_id: followee_id};
+    ApiUtil.createFollowing(data, function(){
+      this.forceUpdate();
+    }.bind(this));
+  },
+
+  removeFollowing: function(followingId){
+    ApiUtil.destroyFollowing(followingId, function(){
+      this.forceUpdate();
+    }.bind(this));
+  },
+
   render: function() {
     var clickHandler = this._showFeedItem;
     var loops = this.state.loops.map(function(loop){
+
+      var followingId;
+      if (this.state.user.id) {
+        loop.author_followers.array.forEach (function(follower){
+          if (this.state.user.id === follower.follower) {
+            followingId = follower.id;
+            return;
+          }
+        }.bind(this));
+      }
+
       return(
-        <li key={loop.id}><Loop loop={loop} user={this.state.user}/></li>
+        <li key={loop.id}><Loop loop={loop} user={this.state.user}
+        followingId={followingId} addFollowing={this.addFollowing}
+        removeFollowing={this.removeFollowing}/></li>
       );
     }.bind(this));
 

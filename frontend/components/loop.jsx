@@ -7,10 +7,9 @@ var Comments = require('./comments');
 var Loop = React.createClass({
 
   getInitialState: function(){
-
     return (
       {muted: "muted", paused: false, comment: null,
-        likes: this.props.loop.likes.array.length, liked: false, following: false}
+        likes: this.props.loop.likes.array.length, liked: false}
     );
   },
 
@@ -100,30 +99,20 @@ var Loop = React.createClass({
     }.bind(this));
   },
 
-  addFollowing: function(){
-    var currentUser = this.props.user;
-    if (currentUser.id) {
-      var data = {follower_id: currentUser.id, followee_id: this.props.loop.author_id};
-      ApiUtil.createFollowing(data, function(){
-        this.setState({following: true});
-      }.bind(this));
-    }
-  },
-
-  removeFollowing: function(){
-    var followingId = this.searchForFollowing();
-    ApiUtil.destroyFollowing(followingId, function() {
-      this.setState({following: false});
-    }.bind(this));
-  },
-
   deletePost: function(){
     ApiUtil.destroyLoop(this.props.loop.id, function(){
     }.bind(this));
   },
 
-  render: function() {
+  addFollowing: function() {
+    this.props.addFollowing(this.props.loop.author_id);
+  },
 
+  removeFollowing: function() {
+    this.props.removeFollowing(this.props.followingId);
+  },
+
+  render: function() {
     var muteIcon;
     if (this.state.muted === "muted") {
       muteIcon = "fa fa-volume-off volume";
@@ -156,7 +145,7 @@ var Loop = React.createClass({
 
 
     if (this.props.user.id) {
-      if (this.state.following) {
+      if (this.props.followingId) {
         followContent = (
           <p className="follow-icon following" onClick={this.removeFollowing}><i className="fa fa-user"></i></p>
         );
