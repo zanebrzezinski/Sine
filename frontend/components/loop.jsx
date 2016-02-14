@@ -9,7 +9,7 @@ var Loop = React.createClass({
   getInitialState: function(){
     return (
       {muted: "muted", paused: false, comment: null,
-        likes: this.props.loop.likes.array.length, liked: false}
+        likes: this.props.loop.likes.array.length, liked: false, error: null}
     );
   },
 
@@ -89,6 +89,8 @@ var Loop = React.createClass({
         this.setState({likes: (this.state.likes + 1), liked: true});
         this.saving = false;
       }.bind(this));
+    } else {
+      this.setState({error: "Please log in to like a post"});
     }
   },
 
@@ -137,7 +139,7 @@ var Loop = React.createClass({
       }
     } else {
       likeIcon = (
-        <p className="like-icon no-hover" title="Please sign in to like a post"><i className="fa fa-heart"></i></p>
+        <p className="like-icon no-hover" title="Please sign in to like a post" onClick={this.addLike}><i className="fa fa-heart"></i></p>
       );
     }
 
@@ -176,6 +178,13 @@ var Loop = React.createClass({
     });
 
 
+    var errors;
+    if (this.state.error) {
+      errors = (
+        <li key={this.state.error} className="error">{this.state.error}</li>
+      );
+    }
+
     return(
       <div className="loop-box group">
         <div className="loop-info group">
@@ -191,6 +200,7 @@ var Loop = React.createClass({
         <div className="title"><a href={showLink}>{this.props.loop.title}</a></div>
         <div className="tags">{tags}</div>
         <div className="loop-icons">
+        <ul>{errors}</ul>
           {likeIcon}
           <i className="icon-number">{this.state.likes}</i>
         </div>

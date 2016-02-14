@@ -7,7 +7,7 @@ var Comments = React.createClass({
 
   getInitialState: function() {
     return(
-      {comment: "", commentShow: false, numComments: 3}
+      {comment: "", commentShow: false, numComments: 3, error: null}
     );
   },
 
@@ -30,6 +30,11 @@ var Comments = React.createClass({
 
   handleSubmit: function(e){
     e.preventDefault();
+
+    if (!this.props.currentUser.id) {
+      this.setState({error: "Please sign in to comment."});
+    }
+
     ApiUtil.createComment(
       {comment: this.state.comment,
       loop_id: this.props.loopId, user_id: this.props.currentUser.id},
@@ -43,6 +48,12 @@ var Comments = React.createClass({
   render: function(){
     var commentCount = this.props.comments.array.length;
     var commentSlice = commentCount - this.state.numComments;
+
+
+    var errors;
+    if (this.state.error) {
+      errors = (<li key={this.state.error} className="error">{this.state.error}</li>);
+    }
 
     if (this.state.commentShow) {
 
@@ -61,6 +72,7 @@ var Comments = React.createClass({
     return(
       <div>
         <p className="comment-count" onClick={this.showComments}>{commentCount} Comments</p>
+        <ul>{errors}</ul>
         {commentShow}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.commentChange}
