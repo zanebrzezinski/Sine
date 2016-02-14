@@ -10,7 +10,6 @@ var Feed = require('./components/feed.jsx');
 var Loop = require('./components/loop.jsx');
 var User = require('./components/user.jsx');
 var Header = require('./components/header.jsx');
-var Errors = require('./components/errors.jsx');
 var CurrentUserStore = require('./stores/current_user_store');
 var SessionsApiUtil = require('./util/sessions_api_util');
 
@@ -18,7 +17,6 @@ var App = React.createClass({
   render: function() {
     return (
       <div className="app">
-        < Errors />
         < Header />
         {this.props.children}
      </div>

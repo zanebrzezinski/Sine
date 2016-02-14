@@ -8,7 +8,7 @@ var VideoUpload = React.createClass({
 
   getInitialState: function() {
     return(
-      {title: "", loop: null, loopUrl: "", tags: "", buttonClass: "form-button"}
+      {title: "", loop: null, loopUrl: "", tags: "", buttonClass: "form-button", error: null}
     );
   },
 

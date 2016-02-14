@@ -7,16 +7,32 @@ var SignIn = React.createClass({
   mixins: [History],
 
   getInitialState: function() {
-    return {signUp: false};
+    return {signUp: false, error: null};
   },
 
   submit: function (e) {
     e.preventDefault();
 
+    if (e.currentTarget.username.value === "" || e.currentTarget.password.value === "") {
+      var errors = [];
+      if (e.currentTarget.username.value === "") {
+        errors.push(" Please enter a username");
+      }
+      if (e.currentTarget.password.value === "") {
+        errors.push(" Please enter a password");
+      }
+      this.setState({error: errors});
+      return;
+    }
+
     var credentials = $(e.currentTarget).serializeJSON();
 
     SessionsApiUtil.login(credentials, function() {
       this.props.handleClick();
+    }.bind(this), function() {
+      var errors = this.state.error || [];
+      errors.push("Invalid Login Details");
+      this.setState({error: errors});
     }.bind(this));
 
   },
@@ -28,6 +44,16 @@ var SignIn = React.createClass({
 
   render: function(){
     if (!this.state.signUp) {
+
+      var errors;
+      if (this.state.error) {
+        errors = this.state.error.map(function(error){
+          return(
+            <li key={error} className="error">{error}</li>
+          );
+        });
+      }
+
       return(
       <div>
         <div  className='modal-cover' onClick={this.props.handleClick} />
@@ -40,6 +66,7 @@ var SignIn = React.createClass({
               <input type="hidden" name="password" value="password"/>
               <button className="form-button guest">Guest Sign In</button>
             </form>
+            <ul>{errors}</ul>
             <form className="userform group" onSubmit={this.submit}>
                 <input className="textbox" type="text" name="username" placeholder="Username" />
                 <input className="textbox" type="password" name="password" placeholder="Password" />

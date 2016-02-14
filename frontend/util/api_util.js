@@ -1,5 +1,4 @@
 var ApiActions = require('../actions/api_actions');
-var ErrorActions = require('../actions/error_actions');
 var CurrentUserActions = require("./../actions/current_user_actions");
 
 ApiUtil = {
@@ -105,7 +104,7 @@ ApiUtil = {
     });
   },
 
-  createUser: function(formData, cb) {
+  createUser: function(formData, cb, failure) {
     $.ajax({
       url: '/api/users',
       type: 'POST',
@@ -115,6 +114,9 @@ ApiUtil = {
       data: formData,
       success: function(user) {
         cb && cb(user);
+      },
+      error: function() {
+        failure && failure();
       }
     });
   },

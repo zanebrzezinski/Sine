@@ -6,7 +6,9 @@ var UserForm = React.createClass({
 
   getInitialState: function() {
     return(
-      {username: "", password: "", profilePicture: null, profilePictureUrl: "https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg"}
+      {username: "", password: "", profilePicture: null,
+      error: null,
+      profilePictureUrl: "https://s3.amazonaws.com/sine-dev/users/profile_pictures/000/000/016/original/sine_wave.jpg"}
     );
   },
 
@@ -21,6 +23,13 @@ var UserForm = React.createClass({
   changeFile: function(e) {
     var reader = new FileReader();
     var file = e.currentTarget.files[0];
+
+    if (file.type.slice(0,5) !== "image") {
+      var errors = this.state.error || [];
+      errors.push("Please select a valid profile picture");
+      this.setState({error: errors});
+      return;
+    }
 
     reader.onloadend = function () {
       this.setState({profilePicture: file, profilePictureUrl: reader.result});
@@ -37,6 +46,19 @@ var UserForm = React.createClass({
     e.preventDefault();
 
     var formData = new FormData();
+    if (this.state.username === "" || this.state.password === "" || this.state.password.length < 6) {
+      var errors = [];
+      if (this.state.username === "") {
+        errors.push(" Please enter a username");
+      }
+      if (this.state.password === "") {
+        errors.push(" Please enter a password");
+      } else if (this.state.password.length < 6) {
+        errors.push(" Password too short.  Passwords must be 6 characters or greater");
+      }
+      this.setState({error: errors});
+      return;
+    }
 
     formData.append("user[username]", this.state.username);
     formData.append("user[password]", this.state.password);
@@ -48,14 +70,26 @@ var UserForm = React.createClass({
       SessionsApiUtil.login(credentials, function() {
         this.props.handleClick();
       }.bind(this));
+    }.bind(this), function(){
+      this.setState({error: "Invalid User info.  Please try another username"});
     }.bind(this));
 
   },
 
   render: function(){
+    var errors;
+    if (this.state.error) {
+      errors = this.state.error.map(function(error){
+        return(
+          <li key={error} className="error">{error}</li>
+        );
+      });
+    }
+
     return(
     <div className='modal sign-up'>
       <h2>Sine Up</h2>
+      <ul>{errors}</ul>
       <img className="profile-picture" src={this.state.profilePictureUrl}/>
       <form onSubmit={this.handleSubmit} className="userform group">
         <input className="textbox" onChange={this.changeUsername} placeholder="Username" type="text" name="username" value={this.state.username}/>
