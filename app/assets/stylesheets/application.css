@@ -678,7 +678,7 @@ header {
 }
 
 .comments-list {
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 200px;
 }
 
