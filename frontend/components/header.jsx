@@ -36,6 +36,7 @@ var Header = React.createClass({
   },
 
   handleSignInClick: function(){
+    debugger
     if (this.state.signInModal) {
       this.setState({signInModal: false});
     } else {

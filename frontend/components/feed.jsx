@@ -141,30 +141,39 @@ var Feed = React.createClass({
           </div>
         </div>
       </div>);
+    } else if (!this.props.feedType) {
+      card = (
+        <div className="card">
+          <div className="card-info">
+            <h1>Discover</h1>
+          </div>
+        </div>
+      );
     }
     var buttons;
 
-    if (this.state.page > 1 && this.state.lastPage === false) {
-      buttons = (
-        <div className="page-buttons">
-          <button className="page-button prev" onClick={this.prevPage}>Previous</button>
-          <button className="page-button" onClick={this.nextPage}>Next</button>
-        </div>
-      );
-    } else if (this.state.lastPage === true) {
-      buttons = (
-        <div className="page-buttons">
-          <button className="page-button prev" onClick={this.prevPage}>Previous</button>
-        </div>
-      );
-    } else {
-      buttons = (
-        <div className="page-buttons">
-          <button className="page-button" onClick={this.nextPage}>Next</button>
-        </div>
-      );
+    if (this.props.feedType !== "Show") {
+      if (this.state.page > 1 && this.state.lastPage === false) {
+        buttons = (
+          <div className="page-buttons">
+            <button className="page-button prev" onClick={this.prevPage}>Previous</button>
+            <button className="page-button" onClick={this.nextPage}>Next</button>
+          </div>
+        );
+      } else if (this.state.lastPage === true) {
+        buttons = (
+          <div className="page-buttons">
+            <button className="page-button prev" onClick={this.prevPage}>Previous</button>
+          </div>
+        );
+      } else {
+        buttons = (
+          <div className="page-buttons">
+            <button className="page-button" onClick={this.nextPage}>Next</button>
+          </div>
+        );
+      }
     }
-
 
     if (loops.length === 0 && this.state.user !== "") {
       return(
