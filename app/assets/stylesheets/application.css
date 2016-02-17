@@ -448,6 +448,13 @@ header {
   text-align: center;
 }
 
+.upload-icon {
+  text-align: center;
+  color: #aaa;
+  font-size: 72px;
+  display: block;
+}
+
 /* --- VIDEO UPLOAD VIEW --- */
 
 

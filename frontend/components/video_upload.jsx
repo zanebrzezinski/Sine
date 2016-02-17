@@ -31,13 +31,16 @@ var VideoUpload = React.createClass({
   setLoop: function() {
 
     this.video = document.getElementsByClassName("upload-preview")[0];
-    this.loopCallBack = function(){
-      if (this.video.currentTime >= 7) {
-        this.video.currentTime = 0;
-      }
-    }.bind(this);
 
-    this.video.addEventListener("timeupdate", this.loopCallBack);
+
+    if (this.video) {
+      this.loopCallBack = function(){
+        if (this.video.currentTime >= 7) {
+          this.video.currentTime = 0;
+        }
+      }.bind(this);
+      this.video.addEventListener("timeupdate", this.loopCallBack);
+    }
 
   },
 
@@ -123,6 +126,17 @@ var VideoUpload = React.createClass({
       });
     }
 
+    var video;
+    if (this.state.loopUrl === "") {
+      video = (
+        <i className="fa fa-video-camera upload-icon"></i>
+      );
+    } else {
+      video = (
+        <video className="upload-preview" loop autoPlay muted src={this.state.loopUrl}></video>
+      );
+    }
+
 
 
     return (
@@ -132,7 +146,7 @@ var VideoUpload = React.createClass({
 
           <h2>Upload</h2>
           <ul>{errors}</ul>
-            <video className="upload-preview" loop autoPlay muted src={this.state.loopUrl}></video>
+            {video}
 
             <form className="userform group" onSubmit={this.handleSubmit}>
                 <input className="file-upload" type="file" onChange={this.changeFile}/>
