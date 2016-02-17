@@ -7,7 +7,7 @@ var SignIn = React.createClass({
   mixins: [History],
 
   getInitialState: function() {
-    return {signUp: false, error: null};
+    return {signUp: false, error: null, loading: false};
   },
 
   submit: function (e) {
@@ -26,8 +26,9 @@ var SignIn = React.createClass({
     }
 
     var credentials = $(e.currentTarget).serializeJSON();
-
+    this.setState({loading:true});
     SessionsApiUtil.login(credentials, function() {
+      this.setState({loading:false});
       this.props.handleClick();
     }.bind(this), function() {
       var errors = this.state.error || [];
@@ -44,7 +45,20 @@ var SignIn = React.createClass({
 
   render: function(){
     if (!this.state.signUp) {
+      if (this.state.loading) {
+        return (
+          <div>
+            <div  className='modal-cover' onClick={this.props.handleClick} />
+            <div className="modal sign-in">
 
+              <h1>Sine</h1>
+              <h2>Sine in</h2>
+                <div className="form-button upload">Signing In</div>
+                <ul>{errors}</ul>
+            </div>
+          </div>
+        );
+      }
       var errors;
       if (this.state.error) {
         errors = this.state.error.map(function(error){

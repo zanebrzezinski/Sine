@@ -141,6 +141,14 @@ var Feed = React.createClass({
           </div>
         </div>
       </div>);
+    } else if (this.props.feedType === "Show" && this.state.loops[0]) {
+      card = (
+        <div className="card">
+          <div className="card-info">
+            <h1>{this.state.loops[0].title}</h1>
+          </div>
+        </div>
+      );
     } else if (!this.props.feedType) {
       card = (
         <div className="card">

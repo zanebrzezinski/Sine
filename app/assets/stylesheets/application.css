@@ -295,6 +295,10 @@ header {
   color: #4099FF;
 }
 
+.sign-in-loading {
+
+}
+
 /* --- FEED --- */
 
 .feed {
@@ -437,9 +441,10 @@ header {
 }
 
 .upload {
+  width: 250px;
   display: block;
   background-color: #7870cc;
-  margin: auto;
+  margin: 10px auto;
   text-align: center;
 }
 
