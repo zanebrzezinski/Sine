@@ -28,11 +28,18 @@ var Comments = React.createClass({
     }
   },
 
+  componentWillReceiveProps: function(newProps) {
+    if (newProps.currentUser.id) {
+      this.setState({error: null});
+    }
+  },
+
   handleSubmit: function(e){
     e.preventDefault();
 
     if (!this.props.currentUser.id) {
       this.setState({error: "Please sign in to comment."});
+      return;
     }
 
     ApiUtil.createComment(

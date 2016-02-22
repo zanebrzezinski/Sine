@@ -46,6 +46,7 @@ var Loop = React.createClass({
   },
 
   componentWillReceiveProps: function() {
+    this.setState({error: null});
     this.searchForLike();
     this.searchForFollowing();
   },
