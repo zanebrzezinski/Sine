@@ -233,9 +233,9 @@ header {
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   left: calc(50% - 210px);
-  top: 50px;
+  top: 200px;
   width: 420px;
   margin: auto;
   background-color: white;
