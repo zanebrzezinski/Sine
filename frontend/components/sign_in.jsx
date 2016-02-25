@@ -33,7 +33,7 @@ var SignIn = React.createClass({
     }.bind(this), function() {
       var errors = this.state.error || [];
       errors.push("Invalid Login Details");
-      this.setState({error: errors});
+      this.setState({error: errors, loading: false});
     }.bind(this));
 
   },
