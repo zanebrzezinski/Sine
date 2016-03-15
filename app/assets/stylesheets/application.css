@@ -380,6 +380,7 @@ header {
 }
 
 .card-sub-info {
+  position: relative;
   float: right;
   text-align: center;
   margin-top: 50px;
@@ -395,14 +396,45 @@ header {
   display: inline-block;
   margin: 0 20px;
   float: left;
+  cursor: pointer;
 }
 
 .followings {
-  display: inline-block
+  display: inline-block;
+  cursor: pointer;
 }
 
 .greyed {
   color: #aaa;
+}
+
+.userlist {
+  position: absolute;
+  width: 200px;
+  background-color: #FFF;
+  color: #00BF8F;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.userlist-list {
+  text-align: left;
+}
+
+.userlist-item {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.close-button {
+  float: right;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.close-button:hover {
+  color: red;
 }
 
 /* --- SIGN UP FORM --- */

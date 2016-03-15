@@ -2,11 +2,13 @@ var React = require('react');
 var Feed = require('./feed.jsx');
 var UserStore = require('../stores/user_store');
 
+var UsersList = require('./users_list');
+
 var UserCard = React.createClass({
 
   getInitialState: function() {
     return(
-        {user: UserStore.user()[0], userClass: "", likesClass: "greyed"}
+        {user: UserStore.user()[0], userClass: "", likesClass: "greyed", list: null}
     );
   },
 
@@ -34,7 +36,26 @@ var UserCard = React.createClass({
     this.props.userFeed();
   },
 
+  showFollowers: function() {
+    this.setState({list: "followers"});
+  },
+
+  showFollowings: function() {
+    this.setState({list: "followings"});
+  },
+
+  clickHandler: function() {
+    this.setState({list: null});
+  },
+
   render: function() {
+
+    var list;
+    if (this.state.list === "followers") {
+      list = <UsersList users={this.state.user.followers} clickHandler={this.clickHandler}/>;
+    } else if (this.state.list === "followings") {
+      list = <UsersList users={this.state.user.followed_users} clickHandler={this.clickHandler}/>;
+    }
 
     if (this.state.user && this.state.user.length !== 0) {
       return (
@@ -43,14 +64,15 @@ var UserCard = React.createClass({
             <img className="profile-picture-large" src={this.state.user.profile_picture} />
             <h1>{this.state.user.username}</h1>
             <div className="card-sub-info">
-              <div className="followers">
+              <div className="followers" onClick={this.showFollowers}>
                 <div className="followers-count">{this.state.user.followers.length}</div>
                 <div className="followers-word">Followers</div>
               </div>
-              <div className="followings">
+              <div className="followings" onClick={this.showFollowings}>
                 <div className="followings-count">{this.state.user.followed_users.length} </div>
                 <div className="followings-word">Following</div>
               </div>
+              {list}
             </div>
           </div>
           <div className = "social-info">
